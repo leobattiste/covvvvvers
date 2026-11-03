@@ -61,3 +61,11 @@ main img:not(.avatar-choices img):not(.card-saved img) { border-radius: var(--ra
   letter-spacing: normal;
   text-transform: none;
 }
+
+/* Cover credit names and roles use regular weight. */
+.sleeve-back .sleeve-people dt,
+.sleeve-back .sleeve-people dd,
+.sleeve-back .sleeve-people a,
+.sleeve-back .sleeve-facts dt,
+.sleeve-back .sleeve-facts dd,
+.sleeve-back .sleeve-facts a { font-weight: 400; }
