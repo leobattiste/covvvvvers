@@ -7,6 +7,39 @@ import type { Moment } from "./history";
  */
 export const RESEARCH_MOMENTS: Moment[] = [
   {
+    id: "freaknik-atlanta-1983",
+    when: "1983",
+    title: "Freaknik begins as a Black college spring-break gathering",
+    text: "Students associated with Atlanta's historically Black colleges began Freaknik as a small spring-break picnic in 1983. The gathering expanded over the following decade into a major celebration of Black college life and a showcase for the city's DJs, clubs and emerging rap culture. Its beginnings are documented through interviews with organizers and contemporary Atlanta newspaper archives.",
+    tags: ["culture"],
+    sources: ["ajc-freaknik-origins", "gpb-georgia-hiphop"],
+  },
+  {
+    id: "new-orleans-bounce-1992",
+    when: "1992",
+    title: "New Orleans bounce builds its own independent economy",
+    text: "In the early 1990s, New Orleans artists and producers developed bounce around dance rhythms, call-and-response chants and neighborhood references. MC T. Tucker and DJ Jimi were among the early recording figures, while local labels and shops built a market largely outside national rap distribution. Music scholar Matt Miller documents the movement's emergence between 1992 and 1994.",
+    tags: ["sound", "business", "culture"],
+    sources: ["umass-bounce-book", "billboard-bounce-1994"],
+  },
+  {
+    id: "dj-jubilee-1993",
+    when: "1993",
+    title: "DJ Jubilee helps establish bounce as a New Orleans staple",
+    text: "DJ Jubilee's Do the Jubilee All became a major local bounce release in 1993. Billboard's March 1994 reporting described strong independent cassette sales and a thriving network of local labels, shops and performers. The song's dance instructions and neighborhood-centered call-and-response exemplified bounce's participatory style.",
+    tags: ["sound", "business"],
+    sources: ["billboard-bounce-1994", "tulane-bounce"],
+  },
+  {
+    id: "jeru-cover-1994",
+    when: "1994",
+    title: "Danny Hastings and Hugo Bravo create a striking rap cover",
+    text: "For Jeru the Damaja's debut The Sun Rises in the East, photographer Danny Hastings collaborated with illustrator Hugo Bravo on an image of the rapper against a burning Manhattan skyline. Original sketches, painted concept art and a print of the finished cover were later documented together by Sotheby's, providing unusually direct evidence of the cover's development and creators.",
+    tags: ["culture"],
+    sources: ["sothebys-jeru-cover"],
+  },
+
+  {
     id: "memphis-underground-cassettes",
     when: "1992",
     title: "Memphis rap spreads through local cassette networks",
@@ -191,6 +224,13 @@ export const RESEARCH_MOMENTS: Moment[] = [
 ];
 
 export const RESEARCH_SOURCES = [
+  { id: "ajc-freaknik-origins", title: "Atlanta Journal-Constitution — From the archives: The first Freaknik was a picnic, with music (2024)", url: "https://www.ajc.com/news/atlanta-news/from-the-archives-the-first-freaknik-was-a-picnic-with-music/X2OSDCM2ERHBTKIP4VZ4NUPFHI/" },
+  { id: "gpb-georgia-hiphop", title: "Georgia Public Broadcasting — A history of hip-hop in Georgia (2023)", url: "https://www.gpb.org/news/2023/08/11/history-of-hip-hop-in-georgia-jack-the-rapper-raps-epicenter" },
+  { id: "umass-bounce-book", title: "Matt Miller — Bounce: Rap Music and Local Identity in New Orleans (University of Massachusetts Press, 2012)", url: "https://www.jstor.org/stable/j.ctt5vk27f" },
+  { id: "billboard-bounce-1994", title: "Billboard — Home-Grown Bounce Music Dominates New Orleans' Rap Scene (March 19, 1994)", url: "https://www.worldradiohistory.com/Archive-All-Music/Billboard/90s/1994/BB-1994-03-19.pdf" },
+  { id: "tulane-bounce", title: "Tulane University, Music Rising — Bounce", url: "https://musicrising.tulane.edu/discover/themes/bounce/" },
+  { id: "sothebys-jeru-cover", title: "Sotheby's — Danny Hastings and Hugo Bravo, original concept art for The Sun Rises in the East (2022)", url: "https://www.sothebys.com/en/buy/auction/2022/hip-hop/original-concept-art-by-hugo-bravo-for-the-cover" },
+
   { id: "reverb-memphis-tapes", title: "Reverb (2021) — The Rise of Memphis Rap Tapes", url: "https://applink.reverb.com/news/the-rise-of-memphis-rap-tapes" },
   { id: "memphis-hall-three-six", title: "Memphis Music Hall of Fame — Three 6 Mafia", url: "https://memphismusichalloffame.com/inductee/threesixmafia/" },
   { id: "southern-spaces-dirty-decade", title: "Southern Spaces / Emory University (2008) — Dirty Decade: Rap Music and the US South, 1997–2007", url: "https://southernspaces.org/2008/dirty-decade-rap-music-and-us-south-1997-2007/" },
