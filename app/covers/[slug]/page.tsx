@@ -63,7 +63,7 @@ export default async function CoverPage({ params }: Params) {
   const sleeve: [string, React.ReactNode][] = [
     ["Album", cover.title],
     ["Artist", <Link href={`/covers?q=${encodeURIComponent(cover.artist)}`}>{cover.artist}</Link>],
-    ["Released", <Link href={`/covers?year=${cover.release_year}`}>{cover.release_year}</Link>],
+    ["Released", <Link href={`/covers?q=${cover.release_year}`}>{cover.release_year}</Link>],
     ["Label", cover.label],
     ["Cover type", cover.type && <Link href={`/types/${cover.type.slug}`}>{cover.type.title}</Link>],
     // The written credit, when the people aren't listed one by one.
@@ -97,7 +97,7 @@ export default async function CoverPage({ params }: Params) {
                   {cover.type.title}
                 </Link>
               )}
-              <Link href={`/covers?year=${cover.release_year}`}>{cover.release_year}</Link>
+              <Link href={`/covers?q=${cover.release_year}`}>{cover.release_year}</Link>
             </p>
           </header>
 
