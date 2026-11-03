@@ -7,6 +7,31 @@ import type { Moment } from "./history";
  */
 export const RESEARCH_MOMENTS: Moment[] = [
   {
+    id: "houston-screw-slab",
+    when: "1995",
+    title: "Houston's screw sound develops alongside slab culture",
+    text: "In Houston, slowed-down recordings associated with DJ Screw became part of a distinctive local hip-hop tradition. Ethnomusicologist Langston Wilkins connects screw music with slab car culture and the creative practices of working-class Black Houstonians. Both traditions shaped the city's musical identity well beyond conventional album releases.",
+    tags: ["sound", "culture", "tech"],
+    sources: ["loc-street-folk"],
+  },
+  {
+    id: "southern-rap-outkast-1995",
+    when: "1995",
+    title: "Outkast challenges the East Coast–West Coast narrative",
+    text: "At the 1995 Source Awards, Outkast received the Best New Rap Group award amid a tense atmosphere dominated by coastal rivalries. Big Boi later described how the duo and Atlanta's Dungeon Family developed their sound in producer Rico Wade's basement. The moment illustrates Southern hip-hop's growing visibility during a period too often summarized through New York and Los Angeles alone.",
+    tags: ["culture", "business"],
+    sources: ["smithsonian-bigboi"],
+  },
+  {
+    id: "smithsonian-anthology-2021",
+    when: "2021",
+    title: "The Smithsonian publishes a major hip-hop anthology",
+    text: "Smithsonian Folkways released the Anthology of Hip-Hop and Rap, combining 129 recordings with a richly illustrated companion volume and scholarly commentary. Its curators documented regional styles, recordings, photographs and material culture, helping make hip-hop history accessible as an archival and educational subject.",
+    tags: ["culture", "business"],
+    sources: ["smithsonian-anthology-article"],
+  },
+
+  {
     id: "roxanne-shante-1984",
     when: "1984",
     title: "Roxanne Shanté enters the Roxanne Wars",
@@ -119,6 +144,9 @@ export const RESEARCH_MOMENTS: Moment[] = [
 ];
 
 export const RESEARCH_SOURCES = [
+  { id: "loc-street-folk", title: "Library of Congress — Street Folk: Hip-Hop, Car Culture & Black Life in Houston, Texas (2019)", url: "https://www.loc.gov/item/2024696429/" },
+  { id: "smithsonian-bigboi", title: "Smithsonian Magazine — A Rap Legend Looks Back on 50 Years of Hip-Hop (2023)", url: "https://www.smithsonianmag.com/arts-culture/rap-legend-looks-back-50-years-hip-hop-180982340/" },
+  { id: "smithsonian-anthology-article", title: "Smithsonian Magazine — Chronicling Hip-Hop's 45-Year Ascendance (2021)", url: "https://www.smithsonianmag.com/smithsonian-institution/chronicling-decades-history-through-hip-hop-180978465/" },
   { id: "smithsonian-folkways-anthology", title: "Smithsonian Folkways — Anthology of Hip-Hop and Rap, track listing", url: "https://folkways.si.edu/smithsonian-anthology-of-hip-hop-and-rap-intl" },
   { id: "smithsonian-class88", title: "Smithsonian NMAAHC — Female Rappers, Class of '88, Janette Beckman", url: "https://nmaahc.si.edu/object/nmaahc_2015.132.65" },
   { id: "loc-citizen-dj", title: "Library of Congress — Citizen DJ: About the project", url: "https://citizen-dj.labs.loc.gov/about/" },
