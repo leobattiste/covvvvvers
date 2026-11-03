@@ -7,6 +7,31 @@ import type { Moment } from "./history";
  */
 export const RESEARCH_MOMENTS: Moment[] = [
   {
+    id: "grime-mercury-2003",
+    when: "2003",
+    title: "Dizzee Rascal's Boy in da Corner wins the Mercury Prize",
+    text: "Dizzee Rascal's debut Boy in da Corner won the 2003 Mercury Prize, a breakthrough for London's emerging grime scene. Produced within a culture of pirate radio, raves and independent recordings, the album brought wider recognition to a distinctly British sound shaped by UK garage, jungle and local MC traditions.",
+    tags: ["sound", "culture", "business"],
+    sources: ["london-grime", "npg-grime"],
+  },
+  {
+    id: "grime-visual-archives",
+    when: "2004",
+    title: "Street DVDs and Channel U document grime's rise",
+    text: "Before social media, grime artists reached audiences through pirate radio, local shops, music television and DVDs. Filmmaker Roony Keefe's RiskyRoadz recordings documented MCs performing with friends in their neighborhoods. London Museum identifies these videos, Channel U and Jammer's Lord of the Mics as important parts of the scene's visual history.",
+    tags: ["culture", "tech"],
+    sources: ["london-grime"],
+  },
+  {
+    id: "eyejammie-smithsonian-2015",
+    when: "2015",
+    title: "The Smithsonian acquires a major hip-hop photography archive",
+    text: "The National Museum of African American History and Culture acquired Bill Adler's Eyejammie Hip-Hop Photography Collection in 2015. The collection includes hundreds of images by dozens of photographers and later informed the museum's Represent: Hip-Hop Photography exhibition. The acquisition helped preserve the visual history of performers, neighborhoods and communities alongside the music.",
+    tags: ["culture"],
+    sources: ["smithsonian-photography"],
+  },
+
+  {
     id: "houston-screw-slab",
     when: "1995",
     title: "Houston's screw sound develops alongside slab culture",
@@ -144,6 +169,9 @@ export const RESEARCH_MOMENTS: Moment[] = [
 ];
 
 export const RESEARCH_SOURCES = [
+  { id: "london-grime", title: "London Museum — London's grime stars", url: "https://www.londonmuseum.org.uk/collections/london-stories/londons-grime-stars/" },
+  { id: "npg-grime", title: "National Portrait Gallery — Garage and grime musicians", url: "https://www.npg.org.uk/collections/about/photographs-collection/featured-collections-archive/garage-and-grime-musicians/" },
+  { id: "smithsonian-photography", title: "Smithsonian NMAAHC — Photographing Hip-Hop Culture", url: "https://nmaahc.si.edu/explore/stories/photographing-hip-hop-culture" },
   { id: "loc-street-folk", title: "Library of Congress — Street Folk: Hip-Hop, Car Culture & Black Life in Houston, Texas (2019)", url: "https://www.loc.gov/item/2024696429/" },
   { id: "smithsonian-bigboi", title: "Smithsonian Magazine — A Rap Legend Looks Back on 50 Years of Hip-Hop (2023)", url: "https://www.smithsonianmag.com/arts-culture/rap-legend-looks-back-50-years-hip-hop-180982340/" },
   { id: "smithsonian-anthology-article", title: "Smithsonian Magazine — Chronicling Hip-Hop's 45-Year Ascendance (2021)", url: "https://www.smithsonianmag.com/smithsonian-institution/chronicling-decades-history-through-hip-hop-180978465/" },
