@@ -309,7 +309,7 @@ export const ERAS: Era[] = [
         id: "pop",
         when: "1990",
         title: "Pop success and a court fight",
-        text: "Vanilla Ice's 'Ice Ice Baby' became the first hip-hop single to top the Hot 100, and MC Hammer's 'Please Hammer, Don't Hurt 'Em' spent 21 weeks at number one on the Billboard 200. In Florida a federal judge ruled 2 Live Crew's 'As Nasty as They Wanna Be' obscene, a decision an appeals court reversed in 1992. A Tribe Called Quest, Ice Cube and Public Enemy all released defining albums, and Digital Underground's 'The Humpty Dance' introduced a backup dancer and rapper named Tupac Shakur.",
+        text: "Vanilla Ice's 'Ice Ice Baby' became the first hip-hop single to top the Hot 100, and MC Hammer's 'Please Hammer, Don't Hurt 'Em' spent 21 weeks at number one on the Billboard 200. In Florida, 2 Live Crew faced a federal obscenity ruling against 'As Nasty as They Wanna Be' and arrests after a live performance. The performers were acquitted in October 1990, and the album ruling was overturned on appeal in 1992. The controversy became a defining dispute over censorship of rap. A Tribe Called Quest, Ice Cube and Public Enemy all released defining albums, and Digital Underground's 'The Humpty Dance' introduced a backup dancer and rapper named Tupac Shakur.",
         tags: ["first", "business", "culture"],
         stat: { value: 21, label: "weeks at No. 1 for MC Hammer's album", suffix: " wks" },
         records: [
@@ -440,7 +440,7 @@ export const ERAS: Era[] = [
         id: "biggie",
         when: "1997",
         title: "Biggie, Timbaland and No Limit",
-        text: "The Notorious B.I.G. was shot dead in Los Angeles on 9 March, aged 24; 'Life After Death' came out 16 days later and went to number one, and Puff Daddy and Faith Evans's tribute 'I'll Be Missing You' spent 11 weeks at the top of the Hot 100. Missy Elliott and Timbaland's 'Supa Dupa Fly' sounded like the future. Master P's No Limit sold millions independently.",
+        text: "The Notorious B.I.G. was shot dead in Los Angeles on 9 March, aged 24; 'Life After Death' came out 16 days later and went to number one, and Puff Daddy and Faith Evans's tribute 'I'll Be Missing You' spent 11 weeks at the top of the Hot 100. Missy Elliott and Timbaland's 'Supa Dupa Fly' challenged established rap production with unusual rhythmic space, futuristic textures and innovative videos, while Elliott developed her own label. Master P's No Limit demonstrated how independent Southern labels could scale through distribution, merchandising and prolific releases.",
         tags: ["culture", "sound", "women", "business"],
         records: [
           album("Life After Death", "The Notorious B.I.G.", 1997),
@@ -585,7 +585,7 @@ export const ERAS: Era[] = [
         id: "crank",
         when: "2007",
         title: "Rap's first internet star",
-        text: "Teenager Soulja Boy made 'Crank That (Soulja Boy)' in FL Studio and spread its dance through YouTube and MySpace until it spent seven weeks at number one. Lil Wayne flooded the internet with free mixtapes like 'Da Drought 3'. Kanye West's 'Graduation', with the Daft Punk-sampling 'Stronger', outsold 50 Cent's 'Curtis' when both came out on the same day, a symbolic win for a new sound.",
+        text: "Teenager Soulja Boy produced 'Crank That (Soulja Boy)' on his computer and circulated its dance and video online before the single topped the Hot 100. Contemporary 2007 reporting traced its rise through YouTube, young fans and radio, demonstrating how a rap hit could emerge through online participation before conventional promotion. Lil Wayne flooded the internet with free mixtapes like 'Da Drought 3'. Kanye West's 'Graduation', with the Daft Punk-sampling 'Stronger', outsold 50 Cent's 'Curtis' when both came out on the same day, a symbolic win for a new sound.",
         tags: ["tech", "culture", "first"],
         records: [
           song("Crank That (Soulja Boy)", "Soulja Boy", 2007),
