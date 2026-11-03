@@ -50,3 +50,14 @@ main img:not(.avatar-choices img):not(.card-saved img) { border-radius: var(--ra
   margin-bottom: var(--space-4);
 }
 .sleeve-people a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+
+/* Sitewide button and control typography: regular 16px Helvetica. */
+:where(button, .button, [role="button"], input, select, textarea, summary, .filter-open) {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  text-transform: none;
+}
