@@ -27,9 +27,13 @@ export default function ShareActions({ title, artist, slug }: { title: string; a
 
   return (
     <div className="share-actions">
-      <button type="button" className="text-button" onClick={share}>
-        {copied ? "Link copied" : "Share"}
+      <button type="button" className="share-icon-button" onClick={share} aria-label={copied ? "Link copied" : "Share cover"} title={copied ? "Link copied" : "Share cover"}>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <path d="M12 16V3m0 0L7 8m5-5 5 5" />
+          <path d="M5 13v7h14v-7" />
+        </svg>
       </button>
+      <span className="visually-hidden" role="status">{copied ? "Link copied" : ""}</span>
     </div>
   );
 }

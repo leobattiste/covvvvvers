@@ -103,8 +103,8 @@ export default async function CoverPage({ params }: Params) {
 
           <div className="cover-actions">
             <BookmarkButton coverId={cover.id} slug={cover.slug} />
+            <ShareActions title={cover.title} artist={cover.artist} slug={cover.slug} />
           </div>
-          <ShareActions title={cover.title} artist={cover.artist} slug={cover.slug} />
 
           {cover.description_html && (
             <div className="essay-wrap">

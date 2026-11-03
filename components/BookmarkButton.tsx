@@ -32,9 +32,8 @@ export default function BookmarkButton({ coverId, slug }: { coverId: string; slu
   if (!s.ready) return <span className="save-placeholder" />;
   if (!s.userId) {
     return (
-      <Link className="save" href={`/login?next=/covers/${slug}`}>
+      <Link className="save" href={`/login?next=/covers/${slug}`} aria-label="Bookmark cover" title="Bookmark cover">
         <BookmarkIcon filled={false} />
-        Bookmark
       </Link>
     );
   }
@@ -76,9 +75,8 @@ export default function BookmarkButton({ coverId, slug }: { coverId: string; slu
 
   return (
     <div className="bookmark">
-      <button type="button" className="save" aria-pressed={saved} onClick={toggle} disabled={busy} aria-busy={busy}>
+      <button type="button" className="save" aria-label={saved ? "Remove bookmark" : "Bookmark cover"} title={saved ? "Remove bookmark" : "Bookmark cover"} aria-pressed={saved} onClick={toggle} disabled={busy} aria-busy={busy}>
         <BookmarkIcon filled={saved} />
-        {saved ? "Bookmarked" : "Bookmark"}
       </button>
       {saved && (
         <p className="bookmark-where">

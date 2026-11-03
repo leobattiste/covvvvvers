@@ -79,3 +79,27 @@ main img:not(.avatar-choices img):not(.card-saved img) { border-radius: var(--ra
   letter-spacing: normal;
   text-transform: none;
 }
+
+/* Album actions: matching icon-only bookmark and share controls. */
+.cover-actions { display: flex; align-items: flex-start; gap: 8px; flex-wrap: wrap; }
+.cover-actions .share-actions { margin-top: 0; }
+.cover-actions .save, .cover-actions .share-icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  min-height: 44px;
+  padding: 0;
+  border: 1px solid #999;
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: inherit;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  cursor: pointer;
+}
+.cover-actions .save[aria-pressed="true"] { border-color: #fff; }
+.cover-actions .save svg, .cover-actions .share-icon-button svg { flex: none; }
+.cover-actions .save:hover, .cover-actions .share-icon-button:hover { background: color-mix(in srgb, currentColor 10%, transparent); }
