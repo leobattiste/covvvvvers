@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+
 import { useActionState, useEffect, useRef } from "react";
 import { submitCover, type SubmitState } from "./actions";
 
@@ -8,6 +8,11 @@ const initial: SubmitState = { ok: false, message: "" };
 
 export default function SubmitForm() {
   const [state, action, pending] = useActionState(submitCover, initial);
+  const albumInput = useRef<HTMLInputElement>(null);
+  useEffect(() => {
+    const q = new URLSearchParams(window.location.search).get("q");
+    if (q && albumInput.current) albumInput.current.value = q;
+  }, []);
   const ref = useRef<HTMLFormElement>(null);
 
   useEffect(() => {
@@ -18,7 +23,7 @@ export default function SubmitForm() {
     <form ref={ref} action={action} className="stack">
       <label>
         <span>Album title</span>
-        <input name="album_title" required maxLength={200} />
+        <input ref={albumInput} name="album_title" required maxLength={200} />
       </label>
       <label>
         <span>Artist</span>
@@ -37,15 +42,15 @@ export default function SubmitForm() {
         <input name="cover_credit" maxLength={300} />
       </label>
       <label>
-        <span>Why it belongs here</span>
+        <span>Anything else we should know?</span>
         <textarea name="note" rows={5} maxLength={2000} />
       </label>
       <button className="button solid" type="submit" disabled={pending}>
-        {pending ? "Sending" : "Send for review"}
+        {pending ? "Sending" : "Request cover"}
       </button>
       {state.message && (
         <p className={state.ok ? "notice" : "form-error"} role={state.ok ? "status" : "alert"}>
-          {state.message} {state.ok && <Link href="/me/submissions">See your submissions</Link>}
+          {state.message}
         </p>
       )}
     </form>

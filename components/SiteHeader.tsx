@@ -17,7 +17,7 @@ const MAIN = [
 
 
 const CONTRIBUTE = [
-  { href: "/submit", label: "Submit a cover" },
+  { href: "/submit", label: "Request a cover" },
   { href: "/feedback", label: "Feedback" },
 ];
 

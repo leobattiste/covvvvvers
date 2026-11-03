@@ -12,7 +12,6 @@ export async function submitCover(_prev: SubmitState, form: FormData): Promise<S
   const {
     data: { user },
   } = await db.auth.getUser();
-  if (!user) return { ok: false, message: "Your session ended. Sign in again to send this cover." };
 
   const album_title = clip(form.get("album_title"), 200);
   const artist = clip(form.get("artist"), 200);
@@ -27,7 +26,7 @@ export async function submitCover(_prev: SubmitState, form: FormData): Promise<S
   if (link && !/^https?:\/\//i.test(link)) return { ok: false, message: "Links need to start with https://" };
 
   const { error } = await db.from("submissions").insert({
-    user_id: user.id,
+    user_id: user?.id ?? null,
     album_title,
     artist,
     release_year,
@@ -35,6 +34,6 @@ export async function submitCover(_prev: SubmitState, form: FormData): Promise<S
     cover_credit: clip(form.get("cover_credit"), 300) || null,
     note: clip(form.get("note"), 2000) || null,
   });
-  if (error) return { ok: false, message: "The cover didn't send. Try again in a moment." };
-  return { ok: true, message: `Sent. ${album_title} is waiting for review, and you can follow it in your account.` };
+  if (error) return { ok: false, message: "The request could not be sent. Try again in a moment." };
+  return { ok: true, message: `Thanks! Your request for ${album_title} has been received for review.` };
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import Link from "next/link";
 import { FAMILIES } from "@/lib/color";
 import { getBrowserClient } from "@/lib/supabase/client";
 import type { CoverCard as Card } from "@/lib/types";
@@ -216,7 +217,10 @@ export default function CoverGrid({ covers, filters = false, types = [], emptyTe
       )}
 
       {shown.length === 0 ? (
-        <p className="empty">{emptyText ?? "No covers match. Clear a filter or try another word."}</p>
+        <div className="empty">
+          <p>{emptyText ?? "No covers found. Try another search or request a cover."}</p>
+          {filters && <Link className="button" href={`/submit${f.q.trim() ? `?q=${encodeURIComponent(f.q.trim())}` : ""}`}>Request a cover</Link>}
+        </div>
       ) : (
         <ul className="cover-grid">
           {shown.map((c, i) => (

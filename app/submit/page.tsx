@@ -1,34 +1,17 @@
 import type { Metadata } from "next";
-import AuthPrompt from "@/components/AuthPrompt";
-import { getServerClient } from "@/lib/supabase/server";
 import SubmitForm from "./SubmitForm";
 
-export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
-  title: "Submit a cover",
-  description: "Suggest a rap album cover for the collection.",
+  title: "Request a cover",
+  description: "Request a rap album cover to be added to the archive. No account required.",
 };
 
-export default async function SubmitPage() {
-  const db = await getServerClient();
-  const user = db ? (await db.auth.getUser()).data.user : null;
-
+export default function RequestPage() {
   return (
     <section className="panel">
-      <h1>Submit a cover</h1>
-      <p>
-        Know a rap cover with a story behind it? Tell us the album. Every submission is reviewed, researched and
-        written up before it joins the collection.
-      </p>
-      {!db ? (
-        <p className="notice">Submissions open once the site is connected to Supabase.</p>
-      ) : user ? (
-        <SubmitForm />
-      ) : (
-        <p>
-          <AuthPrompt next="/submit" triggerClassName="button solid" triggerLabel="Sign in to submit a cover" />
-        </p>
-      )}
+      <h1>Request a cover</h1>
+      <p>Missing an album cover? Tell us what you would like to see in the archive. No account required. Requests are reviewed before anything is added.</p>
+      <SubmitForm />
     </section>
   );
 }
