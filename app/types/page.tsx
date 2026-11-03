@@ -13,10 +13,6 @@ export default async function TypesPage() {
   const types = await getTypesWithCovers();
   return (
     <>
-      <header className="page-head">
-        <h1>Cover types</h1>
-        <p>The collection grouped by how each cover was made.</p>
-      </header>
       <ul className="collection-list">
         {types.map((t) => (
           <li key={t.slug}>

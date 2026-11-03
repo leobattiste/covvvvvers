@@ -3,7 +3,7 @@
 Rap album covers from every era, with the story behind each one and the people who made it.
 Built with Next.js, hosted on Vercel, with accounts and the database on Supabase.
 
-Visitors browse by cover type, colour, year and country, zoom into covers, and play the games.
+Visitors browse by cover type, colour, year and country, and zoom into covers.
 Members sign in with an email link to save and rate covers, make shareable lists, and submit albums.
 Admins add and edit covers, review submissions and read feedback at `/admin`.
 

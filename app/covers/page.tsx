@@ -12,10 +12,6 @@ export default async function CoversPage() {
   const [covers, types] = await Promise.all([getCovers(), getTypes()]);
   return (
     <>
-      <header className="page-head">
-        <h1>Covers</h1>
-        <p>Every cover in the collection. Search finds words inside the stories too.</p>
-      </header>
       <CoverGrid
         covers={covers.map((c) => toCard(c, { withText: true }))}
         filters
