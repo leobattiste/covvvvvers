@@ -6,16 +6,15 @@ import { getBrowserClient } from "@/lib/supabase/client";
 import type { CoverCard as Card } from "@/lib/types";
 import CoverCard, { cardMeta } from "./CoverCard";
 
-type Sort = "newest" | "added" | "oldest" | "az" | "saved";
+type Sort = "newest" | "oldest" | "saved" | "added";
 type Filters = { type: string; color: string; decade: string; q: string; sort: Sort };
 const EMPTY: Filters = { type: "", color: "", decade: "", q: "", sort: "newest" };
 
 const SORTS: { value: Sort; label: string }[] = [
   { value: "newest", label: "Newest releases" },
-  { value: "added", label: "Latest added" },
-  { value: "oldest", label: "Oldest first" },
-  { value: "az", label: "A to Z" },
-  { value: "saved", label: "Most saved" },
+  { value: "oldest", label: "Oldest releases" },
+  { value: "saved", label: "Most bookmarked" },
+  { value: "added", label: "Recently added" },
 ];
 
 type Props = {
@@ -98,7 +97,6 @@ export default function CoverGrid({ covers, filters = false, types = [], emptyTe
         .map((c, i) => ({ c, i }))
         .sort((a, b) => (b.c.added ?? "").localeCompare(a.c.added ?? "") || a.i - b.i)
         .map((x) => x.c);
-    if (f.sort === "az") return [...list].sort((a, b) => a.title.localeCompare(b.title, "en", { sensitivity: "base" }));
     if (f.sort === "saved" && saves) return [...list].sort((a, b) => (saves.get(b.id) ?? 0) - (saves.get(a.id) ?? 0));
     return list;
   }, [covers, f, saves]);
