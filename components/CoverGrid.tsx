@@ -34,6 +34,7 @@ export default function CoverGrid({ covers, filters = false, types = [], emptyTe
   const [f, setF] = useState<Filters>(EMPTY);
   const [saves, setSaves] = useState<Map<string, number> | null>(null);
   const sheet = useRef<HTMLDialogElement>(null);
+  const search = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (!filters) return;
@@ -47,6 +48,7 @@ export default function CoverGrid({ covers, filters = false, types = [], emptyTe
       q: p.get("q") ?? "",
       sort: sort && SORTS.some((s) => s.value === sort) ? sort : "newest",
     });
+    if (p.get("focus") === "search") search.current?.focus();
   }, [filters]);
 
   useEffect(() => {
@@ -165,6 +167,16 @@ export default function CoverGrid({ covers, filters = false, types = [], emptyTe
       {filters && (
         <div className="filter-bar">
           <form className="filter-row" role="search" onSubmit={(e) => e.preventDefault()}>
+            <label className="field search">
+              <span className="visually-hidden">Search covers and their stories</span>
+              <input
+                ref={search}
+                type="search"
+                value={f.q}
+                placeholder="Search covers and stories"
+                onChange={set("q")}
+              />
+            </label>
             <div className="filter-selects">{selects}</div>
             <button type="button" className="filter-open" onClick={() => sheet.current?.showModal()}>
               Filter{activeCount > 0 && ` (${activeCount})`}
