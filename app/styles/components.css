@@ -116,3 +116,16 @@ main img:not(.avatar-choices img):not(.card-saved img) { border-radius: var(--ra
 .auth-switch { display: flex; gap: 8px; }
 .auth-switch button { flex: 1; padding: 8px 12px; border: 1px solid var(--line); background: transparent; color: inherit; }
 .auth-switch button[aria-pressed="true"] { border-color: currentColor; }
+
+/* Through the Years: era/year selector matches standard button sizing and typography. */
+.history .h-rail button {
+  min-height: var(--control-height, 44px);
+  padding: 0 18px;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  text-transform: none;
+}
