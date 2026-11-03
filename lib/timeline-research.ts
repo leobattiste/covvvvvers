@@ -146,7 +146,7 @@ export const RESEARCH_MOMENTS: Moment[] = [
     id: "de-la-soul-visual-1989",
     when: "1989",
     title: "De La Soul and the art of a sample-built alternative rap identity",
-    text: "De La Soul's 3 Feet High and Rising, produced by Prince Paul, brought playful collage, eclectic sampling and an alternative image into hip-hop's mainstream conversation. The album's distinctive visual identity was part of that change: the New York Public Library's Schomburg Center preserves original graphic art associated with its 1989 release. The combination of music and design helped establish a model for later alternative rap.",
+    text: "De La Soul's 3 Feet High and Rising, produced by Prince Paul, brought playful collage, eclectic sampling and an alternative image into hip-hop's mainstream conversation. The album's distinctive visual identity was part of that change: the New York Public Library's Schomburg Center preserves original cover designs by Toby Mott in collaboration with the Grey Organisation, including the hand-drawn Daisy Age flower motif. The combination of music and design helped establish a model for later alternative rap.",
     tags: ["sound", "culture"],
     sources: ["nypl-delasoul-art"],
   },
@@ -495,7 +495,7 @@ export const RESEARCH_SOURCES = [
   {"id":"luminate-2024-report","title":"Luminate (2024) — Music Year-End Report 2024","url":"https://view.ceros.com/luminate-data/music-year-end-report-2024"},
 
   { id: "grammy-artists-changed-rap", title: "Recording Academy (2023) — 50 Artists Who Changed Rap", url: "https://www.grammy.com/news/50-artists-who-changed-rap-list-years-hip-hop/" },
-  { id: "grammy-southern-hiphop-guide", title: "Recording Academy (2023) — A Guide to Southern Hip-Hop", url: "https://qa.grammy.com/news/guide-to-dirty-south-hip-hop-major-releases-artists-labels-history-playlist" },
+  { id: "grammy-southern-hiphop-guide", title: "Recording Academy (2023) — A Guide to Southern Hip-Hop", url: "https://www.grammy.com/news/guide-to-dirty-south-hip-hop-major-releases-artists-labels-history-playlist/" },
   { id: "grammy-hiphop-subgenres", title: "Recording Academy (2023) — 11 Hip-Hop Subgenres to Know", url: "https://www.grammy.com/news/11-subgenres-of-hip-hop-jersey-club-drill-trap-examples-videos/" },
   { id: "grammy-future-metro-2025", title: "Recording Academy (2025) — How Future and Metro Boomin Became Trap Music's Greatest Duo", url: "https://www.grammy.com/news/future-metro-boomin-trap-music-career-timeline/" },
   { id: "grammy-1994-atlanta", title: "Recording Academy (2024) — How 1994 Changed the Game for Hip-Hop", url: "https://www.grammy.com/news/how-1994-changed-the-hip-hop-game/" },
