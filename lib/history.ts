@@ -327,6 +327,7 @@ export const ERAS: Era[] = [
         title: "Samples start to cost money",
         text: "On 17 December a federal judge ruled that Biz Markie had infringed copyright by sampling Gilbert O'Sullivan's 'Alone Again (Naturally)'. The ruling became a landmark in sampling disputes and pushed labels toward more systematic licensing. Sampling remained legal with permission, but the cost and risk of uncleared uses reshaped how many producers assembled beats. A Tribe Called Quest's 'The Low End Theory' joined rap to upright jazz bass, Naughty by Nature's 'O.P.P.' was everywhere, 'Boyz n the Hood' took Ice Cube to Hollywood, and Dr. Dre and Suge Knight founded Death Row Records.",
         tags: ["business", "sound"],
+        sources: ["grand-upright-court-1991", "loc-citizen-dj"],
         records: [
           album("The Low End Theory", "A Tribe Called Quest", 1991),
           album("Death Certificate", "Ice Cube", 1991),
@@ -385,8 +386,9 @@ export const ERAS: Era[] = [
         id: "screw",
         when: "Early 1990s",
         title: "Chopped and screwed",
-        text: "In Houston, DJ Screw slowed records down and repeated phrases on hand-made mixtapes, creating a drowsy, syrupy sound tied to the city's car culture. His tapes made Houston a rap capital, and slowed-down remixes are now everywhere, from mixtapes to TikTok.",
+        text: "In Houston, DJ Screw slowed records down, repeated phrases and circulated distinctive handmade mixtapes. Ethnomusicologist Langston Wilkins documents how screw music developed alongside the city's slab car culture, becoming part of a broader local identity. The technique subsequently influenced production and remixes well beyond Houston.",
         tags: ["sound", "tech"],
+        sources: ["loc-street-folk"],
         records: [{ title: "3 'n the Mornin' (Part Two)", artist: "DJ Screw", year: 1995, kind: "mixtape" }],
       },
       {
@@ -408,8 +410,9 @@ export const ERAS: Era[] = [
         id: "south",
         when: "1995",
         title: "'The South got something to say'",
-        text: "At the Source Awards in New York, OutKast won best new group to boos from the crowd, and André 3000 answered with a line that became a prophecy. The same night Suge Knight's jab at Sean Combs dragged the feud between Death Row and Bad Boy into the open. Coolio's 'Gangsta's Paradise' was the biggest song of the year on Billboard's year-end chart, Jay-Z, Damon Dash and Kareem Burke founded Roc-A-Fella, and Wu-Tang solo albums from Raekwon and GZA kept New York's sound sharp.",
+        text: "At the 1995 Source Awards in New York, OutKast won Best New Rap Group amid boos from some in the audience. André 3000 responded by insisting that Southern artists had something to say. The duo and Atlanta's Dungeon Family had been developing a distinctive sound in Rico Wade's basement, and the speech became a landmark in the South's challenge to coastal dominance. The same night Suge Knight's jab at Sean Combs dragged the feud between Death Row and Bad Boy into the open. Coolio's 'Gangsta's Paradise' was the biggest song of the year on Billboard's year-end chart, Jay-Z, Damon Dash and Kareem Burke founded Roc-A-Fella, and Wu-Tang solo albums from Raekwon and GZA kept New York's sound sharp.",
         tags: ["culture", "business"],
+        sources: ["smithsonian-bigboi"],
         records: [
           song("Gangsta's Paradise", "Coolio feat. L.V.", 1995),
           album("Only Built 4 Cuban Linx...", "Raekwon", 1995),
@@ -657,8 +660,9 @@ export const ERAS: Era[] = [
         id: "drill",
         when: "2012",
         title: "Drill, and 'good kid, m.A.A.d city'",
-        text: "Chicago teenager Chief Keef's 'I Don't Like' spread through YouTube, got a Kanye West remix and carried drill, a cold, violent sound from the city's South Side, around the world. Kendrick Lamar's 'good kid, m.A.A.d city' told a coming-of-age story in Compton like a film.",
+        text: "Chicago teenager Chief Keef's 'I Don't Like' spread through YouTube and received a Kanye West remix, drawing national attention to drill. The scene was already developing through artists including King Louie, Pac Man, Lil Durk and Katie Got Bandz. Its stark production, local video networks and distinct vocal delivery helped reshape later regional rap, while the city's social conditions require careful treatment beyond sensational headlines. Kendrick Lamar's 'good kid, m.A.A.d city' told a coming-of-age story in Compton like a film.",
         tags: ["sound"],
+        sources: ["wbez-chicago-rap", "pitchfork-drill-2019"],
         records: [
           song("I Don't Like", "Chief Keef feat. Lil Reese", 2012),
           song("Love Sosa", "Chief Keef", 2012),
@@ -716,6 +720,7 @@ export const ERAS: Era[] = [
         title: "A Pulitzer for 'DAMN.'",
         text: "Kendrick Lamar won the Pulitzer Prize for Music for 'DAMN.', the first time it went to a work outside classical music and jazz. Travis Scott's 'Sicko Mode' went to number one, and Cardi B's 'Invasion of Privacy' later won Best Rap Album, the first by a solo woman. TikTok merged with Musical.ly that August and soon became the place hits were born.",
         tags: ["first", "sound", "tech", "women"],
+        sources: ["pulitzer-damn-official"],
         records: [
           album("DAMN.", "Kendrick Lamar", 2017),
           album("Astroworld", "Travis Scott", 2018),
