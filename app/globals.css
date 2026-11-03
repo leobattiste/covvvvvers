@@ -4826,3 +4826,20 @@ select,
 
 /* Multiline fields remain rectangular with 10px corners. */
 textarea { border-radius: var(--archive-corner); }
+
+
+/* Use the same typography as body paragraphs for all interactive controls. */
+button,
+.button,
+[role="button"],
+input,
+select,
+textarea,
+summary {
+  font-family: var(--sans);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: normal;
+  text-transform: none;
+}
