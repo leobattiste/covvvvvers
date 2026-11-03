@@ -1,0 +1,17 @@
+/* Unified controls, card geometry and image surfaces. */
+button:not(.art-frame), .button, [role="button"],
+input:not([type="checkbox"]):not([type="radio"]):not([type="color"]):not([type="range"]):not([type="file"]),
+select, .filter-open, .quiz-options button, .order-tools button,
+.h-filters button, .h-tags button { border-radius: var(--radius-pill); }
+textarea { border-radius: var(--radius-card); }
+.card-art, .card-art img, .ring-link img, .art-frame, .art-frame img,
+.cover-art img, .index-list img, .creator-index img, .collection-card,
+.collection-stack img, .stack-empty, .h-key, .h-key-art, .h-key-art img,
+.h-era-poster-art img, .h-record-art img, .lightbox-stage img,
+.editor-preview img, .admin-list img, .admin-noimg, .quiz-frame img,
+.quiz-review img, .first-art img { border-radius: var(--radius-card); }
+main img:not(.avatar-choices img):not(.card-saved img) { border-radius: var(--radius-card); }
+.collection-card, .h-key, .h-card, .sheet, .menu-sheet { border-radius: var(--radius-card); }
+.button, input, select, textarea { min-height: var(--control-height); }
+/* Consistent collection grids, without changing their column behavior. */
+.cover-grid, .collection-list, .h-key-grid { row-gap: var(--space-5); }

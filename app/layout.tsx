@@ -9,6 +9,9 @@ import ThemeToggle from "@/components/ThemeToggle";
 import { themeScript } from "@/lib/theme";
 import { SITE_URL } from "@/lib/supabase/config";
 import "./globals.css";
+import "./styles/tokens.css";
+import "./styles/typography.css";
+import "./styles/components.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

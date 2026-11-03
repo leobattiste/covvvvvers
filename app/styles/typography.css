@@ -1,0 +1,16 @@
+/* Shared editorial type scale. Specialized hero artwork can opt out. */
+body { font-size: var(--text-body); }
+h1:not(.h-none) { font-size: var(--text-h1); }
+h2:not(.h-none) { font-size: var(--text-h2); }
+h3:not(.h-none) { font-size: var(--text-h3); }
+h4:not(.h-none) { font-size: var(--text-h4); }
+.card-title { font-size: var(--text-card-title); }
+.card-meta, .filter-count { font-size: var(--text-meta); }
+button, .button, [role="button"], input, select, textarea, summary {
+  font-family: var(--sans);
+  font-size: var(--text-body);
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: normal;
+  text-transform: none;
+}

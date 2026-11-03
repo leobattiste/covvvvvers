@@ -325,13 +325,13 @@ main:has(.cover-page) + .site-footer {
 }
 
 .page-head h1 {
-  font-size: clamp(2.75rem, 7vw, 5rem);
+  font-size: var(--text-h1);
 }
 
 .page-head p {
   max-width: 54ch;
   color: var(--muted);
-  font-size: 1.0625rem;
+  font-size: var(--text-lead);
 }
 
 .page-head .crumb {
@@ -366,7 +366,7 @@ textarea {
   min-height: 44px;
   padding: 10px 14px;
   border: 1px solid transparent;
-  border-radius: 10px;
+  border-radius: var(--radius-card);
   background: var(--soft);
   color: var(--ink);
   font: inherit;
@@ -416,7 +416,7 @@ select {
   min-height: 44px;
   padding: 10px 20px;
   border: 1px solid currentColor;
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   background: transparent;
   color: inherit;
   font: inherit;
@@ -503,7 +503,7 @@ select {
   min-height: 44px;
   padding: 0 18px;
   border: 0;
-  border-radius: 10px;
+  border-radius: var(--radius-card);
   background: var(--ink);
   color: var(--paper);
   font: inherit;
@@ -516,7 +516,7 @@ select {
   display: flex;
   gap: 12px;
   margin-left: auto;
-  font-size: 0.875rem;
+  font-size: var(--text-meta);
   color: var(--muted);
   white-space: nowrap;
 }
@@ -674,14 +674,14 @@ select {
 }
 
 .card-title {
-  font-size: 1.125rem;
+  font-size: var(--text-card-title);
   font-weight: 700;
   line-height: 1.15;
   font-family: var(--display);
 }
 
 .card-meta {
-  font-size: 0.875rem;
+  font-size: var(--text-meta);
   color: var(--muted);
 }
 
@@ -821,13 +821,13 @@ body:has(.ring-hero) .site-footer {
 .ring-text h1 {
   margin: 0;
   max-width: 14ch;
-  font-size: clamp(2.75rem, 7vw, 5rem);
+  font-size: var(--text-h1);
 }
 
 .ring-text p {
   margin: 0;
   max-width: 50vw;
-  font-size: 1.0625rem;
+  font-size: var(--text-lead);
   line-height: 1.5;
   opacity: 0.8;
   text-shadow: 0 1px 18px rgba(0, 0, 0, 0.9);
@@ -898,7 +898,7 @@ body:has(.ring-hero) .site-footer {
 }
 
 .section-head h2 {
-  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  font-size: var(--text-h2);
 }
 
 .section-head a {
@@ -1060,7 +1060,7 @@ body:has(.ring-hero) .site-footer {
   min-height: 44px;
   padding: 10px 20px 10px 16px;
   border: 1px solid currentColor;
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   background: transparent;
   color: inherit;
   font: inherit;
@@ -1249,7 +1249,7 @@ body:has(.ring-hero) .site-footer {
 }
 
 .index-name {
-  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  font-size: var(--text-h2);
   font-weight: 800;
   line-height: 1;
   font-family: var(--display);
@@ -1387,7 +1387,7 @@ body:has(.ring-hero) .site-footer {
 
 .panel > p {
   color: var(--muted);
-  font-size: 1.0625rem;
+  font-size: var(--text-lead);
 }
 
 .stack {
@@ -1401,7 +1401,7 @@ body:has(.ring-hero) .site-footer {
 
 .notice {
   padding: 14px 16px;
-  border-radius: 10px;
+  border-radius: var(--radius-card);
   background: var(--soft);
 }
 
@@ -1412,7 +1412,7 @@ body:has(.ring-hero) .site-footer {
 
 .section-title {
   padding: 48px var(--gutter) 0;
-  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  font-size: var(--text-h2);
 }
 
 .subs {
@@ -1476,7 +1476,7 @@ body:has(.ring-hero) .site-footer {
 }
 
 .review-meta {
-  font-size: 0.875rem;
+  font-size: var(--text-meta);
   color: var(--muted);
 }
 
@@ -1579,7 +1579,7 @@ body:has(.ring-hero) .site-footer {
 .theme-toggle {
   display: inline-flex;
   padding: 3px;
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   border: 1px solid color-mix(in srgb, currentColor 30%, transparent);
 }
 
@@ -1587,7 +1587,7 @@ body:has(.ring-hero) .site-footer {
   min-height: 32px;
   padding: 0 14px;
   border: 0;
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   background: none;
   color: inherit;
   font: inherit;
@@ -1619,7 +1619,7 @@ kbd {
   gap: 12px;
   width: min(340px, calc(100vw - 32px));
   padding: 20px;
-  border-radius: 14px;
+  border-radius: var(--radius-card);
   background: var(--paper);
   color: var(--ink);
   box-shadow: 0 20px 60px -20px rgba(0, 0, 0, 0.45);
@@ -1701,7 +1701,7 @@ kbd {
   height: 100%;
   padding: 20px;
   border: 1px solid var(--line);
-  border-radius: 16px;
+  border-radius: var(--radius-card);
   overflow: clip;
   text-decoration: none;
   transition: border-color 0.2s;
@@ -1754,7 +1754,7 @@ kbd {
 }
 
 .collection-title {
-  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  font-size: var(--text-h2);
   font-weight: 800;
   line-height: 1;
   font-family: var(--display);
@@ -1771,7 +1771,7 @@ kbd {
 }
 
 .collection-count {
-  font-size: 0.875rem;
+  font-size: var(--text-meta);
   color: var(--muted);
 }
 
@@ -1859,7 +1859,7 @@ kbd {
   min-height: 34px;
   padding: 0 14px;
   border: 1px solid var(--line);
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   background: none;
   color: inherit;
   font: inherit;
@@ -1997,7 +1997,7 @@ kbd {
   min-height: 34px;
   padding: 4px 14px;
   border: 1px solid color-mix(in srgb, currentColor 35%, transparent);
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   background: none;
   color: inherit;
   font: inherit;
@@ -2084,7 +2084,7 @@ kbd {
   max-width: 64ch;
   margin: 0;
   font-family: var(--serif);
-  font-size: 1.0625rem;
+  font-size: var(--text-lead);
   line-height: 1.6;
 }
 
@@ -2099,7 +2099,7 @@ kbd {
   min-height: 0;
   padding: 2px 10px;
   border: 0;
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   background: var(--soft);
   color: var(--muted);
   font: inherit;
@@ -2295,7 +2295,7 @@ kbd {
 .h-era-more {
   margin: 0;
   padding: 0 var(--gutter) clamp(40px, 6vw, 72px);
-  font-size: 0.875rem;
+  font-size: var(--text-meta);
   color: var(--muted);
 }
 
@@ -2480,7 +2480,7 @@ kbd {
 
 .h-guide-wrap summary span {
   font-weight: 400;
-  font-size: 0.875rem;
+  font-size: var(--text-meta);
   color: var(--muted);
 }
 
@@ -2625,7 +2625,7 @@ kbd {
   flex-direction: column;
   overflow: hidden;
   border: 1px solid var(--line);
-  border-radius: 16px;
+  border-radius: var(--radius-card);
   background: var(--paper);
 }
 
@@ -2783,7 +2783,7 @@ kbd {
 .person-text {
   margin: 0;
   font-family: var(--serif);
-  font-size: 1.0625rem;
+  font-size: var(--text-lead);
   line-height: 1.6;
 }
 
@@ -2811,7 +2811,7 @@ kbd {
 .person-works li {
   padding: 4px 12px;
   background: var(--soft);
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   font-size: 0.8125rem;
 }
 
@@ -2838,7 +2838,7 @@ kbd {
   min-width: 38px;
   padding: 0 12px;
   border: 1px solid var(--line);
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   background: none;
   color: inherit;
   font: inherit;
@@ -3044,7 +3044,7 @@ kbd {
   margin-top: 40px;
   padding: 24px;
   border: 1px solid color-mix(in srgb, currentColor 30%, transparent);
-  border-radius: 16px;
+  border-radius: var(--radius-card);
 }
 
 .sleeve-back h2 {
@@ -3077,7 +3077,7 @@ kbd {
 
 .sleeve-people dd {
   font-weight: 700;
-  font-size: 1.0625rem;
+  font-size: var(--text-lead);
 }
 
 .sleeve-mark {
@@ -3098,7 +3098,7 @@ kbd {
 }
 
 .related .section-head h2 {
-  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  font-size: var(--text-h2);
 }
 
 /* Lists */
@@ -3255,7 +3255,7 @@ kbd {
   min-width: 44px;
   min-height: 44px;
   border: 1px solid rgba(255, 255, 255, 0.35);
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   background: none;
   color: #fff;
   font: inherit;
@@ -3324,7 +3324,7 @@ kbd {
   min-height: 64px;
   padding: 10px 14px;
   border: 1px solid var(--line);
-  border-radius: 12px;
+  border-radius: var(--radius-card);
   background: var(--paper);
   color: var(--ink);
   font: inherit;
@@ -3337,7 +3337,7 @@ kbd {
 }
 
 .quiz-options button span {
-  font-size: 0.875rem;
+  font-size: var(--text-meta);
   color: var(--muted);
 }
 
@@ -3401,7 +3401,7 @@ kbd {
 }
 
 .quiz-review span span {
-  font-size: 0.875rem;
+  font-size: var(--text-meta);
   color: var(--muted);
 }
 
@@ -3415,7 +3415,7 @@ kbd {
 /* Admin                                                               */
 
 .panel .crumb {
-  font-size: 0.875rem;
+  font-size: var(--text-meta);
   color: var(--muted);
 }
 
@@ -3433,7 +3433,7 @@ kbd {
   gap: 4px;
   padding: 20px;
   border: 1px solid var(--line);
-  border-radius: 14px;
+  border-radius: var(--radius-card);
   text-decoration: none;
 }
 
@@ -3507,7 +3507,7 @@ kbd {
 }
 
 .admin-list-text span {
-  font-size: 0.875rem;
+  font-size: var(--text-meta);
   color: var(--muted);
 }
 
@@ -3517,7 +3517,7 @@ kbd {
 
 .badge {
   padding: 2px 10px;
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   background: var(--soft);
   font-size: 0.8125rem;
   font-weight: 600;
@@ -3741,7 +3741,7 @@ kbd {
   display: flex;
   flex-wrap: wrap;
   gap: 4px;
-  font-size: 0.875rem;
+  font-size: var(--text-meta);
   color: var(--muted);
 }
 
@@ -3790,7 +3790,7 @@ kbd {
   min-height: 30px;
   padding: 2px 12px;
   border: 1px solid color-mix(in srgb, currentColor 40%, transparent);
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   font-size: 0.875rem;
   text-decoration: none;
 }
@@ -4312,13 +4312,7 @@ html[data-grid="small"] .recent .cover-grid li:nth-child(n + 11) {
 /* Page headings: 45px on desktop, 30px on phones. The :not() only raises the rule above
    page-level heading rules like .page-head h1, so these sizes always win. */
 h1:not(.h-none) {
-  font-size: 45px;
-}
-
-@media (max-width: 799px) {
-  h1:not(.h-none) {
-    font-size: 30px;
-  }
+  font-size: var(--text-h1);
 }
 
 /* Where an image comes from, under images we don't host ourselves. */
@@ -4561,7 +4555,7 @@ button[aria-busy="true"]::after {
   gap: 8px;
   min-height: 40px;
   padding: 0 16px;
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   font-weight: 600;
   text-decoration: none;
 }
@@ -4708,7 +4702,7 @@ button[aria-busy="true"]::after {
   height: 28px;
   padding: 0;
   border: 0;
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   background: var(--line);
   cursor: pointer;
   transition: background-color 0.2s;
@@ -4760,86 +4754,4 @@ button[aria-busy="true"]::after {
 .account-welcome h3 {
   margin: 16px 0 6px;
   font-size: 1.125rem;
-}
-
-
-/* Consistent geometry across the archive: 10px artwork and cards,
-   fully pill-shaped controls at every size. */
-:root { --archive-corner: 10px; }
-
-/* Square artwork and rectangular card surfaces. Keep round vinyls,
-   avatars, status dots and other intentionally circular artwork round. */
-.card-art,
-.card-art img,
-.ring-link img,
-.art-frame,
-.art-frame img,
-.cover-art img,
-.index-list img,
-.creator-index img,
-.collection-card,
-.collection-stack img,
-.stack-empty,
-.h-key,
-.h-key-art,
-.h-key-art img,
-.h-era-poster-art img,
-.h-record-art img,
-.lightbox-stage img,
-.editor-preview img,
-.admin-list img,
-.admin-noimg,
-.quiz-frame img,
-.quiz-review img,
-.first-art img,
-.game-art img {
-  border-radius: var(--archive-corner);
-}
-
-/* Rounded corners for all other content images without changing avatars. */
-main img:not(.avatar-choices img):not(.card-saved img) {
-  border-radius: var(--archive-corner);
-}
-
-/* Card containers and dialog surfaces. */
-.collection-card,
-.h-key,
-.h-card,
-.sheet,
-.menu-sheet,
-.game-card {
-  border-radius: var(--archive-corner);
-}
-
-/* Controls: buttons, inputs, selects, and button-like links. */
-button:not(.art-frame),
-.button,
-input:not([type="checkbox"]):not([type="radio"]):not([type="color"]):not([type="range"]):not([type="file"]),
-select,
-.filter-open,
-.quiz-options button,
-.order-tools button,
-.h-filters button,
-.h-tags button {
-  border-radius: 9999px;
-}
-
-/* Multiline fields remain rectangular with 10px corners. */
-textarea { border-radius: var(--archive-corner); }
-
-
-/* Use the same typography as body paragraphs for all interactive controls. */
-button,
-.button,
-[role="button"],
-input,
-select,
-textarea,
-summary {
-  font-family: var(--sans);
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.5;
-  letter-spacing: normal;
-  text-transform: none;
 }
