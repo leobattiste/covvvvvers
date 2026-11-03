@@ -7,6 +7,39 @@ import type { Moment } from "./history";
  */
 export const RESEARCH_MOMENTS: Moment[] = [
   {
+    id: "iam-marseille-1997",
+    when: "1997",
+    title: "IAM's L'École du micro d'argent consolidates Marseille rap",
+    text: "Released in March 1997, IAM's third album L'École du micro d'argent became a major commercial and artistic milestone for French rap. Contemporary reporting in Le Monde described more than 500,000 copies sold by November and documented the group's reinvestment in Marseille's scene through the Côté Obscur production company and studio. The Philharmonie de Paris catalog records the album's musicians, production credits and track list.",
+    tags: ["sound", "culture", "business"],
+    sources: ["lemonde-iam-1997", "philharmonie-iam-1997"],
+  },
+  {
+    id: "racionais-1997",
+    when: "1997",
+    title: "Racionais MC's release Sobrevivendo no Inferno",
+    text: "São Paulo group Racionais MC's released Sobrevivendo no Inferno in 1997. Its accounts of racism, policing, incarceration and life on the urban periphery made the record a defining work of Brazilian rap. In 2018, the University of Campinas placed its lyrics on the required reading list for the 2020 entrance examination, treating them as poetry.",
+    tags: ["sound", "culture"],
+    sources: ["unicamp-racionais-2018", "uol-racionais-2018"],
+  },
+  {
+    id: "groove-france-1997",
+    when: "1997",
+    title: "Groove magazine documents France's expanding rap scene",
+    text: "The first issue of the French hip-hop magazine Groove appeared in January 1997, part of a growing specialist press covering French-language rap. Abcdr du Son's detailed reconstruction of the year draws on contemporary magazines, recordings and firsthand recollections, offering a useful route into events that were poorly documented online at the time.",
+    tags: ["culture", "business"],
+    sources: ["abcdr-1997"],
+  },
+  {
+    id: "racionais-unicamp-2018",
+    when: "2018",
+    title: "A Brazilian university recognizes rap lyrics as literature",
+    text: "In May 2018, Unicamp announced that lyrics from Racionais MC's 1997 album Sobrevivendo no Inferno would be required reading for its 2020 entrance exam, under poetry. The decision highlighted how a rap record rooted in São Paulo's peripheries had entered Brazil's formal literary curriculum.",
+    tags: ["culture"],
+    sources: ["unicamp-racionais-2018"],
+  },
+
+  {
     id: "miami-bass-1986",
     when: "1986",
     title: "Miami bass establishes a distinct Southern rap sound",
@@ -202,6 +235,12 @@ export const RESEARCH_MOMENTS: Moment[] = [
 ];
 
 export const RESEARCH_SOURCES = [
+  { id: "lemonde-iam-1997", title: "Le Monde (25 November 1997) — IAM, groupe vedette du hip hop français et galaxie en expansion", url: "https://www.lemonde.fr/archives/article/1997/11/25/iam-groupe-vedette-du-hip-hop-francais-et-galaxie-en-expansion_3806693_1819218.html" },
+  { id: "philharmonie-iam-1997", title: "Philharmonie de Paris — IAM, L'École du micro d'argent (1997), catalog and credits", url: "https://mediatheque.philharmoniedeparis.fr/mediatheque/doc/ALOES/1131829" },
+  { id: "unicamp-racionais-2018", title: "Unicamp (2018) — Sobrevivendo no Inferno included in required reading", url: "https://www2.unicamp.br/unicamp/clipping/2018/05/24/universidade-coloca-album-dos-racionais-mcs-nas-leituras-obrigatorias-do/" },
+  { id: "uol-racionais-2018", title: "UOL Educação / Agência Estado (23 May 2018) — Unicamp coloca álbum dos Racionais na lista de obras obrigatórias", url: "https://educacao.uol.com.br/noticias/agencia-estado/2018/05/23/unicamp-coloca-album-dos-racionais-na-lista-de-obras-obrigatorias.htm?next=0001H824U96N" },
+  { id: "abcdr-1997", title: "Abcdr du Son — 1997, une année de rap français (contemporary-source chronology)", url: "https://www.abcdrduson.com/1997-rap-francais/" },
+
   { id: "netflix-evolution", title: "Netflix — Hip-Hop Evolution, official series and episode descriptions (2016–2020)", url: "https://www.netflix.com/title/80141782" },
   { id: "netflix-southern-way", title: "TV Guide — Hip-Hop Evolution, Season 2: The Southern Way", url: "https://www.tvguide.com/tvshows/hip-hop-evolution/episodes-season-2/1000644163/" },
   { id: "netflix-bay", title: "TV Guide — Hip-Hop Evolution, Season 2: Out the Trunk: The Bay", url: "https://www.tvguide.com/tvshows/hip-hop-evolution/episodes-season-2/1000644163/" },
