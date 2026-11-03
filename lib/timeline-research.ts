@@ -7,6 +7,31 @@ import type { Moment } from "./history";
  */
 export const RESEARCH_MOMENTS: Moment[] = [
   {
+    id: "two-live-crew-obscenity-1990",
+    when: "1990–1992",
+    title: "2 Live Crew's obscenity cases test the boundaries of rap expression",
+    text: "In June 1990, a federal district judge declared 2 Live Crew's As Nasty as They Wanna Be obscene, and Broward County authorities arrested members after a live performance. A Florida jury acquitted the performers that October. The album ruling was overturned on appeal in 1992. The prosecutions made rap lyrics and the sale of recorded music a national First Amendment controversy, raising questions about artistic expression and selective enforcement.",
+    tags: ["culture", "business"],
+    sources: ["national-archives-2live", "washpost-2live-acquittal"],
+  },
+  {
+    id: "missy-timbaland-1997-production",
+    when: "1997",
+    title: "Missy Elliott and Timbaland reshape rap's rhythmic possibilities",
+    text: "Missy Elliott's debut Supa Dupa Fly introduced a strikingly spacious, rhythmically unpredictable sound developed with producer Timbaland. Elliott's label Gold Mind, backed by Elektra, also gave her an unusually influential position as a songwriter and label executive. Contemporary reporting documented the album's rapid creation, its early success and the importance of Hype Williams's imaginative music videos. Their partnership influenced the direction of hip-hop and R&B production into the 2000s.",
+    tags: ["sound", "women", "business", "culture"],
+    sources: ["newyorker-missy-1997", "rockhall-missy"],
+  },
+  {
+    id: "de-la-soul-visual-1989",
+    when: "1989",
+    title: "De La Soul and the art of a sample-built alternative rap identity",
+    text: "De La Soul's 3 Feet High and Rising, produced by Prince Paul, brought playful collage, eclectic sampling and an alternative image into hip-hop's mainstream conversation. The album's distinctive visual identity was part of that change: the New York Public Library's Schomburg Center preserves original graphic art associated with its 1989 release. The combination of music and design helped establish a model for later alternative rap.",
+    tags: ["sound", "culture"],
+    sources: ["nypl-delasoul-art"],
+  },
+
+  {
     id: "chicago-drill-video-breakthrough-2012",
     when: "2012",
     title: "Chicago drill reaches a national audience through online video",
@@ -380,6 +405,12 @@ export const RESEARCH_MOMENTS: Moment[] = [
 ];
 
 export const RESEARCH_SOURCES = [
+  { id: "national-archives-2live", title: "US National Archives (2019) — The 2 Live Crew, Too Out of Line: What Words Are Permissible Free Speech?", url: "https://www.archives.gov/files/kansas-city/press/newsletter/2019-march.pdf" },
+  { id: "washpost-2live-acquittal", title: "The Washington Post (20 October 1990) — Rap Group Acquitted in Florida", url: "https://www.washingtonpost.com/archive/politics/1990/10/21/rap-group-acquitted-in-florida/52cb05fc-03c8-4069-9c4d-d5691998a392/" },
+  { id: "newyorker-missy-1997", title: "The New Yorker (1997) — Missy Elliott's Hip-Hop Transformations", url: "https://www.newyorker.com/magazine/1997/10/20/missy-elliotts-hip-hop-transformations" },
+  { id: "rockhall-missy", title: "Rock & Roll Hall of Fame — Missy Elliott artist profile", url: "https://rockhall.com/inductees/missy-elliott/" },
+  { id: "nypl-delasoul-art", title: "New York Public Library, Schomburg Center — De La Soul 3 Feet High and Rising original graphic art archive", url: "https://archives.nypl.org/admin/collections/11855" },
+
   { id: "wbez-chicago-rap", title: "WBEZ / NPR (2023) — How Chicago rap became a home for controversial, visionary stars", url: "https://www.wbez.org/culture-the-arts/2023/07/25/how-chicago-rap-became-a-home-for-controversial-visionary-stars" },
   { id: "pitchfork-drill-2019", title: "Pitchfork (2019) — 11 Songs That Define Chicago Drill", url: "https://pitchfork.com/features/article/2010s-drill-rap-songs/" },
   { id: "pitchfork-soundcloud-business", title: "Pitchfork (2019) — How Rap's SoundCloud Generation Changed the Music Business Forever", url: "https://pitchfork.com/thepitch/how-raps-soundcloud-generation-changed-the-music-business-forever/" },
