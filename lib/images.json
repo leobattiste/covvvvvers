@@ -2485,11 +2485,17 @@
     "url": "https://music.apple.com/us/album/cheat-codes/6794391491"
    },
    "cover": true
+  },
+  "Apache|Incredible Bongo Band": {
+   "src": "https://ticro.com/cdn/shop/products/image-2022-05-21T163421.714_0e73a66c-66fc-46d7-be89-e3a1c23daf2d.jpg?v=1653118566",
+   "full": "https://ticro.com/cdn/shop/products/image-2022-05-21T163421.714_0e73a66c-66fc-46d7-be89-e3a1c23daf2d.jpg?v=1653118566",
+   "source": {
+    "name": "TICRO MARKET — original 1973 Bongo Rock LP sleeve",
+    "url": "https://ticro.com/en/products/i00000604"
+   }
   }
  },
  "missing": {
-  "records": [
-   "Apache|Incredible Bongo Band"
-  ]
+  "records": []
  }
 }
