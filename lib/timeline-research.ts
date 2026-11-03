@@ -15,14 +15,6 @@ export const RESEARCH_MOMENTS: Moment[] = [
     sources: ["theodore-rbma-interview", "theodore-guardian-history"],
   },
   {
-    id: "grand-upright-sampling-ruling-1991",
-    when: "1991",
-    title: "A federal sampling ruling changes the economics of hip-hop production",
-    text: "On December 17, 1991, a federal judge ruled in Grand Upright Music v. Warner Bros. Records, a dispute over Biz Markie's use of Gilbert O'Sullivan's Alone Again (Naturally). The ruling became a landmark in the industry's approach to licensing sampled compositions and recordings. It did not ban sampling; rather, its consequences encouraged labels to seek permissions and altered the budgets and workflows of sample-based producers. The decision's text provides the primary legal record.",
-    tags: ["business", "tech", "sound"],
-    sources: ["grand-upright-court-1991"],
-  },
-  {
     id: "dj-drama-mixtape-raid-2007",
     when: "2007",
     title: "The DJ Drama raid exposes the changing mixtape economy",
