@@ -7,8 +7,8 @@ import type { CoverCard as Card } from "@/lib/types";
 import CoverCard, { cardMeta } from "./CoverCard";
 
 type Sort = "newest" | "added" | "oldest" | "az" | "saved";
-type Filters = { type: string; color: string; decade: string; q: string; sort: Sort };
-const EMPTY: Filters = { type: "", color: "", decade: "", q: "", sort: "newest" };
+type Filters = { type: string; color: string; decade: string; year: string; q: string; sort: Sort };
+const EMPTY: Filters = { type: "", color: "", decade: "", year: "", q: "", sort: "newest" };
 
 const SORTS: { value: Sort; label: string }[] = [
   { value: "newest", label: "Newest releases" },
@@ -45,6 +45,7 @@ export default function CoverGrid({ covers, filters = false, types = [], emptyTe
       // "c" is the old Colours page's link format, which now redirects here.
       color: p.get("color") ?? p.get("c") ?? "",
       decade: p.get("decade") ?? "",
+      year: p.get("year") ?? "",
       q: p.get("q") ?? "",
       sort: sort && SORTS.some((s) => s.value === sort) ? sort : "newest",
     });
@@ -83,6 +84,7 @@ export default function CoverGrid({ covers, filters = false, types = [], emptyTe
         (!f.type || c.type?.slug === f.type) &&
         (!f.color || c.family === f.color) &&
         (!f.decade || c.decade === f.decade) &&
+        (!f.year || String(c.release_year) === f.year) &&
         (!q ||
           c.title.toLowerCase().includes(q) ||
           c.artist.toLowerCase().includes(q) ||
@@ -112,7 +114,7 @@ export default function CoverGrid({ covers, filters = false, types = [], emptyTe
     return inTitle ? undefined : `${cardMeta(c, showType)}. Mentioned in the story`;
   };
 
-  const activeCount = [f.type, f.color, f.decade].filter(Boolean).length;
+  const activeCount = [f.type, f.color, f.decade, f.year].filter(Boolean).length;
   const set = (k: keyof Filters) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) =>
     setF({ ...f, [k]: e.target.value });
 

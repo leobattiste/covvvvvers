@@ -17,3 +17,8 @@ button, .button, [role="button"], input, select, textarea, summary {
 
 /* Cover detail metadata: artist, cover type and release year. */
 .cover-head .cover-artist { font-size: 16px; line-height: 1.5; }
+
+/* Album details and credited creator names share the standard 16px body size. */
+.sleeve-back dd, .sleeve-back .sleeve-people dd { font-size: 16px; }
+.cover-head .cover-artist a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+.sleeve-facts a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
