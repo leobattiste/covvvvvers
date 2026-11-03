@@ -39,3 +39,14 @@ main img:not(.avatar-choices img):not(.card-saved img) { border-radius: var(--ra
   border-radius: 4px;
 }
 .sleeve-palette .palette-hex { font-size: 11px; }
+
+/* Palette leads the cover credits card; creator credits link to their work. */
+.sleeve-back > .sleeve-palette:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  padding-bottom: var(--space-4);
+  border-top: 0;
+  border-bottom: 1px solid color-mix(in srgb, currentColor 20%, transparent);
+  margin-bottom: var(--space-4);
+}
+.sleeve-people a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }

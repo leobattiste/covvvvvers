@@ -165,3 +165,11 @@ export async function getTypesWithCovers(preview = 4) {
     .filter((t) => t.count > 0)
     .map((t) => ({ ...t, covers: covers.filter((c) => c.type?.slug === t.slug).slice(0, preview) }));
 }
+
+/** Published covers credited to a specific creator. */
+export async function getCreator(slug: string) {
+  const { covers } = await assemble();
+  const matched = covers.filter((cover) => cover.creators.some((creator) => creator.slug === slug));
+  const creator = matched.flatMap((cover) => cover.creators).find((c) => c.slug === slug);
+  return creator ? { creator, covers: matched } : null;
+}

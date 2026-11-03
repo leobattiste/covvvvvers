@@ -113,12 +113,18 @@ export default async function CoverPage({ params }: Params) {
           )}
 
           <section className="sleeve-back" aria-label="Credits">
+            <div className="sleeve-palette">
+              <Palette
+                src={squareImage(cover.image_url, 120)}
+                fallback={[cover.color, cover.accent_color].filter(Boolean) as string[]}
+              />
+            </div>
             {cover.creators.length > 0 && (
               <dl className="sleeve-people">
                 {cover.creators.map((c) => (
                   <div key={c.id}>
                     <dt>{c.role ?? "Cover"}</dt>
-                    <dd>{c.name}</dd>
+                    <dd><Link href={`/creators/${encodeURIComponent(c.slug)}`}>{c.name}</Link></dd>
                   </div>
                 ))}
               </dl>
@@ -148,12 +154,6 @@ export default async function CoverPage({ params }: Params) {
                 </div>
               )}
             </dl>
-            <div className="sleeve-palette">
-              <Palette
-                src={squareImage(cover.image_url, 120)}
-                fallback={[cover.color, cover.accent_color].filter(Boolean) as string[]}
-              />
-            </div>
           </section>
 
         </div>
