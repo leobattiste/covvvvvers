@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import AuthPrompt from "@/components/AuthPrompt";
 import { getServerClient } from "@/lib/supabase/server";
 import SubmitForm from "./SubmitForm";
 
@@ -26,9 +26,7 @@ export default async function SubmitPage() {
         <SubmitForm />
       ) : (
         <p>
-          <Link className="button solid" href="/login?next=/submit">
-            Sign in to submit a cover
-          </Link>
+          <AuthPrompt next="/submit" triggerClassName="button solid" triggerLabel="Sign in to submit a cover" />
         </p>
       )}
     </section>

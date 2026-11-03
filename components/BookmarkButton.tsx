@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import AuthPrompt from "./AuthPrompt";
 import { useRef, useState } from "react";
 import { bookmark, createList, listName, unbookmark, useBookmarks, DEFAULT_LIST, type Where } from "@/lib/bookmarks";
 
@@ -32,9 +33,7 @@ export default function BookmarkButton({ coverId, slug }: { coverId: string; slu
   if (!s.ready) return <span className="save-placeholder" />;
   if (!s.userId) {
     return (
-      <Link className="save" href={`/login?next=/covers/${slug}`} aria-label="Bookmark cover" title="Bookmark cover">
-        <BookmarkIcon filled={false} />
-      </Link>
+      <AuthPrompt next={`/covers/${slug}`} triggerClassName="save" triggerLabel="Bookmark cover" icon={<BookmarkIcon filled={false} />} />
     );
   }
 
