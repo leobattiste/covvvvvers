@@ -14,3 +14,6 @@ button, .button, [role="button"], input, select, textarea, summary {
   letter-spacing: normal;
   text-transform: none;
 }
+
+/* Cover detail metadata: artist, cover type and release year. */
+.cover-head .cover-artist { font-size: 26px; line-height: 1.3; }
