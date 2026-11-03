@@ -7,6 +7,47 @@ import type { Moment } from "./history";
  */
 export const RESEARCH_MOMENTS: Moment[] = [
   {
+    id: "cleveland-mc-brains-1992",
+    when: "1992",
+    title: "M.C. Brains brings Cleveland rap onto national charts",
+    text: "Cleveland rapper M.C. Brains scored a crossover hit with Oochie Coochie in 1992, reaching number one on Billboard's Hot Rap Singles chart. The Rock & Roll Hall of Fame's regional music history places his melodic approach within the local scene that preceded Bone Thugs-n-Harmony's breakthrough.",
+    tags: ["sound", "culture", "business"],
+    sources: ["rockhall-cleveland-hiphop"],
+  },
+  {
+    id: "cleveland-bone-1994",
+    when: "1994",
+    title: "Bone Thugs-n-Harmony bring Cleveland's melodic style to Ruthless Records",
+    text: "Bone Thugs-n-Harmony, whose members came from Cleveland's Glenville neighborhood, signed with Eazy-E's Ruthless Records in 1994. Their Creepin on ah Come Up EP and single Thuggish Ruggish Bone brought a rapid, melodic vocal approach to a national audience, building on Cleveland's existing rap scene.",
+    tags: ["sound", "culture", "business"],
+    sources: ["rockhall-cleveland-hiphop"],
+  },
+  {
+    id: "rhymesayers-founded-1995",
+    when: "1995",
+    title: "Rhymesayers establishes an independent base in Minneapolis",
+    text: "Rhymesayers Entertainment was founded in 1995 after Minneapolis and Saint Paul artists had built a following through coffee-shop performances, Headshots cassette tapes and merchandise sales. Its early releases included Musab's Comparison in 1996 and Atmosphere's Overcast! in 1997. The label's own history documents how touring and reinvesting local earnings supported expansion beyond Minnesota.",
+    tags: ["business", "culture"],
+    sources: ["rhymesayers-history"],
+  },
+  {
+    id: "bone-eternal-1995",
+    when: "1995",
+    title: "E. 1999 Eternal gives Cleveland a defining national rap album",
+    text: "Bone Thugs-n-Harmony released E. 1999 Eternal in July 1995, combining fast-paced harmonies with atmospheric production. The album reached number one on the Billboard 200, and the later hit Tha Crossroads became a memorial to Eazy-E and others who had died. The Rock & Roll Hall of Fame documents the group's place in Cleveland's hip-hop history.",
+    tags: ["sound", "culture"],
+    sources: ["rockhall-cleveland-hiphop", "grammy-bone-eternal"],
+  },
+  {
+    id: "nelly-country-grammar-2000",
+    when: "2000",
+    title: "Nelly's Country Grammar breaks St. Louis onto national charts",
+    text: "Nelly released Country Grammar in June 2000 after the St. Lunatics built a local following in St. Louis. The album reached number one on the Billboard 200 that August. Contemporary Los Angeles Times coverage recorded its commercial rise, while the St. Louis American documents the local music network behind the breakthrough.",
+    tags: ["sound", "business", "culture"],
+    sources: ["latimes-nelly-2000", "stlamerican-countrygrammar"],
+  },
+
+  {
     id: "detroit-def-sound-1985",
     when: "1985",
     title: "Detroit builds recording infrastructure for its first rap generation",
@@ -306,6 +347,12 @@ export const RESEARCH_MOMENTS: Moment[] = [
 ];
 
 export const RESEARCH_SOURCES = [
+  { id: "rockhall-cleveland-hiphop", title: "Rock & Roll Hall of Fame Library — NEO Sound: Cleveland Hip-Hop", url: "https://library.rockhall.com/neosound/cle_hiphop" },
+  { id: "rhymesayers-history", title: "Rhymesayers Entertainment — About: independent hip-hop since 1995", url: "https://rhymesayers.com/pages/about" },
+  { id: "grammy-bone-eternal", title: "Recording Academy (2025) — Bone Thugs-n-Harmony's E. 1999 Eternal transformed rap", url: "https://www.grammy.com/news/bone-thugs-n-harmony-e-1999-eternal-transformed-rap-anniversary/" },
+  { id: "latimes-nelly-2000", title: "Los Angeles Times (17 August 2000) — Nelly Puts St. Louis on Nation's Rap Map", url: "https://www.latimes.com/archives/la-xpm-2000-aug-17-ca-5745-story.html" },
+  { id: "stlamerican-countrygrammar", title: "St. Louis American (2020) — A celebration of Nelly's Country Grammar as album turns 20", url: "https://www.stlamerican.com/entertainment/living-it/a-celebration-of-nellys-country-grammar-as-album-turns-20/" },
+
   { id: "metro-detroit-history", title: "Detroit Metro Times (2016) — An instant lesson in the history of Detroit hip-hop", url: "https://www.metrotimes.com/detroit-guides/an-instant-lesson-in-the-history-of-detroit-hip-hop-2401879/" },
   { id: "billboard-chicago-1993", title: "Billboard (21 August 1993) — Burgeoning scenes help dispel myth of the Second City, contemporary reporting", url: "https://www.worldradiohistory.com/Archive-All-Music/Billboard/90s/1993/BB-1993-08-21.pdf" },
   { id: "complex-common-oral", title: "Complex — The Making of Common's Resurrection, oral history with Common and No I.D.", url: "https://www.complex.com/music/a/insanulahmed/the-making-of-commons-resurrection" },
