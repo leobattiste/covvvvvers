@@ -130,7 +130,7 @@ function RecordCard({ r }: { r: RecordView & { note?: string } }) {
   );
 }
 
-export type SourceGroup = { title: string; note: string; items: { title: string; url: string }[] };
+export type SourceGroup = { title: string; note: string; items: { id?: string; title: string; url: string }[] };
 
 export default function History({ eras, sources }: { eras: EraView[]; sources: SourceGroup[] }) {
   const [active, setActive] = useState<string | undefined>(eras[0]?.id);
@@ -292,6 +292,7 @@ export default function History({ eras, sources }: { eras: EraView[]; sources: S
                               {m.when !== String(y.year) && <p className="h-when-note">{m.when}</p>}
                               <h3>{m.title}</h3>
                               <p>{m.text}</p>
+                              {m.sources?.length ? <p className="h-entry-citations">References: {m.sources.map((id, i) => <span key={id}>{i > 0 ? ", " : ""}<a href={`#source-${id}`}>[{i + 1}]</a></span>)}</p> : null}
                               {m.records.length > 0 && (
                                 <ul className="h-key-grid" aria-label="Records">
                                   {m.records.map((r) => (
@@ -352,7 +353,7 @@ export default function History({ eras, sources }: { eras: EraView[]; sources: S
             <p>{g.note}</p>
             <ul>
               {g.items.map((s) => (
-                <li key={s.title + s.url}>
+                <li key={s.title + s.url} id={s.id ? `source-${s.id}` : undefined}>
                   <a href={s.url} target="_blank" rel="noreferrer">
                     {s.title}
                   </a>

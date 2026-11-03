@@ -28,6 +28,8 @@ export type Moment = {
   title: string;
   text: string;
   tags: Tag[];
+  /** IDs of bibliography entries, listed at the bottom of the page. */
+  sources?: string[];
   stat?: { value: number; label: string; prefix?: string; suffix?: string };
   records?: HistoryRecord[];
 };

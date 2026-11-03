@@ -12,6 +12,7 @@ export const RESEARCH_MOMENTS: Moment[] = [
     title: "The flyers that documented the early scene",
     text: "Before rap was a record-industry business, hand-made flyers advertised DJs, MC crews, parties, venues and admission prices. Designers including Buddy Esquire and Phase 2 combined lettering, photographs and cut-paper graphics. Cornell University's preserved flyers now provide dated evidence of the people and places behind early hip-hop.",
     tags: ["culture"],
+    sources: ["cornell-flyers"],
   },
   {
     id: "joe-conzo-archive",
@@ -19,6 +20,15 @@ export const RESEARCH_MOMENTS: Moment[] = [
     title: "Joe Conzo Jr. photographs hip-hop's earliest years",
     text: "Bronx photographer Joe Conzo Jr. documented performances, performers and neighborhood life as hip-hop emerged. His photographs capture the culture before commercial rap became widespread. Cornell University's Hip Hop Collection preserves thousands of digitized photographs from his archive, providing visual evidence of the people, settings and performances of the era.",
     tags: ["culture"],
+    sources: ["cornell-conzo"],
+  },
+  {
+    id: "ernie-paniccioli-archive",
+    when: "1985",
+    title: "Ernie Paniccioli documents hip-hop's visual identity",
+    text: "Photographer Ernie Paniccioli recorded hip-hop artists, performances and communities over decades as the music expanded. Cornell University's Hip Hop Collection preserves his archive, with thousands of digitized photographs. Alongside Joe Conzo Jr.'s work, these images show how photography documented the culture's development.",
+    tags: ["culture"],
+    sources: ["cornell-archives"],
   },
   {
     id: "hiphop-france-arrives",
@@ -28,11 +38,20 @@ export const RESEARCH_MOMENTS: Moment[] = [
     tags: ["culture"],
   },
   {
+    id: "defjam-visual-identity",
+    when: "1984–1989",
+    title: "Graphic design becomes central to rap's identity",
+    text: "As rap labels developed recognizable visual identities, album sleeves, promotional photography, logos and clothing helped distinguish artists. Designer Cey Adams, Def Jam's founding creative director, helped define this graphic language. The Smithsonian's hip-hop anthology includes Adams's designs and documents the visual history of the genre.",
+    tags: ["culture", "business"],
+    sources: ["smithsonian-anthology"],
+  },
+  {
     id: "pen-pixel-founded",
     when: "1992",
     title: "Pen & Pixel develops a new Southern cover aesthetic",
     text: "Brothers Shawn and Aaron Brauch founded Houston's Pen & Pixel Graphics. Its digitally assembled portraits, metallic lettering, jewelry, cars and fantastical settings became closely associated with Southern independent rap, especially No Limit and Cash Money. The University of Houston preserves a collection of the firm's original materials.",
     tags: ["culture", "tech", "business"],
+    sources: ["houston-penpixel"],
   },
   {
     id: "grime-pirate-radio",
@@ -51,6 +70,11 @@ export const RESEARCH_MOMENTS: Moment[] = [
 ];
 
 export const RESEARCH_SOURCES = [
+  { id: "cornell-conzo", title: "Cornell University Library — Joe Conzo Jr. Archive", url: "https://digital.library.cornell.edu/collections/conzo" },
+  { id: "cornell-flyers", title: "Cornell University Library — Hip Hop Party and Event Flyers", url: "https://dcp-production-container.library.cornell.edu/collections/hiphopflyers" },
+  { id: "cornell-archives", title: "Cornell Hip Hop Collection — Digital collections", url: "https://hiphop.library.cornell.edu/digital-collections/" },
+  { id: "houston-penpixel", title: "University of Houston Libraries — Pen & Pixel Graphics, Inc. Records", url: "https://findingaids.lib.uh.edu/repositories/2/resources/8" },
+  { id: "smithsonian-anthology", title: "Smithsonian — Anthology of Hip-Hop and Rap", url: "https://nmaahc.si.edu/explore/publications/smithsonian-anthology-hip-hop-and-rap" },
   { title: "Smithsonian NMAAHC — Hip-Hop in the Bronx", url: "https://nmaahc.si.edu/explore/stories/hip-hop-bronx" },
   { title: "Smithsonian National Museum of American History — The sazón in hip-hop", url: "https://americanhistory.si.edu/explore/stories/sazon-hip-hop" },
   { title: "Library of Congress — Early Hip-Hop at the Library of Congress", url: "https://blogs.loc.gov/music/2023/08/early-hip-hop-at-the-library-of-congress/" },
