@@ -7,6 +7,31 @@ import type { Moment } from "./history";
  */
 export const RESEARCH_MOMENTS: Moment[] = [
   {
+    id: "roxanne-shante-1984",
+    when: "1984",
+    title: "Roxanne Shanté enters the Roxanne Wars",
+    text: "Roxanne Shanté's Roxanne's Revenge answered UTFO's Roxanne, Roxanne and helped launch a wave of answer records. Her performance established a teenage woman MC as a force in rap's competitive recording culture. The Smithsonian's Anthology of Hip-Hop and Rap includes both recordings in its account of the period.",
+    tags: ["women", "sound", "culture"],
+    sources: ["smithsonian-folkways-anthology"],
+  },
+  {
+    id: "female-rappers-1988-photo",
+    when: "1988",
+    title: "Janette Beckman photographs the Class of '88",
+    text: "Photographer Janette Beckman's group portrait Female Rappers, Class of '88 brought together MC Lyte, Roxanne Shanté, Sparky D, Sweet Tee and other women in rap. The photograph, now held by the Smithsonian, documents a wider generation of performers than the few names most frequently repeated in mainstream histories. The museum lists the image as copyrighted, so the archive links to its catalog rather than reproducing it.",
+    tags: ["women", "culture"],
+    sources: ["smithsonian-class88"],
+  },
+  {
+    id: "sampling-rights-1991",
+    when: "1991",
+    title: "Sampling disputes change the economics of rap production",
+    text: "Legal disputes over unlicensed samples changed how rap records were produced and released in the early 1990s. The Library of Congress's Citizen DJ project describes how sample-heavy albums by Public Enemy and De La Soul reflected a creative approach that later became much more expensive to sustain. Clearance costs increasingly influenced the sounds producers could use.",
+    tags: ["tech", "business", "sound"],
+    sources: ["loc-citizen-dj"],
+  },
+
+  {
     id: "bronx-flyers-archive",
     when: "1977–1983",
     title: "The flyers that documented the early scene",
@@ -94,6 +119,9 @@ export const RESEARCH_MOMENTS: Moment[] = [
 ];
 
 export const RESEARCH_SOURCES = [
+  { id: "smithsonian-folkways-anthology", title: "Smithsonian Folkways — Anthology of Hip-Hop and Rap, track listing", url: "https://folkways.si.edu/smithsonian-anthology-of-hip-hop-and-rap-intl" },
+  { id: "smithsonian-class88", title: "Smithsonian NMAAHC — Female Rappers, Class of '88, Janette Beckman", url: "https://nmaahc.si.edu/object/nmaahc_2015.132.65" },
+  { id: "loc-citizen-dj", title: "Library of Congress — Citizen DJ: About the project", url: "https://citizen-dj.labs.loc.gov/about/" },
   { id: "loc-message-2002", title: "Library of Congress — 2002 National Recording Registry: The Message", url: "https://www.loc.gov/programs/national-recording-preservation-board/recording-registry/registry-by-induction-years/2002/" },
   { id: "smithsonian-represent", title: "Smithsonian NMAAHC — Represent: women and identity in hip-hop", url: "https://nmaahc.si.edu/explore/exhibitions/represent" },
   { id: "cornell-conzo", title: "Cornell University Library — Joe Conzo Jr. Archive", url: "https://digital.library.cornell.edu/collections/conzo" },
