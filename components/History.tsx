@@ -278,7 +278,6 @@ export default function History({ eras, sources }: { eras: EraView[]; sources: S
                 {era.years.map((y) => {
                   const ms = y.moments;
                   const recs = y.records;
-                  if (!ms.length && !recs.length) return null;
                   return (
                     <li key={y.year} id={`year-${y.year}`} className="h-year">
                       <div className="h-year-label">
@@ -286,6 +285,7 @@ export default function History({ eras, sources }: { eras: EraView[]; sources: S
                         <span>{y.year}</span>
                       </div>
                       <div className="h-year-body">
+                        {ms.length === 0 && recs.length === 0 && <p className="h-year-empty">No featured milestones selected for this year yet.</p>}
                         {ms.map((m) => (
                           <article key={m.id} id={m.id} className="h-entry">
                             <div className="h-card">

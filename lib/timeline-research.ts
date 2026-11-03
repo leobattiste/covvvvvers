@@ -14,6 +14,13 @@ export const RESEARCH_MOMENTS: Moment[] = [
     tags: ["culture"],
   },
   {
+    id: "joe-conzo-archive",
+    when: "1976–1984",
+    title: "Joe Conzo Jr. photographs hip-hop's earliest years",
+    text: "Bronx photographer Joe Conzo Jr. documented performances, performers and neighborhood life as hip-hop emerged. His photographs capture the culture before commercial rap became widespread. Cornell University's Hip Hop Collection preserves thousands of digitized photographs from his archive, providing visual evidence of the people, settings and performances of the era.",
+    tags: ["culture"],
+  },
+  {
     id: "hiphop-france-arrives",
     when: "1982–1984",
     title: "Hip-hop takes root in France",

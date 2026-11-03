@@ -74,8 +74,8 @@ export default async function TimelinePage() {
 
   // A moment's year: the first year it names, or the middle of the decade it names.
   const yearOf = (when: string) => {
-    const decade = when.match(/(early|mid|late)-?\s*(\d{4})s/i);
-    if (decade) return Number(decade[2]) + ({ early: 1, mid: 5, late: 8 } as Record<string, number>)[decade[1].toLowerCase()];
+    const decade = when.match(/(early|mid|late)-?\s*(\d{3})0s/i);
+    if (decade) return Number(decade[2]) * 10 + ({ early: 1, mid: 5, late: 8 } as Record<string, number>)[decade[1].toLowerCase()];
     const y = when.match(/\d{4}/);
     return y ? Number(y[0]) : 0;
   };
@@ -99,9 +99,9 @@ export default async function TimelinePage() {
     }
     for (const r of records) slot(r.year).records.push(withLinks(r));
     // A song listed under the year's records isn't repeated inside the milestone.
-    const listed = new Set(records.map((r) => norm(r.title)));
-    for (const y of years.values()) for (const mo of y.moments) mo.records = mo.records.filter((r) => !listed.has(norm(r.title)));
-    return [...years.values()].sort((x, y) => x.year - y.year);
+    const listed = new Set(records.map((r) => `${norm(r.title)}|${norm(r.artist)}`));
+    for (const y of years.values()) for (const mo of y.moments) mo.records = mo.records.filter((r) => !listed.has(`${norm(r.title)}|${norm(r.artist)}`));
+    return Array.from({ length: to - from + 1 }, (_, i) => years.get(from + i) ?? { year: from + i, moments: [], records: [] });
   };
 
   const eras: EraView[] = CHAPTERS.map((ch) => {
