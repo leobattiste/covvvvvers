@@ -204,6 +204,16 @@ const verifiedSleeves = {
     source: { name: "TICRO MARKET — original 1973 Bongo Rock LP sleeve", url: "https://ticro.com/en/products/i00000604" },
   },
 };
+verifiedSleeves["Regulate|Warren G & Nate Dogg"] = {
+  src: "https://coverartarchive.org/release/fc3d8d2b-72a6-41eb-a0e9-9be1267d4b26/front-500",
+  full: "https://coverartarchive.org/release/fc3d8d2b-72a6-41eb-a0e9-9be1267d4b26/front",
+  source: { name: "Cover Art Archive — original 1994 Regulate… G Funk Era sleeve", url: "https://musicbrainz.org/release/fc3d8d2b-72a6-41eb-a0e9-9be1267d4b26/cover-art" },
+};
+verifiedSleeves["A Milli|Lil Wayne"] = {
+  src: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/f9/6c/dc/f96cdc5c-09fe-06b6-4629-be4afeb71cca/08UMGIM15512.rgb.jpg/600x600bb.jpg",
+  full: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/f9/6c/dc/f96cdc5c-09fe-06b6-4629-be4afeb71cca/08UMGIM15512.rgb.jpg/2000x2000bb.jpg",
+  source: { name: "Apple Music — original Tha Carter III sleeve", url: "https://music.apple.com/us/album/tha-carter-iii/1440738372" },
+};
 const blocked = new Set(Object.keys(verifiedSleeves));
 const out = { records: {}, missing: { records: [] } };
 // Images found before are kept, so a run only searches for what's new or still missing.
