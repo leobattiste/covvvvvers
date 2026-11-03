@@ -1724,14 +1724,6 @@
     "url": "https://en.wikipedia.org/wiki/Give_It_Up_or_Turnit_a_Loose"
    }
   },
-  "Apache|Incredible Bongo Band": {
-   "src": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/8d/fe/31/8dfe31b7-233a-0060-e098-72e44b08b8f1/HONEY3_COVER_3000pxls.jpg/600x600bb.jpg",
-   "full": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/8d/fe/31/8dfe31b7-233a-0060-e098-72e44b08b8f1/HONEY3_COVER_3000pxls.jpg/2000x2000bb.jpg",
-   "source": {
-    "name": "Apple Music",
-    "url": "https://music.apple.com/us/album/apache-grandmaster-flash-remix/1147396105"
-   }
-  },
   "It's Just Begun|The Jimmy Castor Bunch": {
    "src": "https://coverartarchive.org/release-group/a6399a76-858d-3384-8efd-5ad7492f9b00/front-500",
    "full": "https://coverartarchive.org/release-group/a6399a76-858d-3384-8efd-5ad7492f9b00/front",
@@ -2496,6 +2488,8 @@
   }
  },
  "missing": {
-  "records": []
+  "records": [
+   "Apache|Incredible Bongo Band"
+  ]
  }
 }
