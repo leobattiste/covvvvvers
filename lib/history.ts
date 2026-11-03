@@ -325,7 +325,7 @@ export const ERAS: Era[] = [
         id: "biz",
         when: "1991",
         title: "Samples start to cost money",
-        text: "On 17 December a federal judge ruled that Biz Markie had infringed copyright by sampling Gilbert O'Sullivan's 'Alone Again (Naturally)'. From then on samples had to be cleared and paid for, so producers used fewer of them and replayed more parts with musicians. A Tribe Called Quest's 'The Low End Theory' joined rap to upright jazz bass, Naughty by Nature's 'O.P.P.' was everywhere, 'Boyz n the Hood' took Ice Cube to Hollywood, and Dr. Dre and Suge Knight founded Death Row Records.",
+        text: "On 17 December a federal judge ruled that Biz Markie had infringed copyright by sampling Gilbert O'Sullivan's 'Alone Again (Naturally)'. The ruling became a landmark in sampling disputes and pushed labels toward more systematic licensing. Sampling remained legal with permission, but the cost and risk of uncleared uses reshaped how many producers assembled beats. A Tribe Called Quest's 'The Low End Theory' joined rap to upright jazz bass, Naughty by Nature's 'O.P.P.' was everywhere, 'Boyz n the Hood' took Ice Cube to Hollywood, and Dr. Dre and Suge Knight founded Death Row Records.",
         tags: ["business", "sound"],
         records: [
           album("The Low End Theory", "A Tribe Called Quest", 1991),
@@ -757,7 +757,7 @@ export const ERAS: Era[] = [
         id: "pop-smoke",
         when: "2020",
         title: "Pop Smoke, 'WAP' and Verzuz",
-        text: "Pop Smoke was killed in February at 20, and his posthumous debut went to number one. Megan Thee Stallion's 'Savage' remix with Beyoncé reached number one, and 'WAP' with Cardi B drew 93 million US streams in its first week, a record. With concerts cancelled, Timbaland and Swizz Beatz launched Verzuz, livestreamed battles of artists' greatest hits watched by millions.",
+        text: "Pop Smoke was killed in February at 20, and his posthumous debut went to number one. Megan Thee Stallion's 'Savage' remix with Beyoncé reached number one, and 'WAP' with Cardi B drew 93 million US streams in its first week, a record. With concerts cancelled, Timbaland and Swizz Beatz began Verzuz on Instagram Live in March. Their song-for-song showcases gave established artists new digital audiences and drove renewed interest in their catalogs, demonstrating a new form of music-centered livestreaming.",
         tags: ["sound", "women", "tech", "culture"],
         stat: { value: 93, label: "million US streams for 'WAP' in week one", suffix: "M" },
         records: [
