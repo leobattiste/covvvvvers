@@ -7,6 +7,39 @@ import type { Moment } from "./history";
  */
 export const RESEARCH_MOMENTS: Moment[] = [
   {
+    id: "chicago-drill-video-breakthrough-2012",
+    when: "2012",
+    title: "Chicago drill reaches a national audience through online video",
+    text: "Chief Keef's I Don't Like became a breakout Chicago drill record in 2012, amplified by inexpensive music videos, online sharing and a Kanye West remix. The scene was already developing through artists including King Louie, Pac Man, Lil Durk and Katie Got Bandz. Contemporary accounts and later Chicago reporting emphasize the musicians' creativity while examining the city's segregation and violence without reducing the artists to those conditions.",
+    tags: ["sound", "tech", "culture"],
+    sources: ["wbez-chicago-rap", "pitchfork-drill-2019"],
+  },
+  {
+    id: "soundcloud-independent-wave-2016",
+    when: "2016–2017",
+    title: "SoundCloud-era artists reshape how American rap breaks through",
+    text: "In the mid-2010s, rappers including Lil Uzi Vert, Lil Yachty, Denzel Curry and a growing South Florida scene built audiences through SoundCloud, social media and self-directed online releases. Their rise challenged the older sequence of local radio, label deals and national marketing. Pitchfork's reporting tracks the business shift, while The Ringer documents the scene through interviews with artists and collaborators.",
+    tags: ["tech", "business", "culture"],
+    sources: ["pitchfork-soundcloud-business", "ringer-soundcloud-history"],
+  },
+  {
+    id: "streaming-largest-us-format-2015",
+    when: "2015",
+    title: "Streaming becomes the largest share of US recorded-music revenue",
+    text: "The Recording Industry Association of America reported that streaming accounted for 34.3 percent of US recorded-music revenue in 2015, slightly exceeding digital downloads for the first time. This industry-wide shift changed how hip-hop labels and independent artists measured success, planned releases and reached listeners; the statistic describes all US recorded music, not rap alone.",
+    tags: ["tech", "business"],
+    sources: ["riaa-2015-year-end"],
+  },
+  {
+    id: "kendrick-pulitzer-2018-research",
+    when: "2018",
+    title: "Kendrick Lamar wins the Pulitzer Prize for Music",
+    text: "On April 16, 2018, the Pulitzer Prize Board named Kendrick Lamar's DAMN. the winner of the Music prize. The album, released in 2017, became the first hip-hop work to receive the award, marking a major institutional recognition of rap composition and storytelling. The Pulitzer's own record documents the winning work and the award's citation.",
+    tags: ["culture", "first"],
+    sources: ["pulitzer-damn-official"],
+  },
+
+  {
     id: "cleveland-mc-brains-1992",
     when: "1992",
     title: "M.C. Brains brings Cleveland rap onto national charts",
@@ -347,6 +380,13 @@ export const RESEARCH_MOMENTS: Moment[] = [
 ];
 
 export const RESEARCH_SOURCES = [
+  { id: "wbez-chicago-rap", title: "WBEZ / NPR (2023) — How Chicago rap became a home for controversial, visionary stars", url: "https://www.wbez.org/culture-the-arts/2023/07/25/how-chicago-rap-became-a-home-for-controversial-visionary-stars" },
+  { id: "pitchfork-drill-2019", title: "Pitchfork (2019) — 11 Songs That Define Chicago Drill", url: "https://pitchfork.com/features/article/2010s-drill-rap-songs/" },
+  { id: "pitchfork-soundcloud-business", title: "Pitchfork (2019) — How Rap's SoundCloud Generation Changed the Music Business Forever", url: "https://pitchfork.com/thepitch/how-raps-soundcloud-generation-changed-the-music-business-forever/" },
+  { id: "ringer-soundcloud-history", title: "The Ringer (2021) — Comfort in the Discomforting: The History of SoundCloud Rap", url: "https://www.theringer.com/2021/12/16/music/juice-wrld-soundcloud-rap-history-retrospective" },
+  { id: "riaa-2015-year-end", title: "RIAA (2016) — 2015 Year-End Shipments and Revenue Statistics", url: "https://www.riaa.com/wp-content/uploads/2016/03/RIAA-2015-Year-End-shipments-memo.pdf" },
+  { id: "pulitzer-damn-official", title: "Pulitzer Prizes — 2018 Music Winner: Kendrick Lamar, DAMN.", url: "https://www.pulitzer.org/winners/kendrick-lamar" },
+
   { id: "rockhall-cleveland-hiphop", title: "Rock & Roll Hall of Fame Library — NEO Sound: Cleveland Hip-Hop", url: "https://library.rockhall.com/neosound/cle_hiphop" },
   { id: "rhymesayers-history", title: "Rhymesayers Entertainment — About: independent hip-hop since 1995", url: "https://rhymesayers.com/pages/about" },
   { id: "grammy-bone-eternal", title: "Recording Academy (2025) — Bone Thugs-n-Harmony's E. 1999 Eternal transformed rap", url: "https://www.grammy.com/news/bone-thugs-n-harmony-e-1999-eternal-transformed-rap-anniversary/" },
