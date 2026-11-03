@@ -7,7 +7,6 @@ import BookmarkButton from "@/components/BookmarkButton";
 import Palette from "@/components/Palette";
 import ReadingProgress from "@/components/ReadingProgress";
 import ShareActions from "@/components/ShareActions";
-import SwipeNav from "@/components/SwipeNav";
 import { getCover, getCovers, getRelated, toCard } from "@/lib/data";
 import { fullImage, inkFor, squareImage } from "@/lib/img";
 
@@ -48,7 +47,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
 export default async function CoverPage({ params }: Params) {
   const found = await getCover((await params).slug);
   if (!found) notFound();
-  const { cover, newer, older } = found;
+  const { cover } = found;
   const related = await getRelated(cover);
   const bg = pageColor(cover.color);
   const ink = inkFor(bg);
@@ -157,25 +156,7 @@ export default async function CoverPage({ params }: Params) {
             </div>
           </section>
 
-          <nav className="cover-nav" aria-label="More covers">
-            {newer ? (
-              <Link href={`/covers/${newer.slug}`} rel="prev">
-                <span>Newer</span>
-                {newer.title}
-              </Link>
-            ) : (
-              <span />
-            )}
-            {older && (
-              <Link href={`/covers/${older.slug}`} rel="next">
-                <span>Older</span>
-                {older.title}
-              </Link>
-            )}
-          </nav>
-          <p className="swipe-hint">Swipe left or right for the next cover.</p>
         </div>
-        <SwipeNav newer={newer ? `/covers/${newer.slug}` : null} older={older ? `/covers/${older.slug}` : null} />
       </article>
 
       {related.length > 0 && (
