@@ -7,6 +7,7 @@ import { MOMENTS, SOURCES, type HistoryRecord } from "@/lib/history";
 import { inkFor } from "@/lib/img";
 import { PEOPLE } from "@/lib/people";
 import { SPOTIFY } from "@/lib/spotify";
+import { RESEARCH_MOMENTS, RESEARCH_SOURCES } from "@/lib/timeline-research";
 
 export const revalidate = 3600;
 export const metadata: Metadata = {
@@ -92,6 +93,10 @@ export default async function TimelinePage() {
       // Albums live with the year's records; moments keep the songs, gear, labels and shows.
       slot(yearOf(mo.when)).moments.push({ ...mo, records: (mo.records ?? []).filter((r) => r.kind !== "album").map(withLinks) });
     }
+    for (const extra of RESEARCH_MOMENTS) {
+      const y = yearOf(extra.when);
+      if (y >= from && y <= to) slot(y).moments.push({ ...extra, records: [] });
+    }
     for (const r of records) slot(r.year).records.push(withLinks(r));
     // A song listed under the year's records isn't repeated inside the milestone.
     const listed = new Set(records.map((r) => norm(r.title)));
@@ -134,7 +139,8 @@ export default async function TimelinePage() {
     ).values(),
   ].sort((a, b) => a.year - b.year || a.title.localeCompare(b.title));
   const sources: SourceGroup[] = [
-    { title: "History", note: "Dates, chart positions, sales figures and events were checked against these.", items: SOURCES },
+    { title: "Historical research and archives", note: "Institutional collections, original interviews, specialist scholarship and primary documents consulted for the timeline. Source links are collected here at the end of the page.", items: RESEARCH_SOURCES },
+    { title: "Additional historical references", note: "Background reading and references from the original timeline; individual claims may need further verification.", items: SOURCES },
     {
       title: "Notable figures",
       note: "Each profile draws on the person's Wikipedia article.",

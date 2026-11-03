@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { squareImage } from "@/lib/img";
 import type { Guide, KeyRecord } from "@/lib/chapters";
 import type { HistoryRecord, Moment } from "@/lib/history";
@@ -56,9 +56,6 @@ const KIND: Record<HistoryRecord["kind"], string> = {
   label: "Label",
   show: "TV and web",
 };
-
-const FIRST = 1973;
-const NOW = 2026;
 
 const reduced = () => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -141,10 +138,6 @@ export default function History({ eras, sources }: { eras: EraView[]; sources: S
   const [hasScrolled, setHasScrolled] = useState(false);
   const [person, setPerson] = useState<{ era: string; index: number } | null>(null);
   const root = useRef<HTMLDivElement>(null);
-
-  const total = useMemo(() => eras.reduce((n, e) => n + e.years.reduce((k, y) => k + y.moments.length, 0), 0), [eras]);
-  const records = useMemo(() => eras.reduce((n, e) => n + e.years.reduce((k, y) => k + y.records.length, 0), 0), [eras]);
-  const people = useMemo(() => new Set(eras.flatMap((e) => e.contributors.map((p) => p.id))).size, [eras]);
 
   // Which era is on screen, and how far through the story the reader is.
   useEffect(() => {

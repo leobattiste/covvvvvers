@@ -59,7 +59,7 @@ export const CHAPTERS: Chapter[] = [
       impact:
         "Hip-hop gave Bronx youth a voice, a status system and an alternative to violence. 'The Message' proved rap could report on poverty and despair, and the four elements gave young people everywhere a way to make art with almost nothing.",
       legacy:
-        "The four elements became the culture's foundation. The breakbeat led to sampling, the 808 led eventually to trap, and the new school sound of Run-DMC set up everything that came next.",
+        "DJing, MCing, breaking and graffiti came to be widely described as hip-hop's four elements, although the culture's practices and definitions evolved over time. The breakbeat led to sampling, the 808 led eventually to trap, and the new school sound of Run-DMC set up everything that came next.",
     },
     moments: ["sedgwick", "zulu", "technics", "flash", "mcs", "delight", "breaks", "808", "wheels", "planet-rock", "wild-style", "run-dmc"],
     people: ["herc", "cindy", "cokelarock", "bambaataa", "flash", "theodore", "mellemel", "sharock", "coldcrush", "sylvia", "sugarhill", "kurtisblow", "crazylegs", "ladypink", "marthacooper", "fab5freddy", "shante", "rundmc", "rubin", "simmons"],
@@ -69,7 +69,7 @@ export const CHAPTERS: Chapter[] = [
       s("Love Rap", "Spoonie Gee", 1980, "A showcase of early rhyme technique from one of Harlem's first star MCs."),
       s("The New Rap Language", "Treacherous Three", 1980, "Kool Moe Dee and the Treacherous Three sped up delivery and packed in more rhymes, pushing MC technique forward."),
       s("That's the Joint", "Funky 4 + 1", 1980, "Party rap at its peak, with Sha-Rock trading lines with the crew. In 1981 the group became the first hip-hop act on national TV, on 'Saturday Night Live'."),
-      a("Sugarhill Gang", "The Sugarhill Gang", 1980, "One of the first commercially successful rap albums. It proved rap could move from live block parties onto records in stores and helped create the rap business."),
+      a("Sugarhill Gang", "The Sugarhill Gang", 1980, "An early commercially successful rap album. It proved rap could move from live block parties onto records in stores and helped create the rap business."),
       a("Kurtis Blow", "Kurtis Blow", 1980, "The first rap album on a major label. It made the solo rapper a commercial proposition and carried 'The Breaks', the first gold rap single."),
       s("The Adventures of Grandmaster Flash on the Wheels of Steel", "Grandmaster Flash", 1981, "A hip-hop DJ performance captured on record, cut live from songs by Chic, Queen and Blondie."),
       s("Planet Rock", "Afrika Bambaataa & Soulsonic Force", 1982, "Fused hip-hop with electronic music through the TR-808 and Kraftwerk melodies, and inspired electro, Detroit techno and Miami bass."),
@@ -88,7 +88,7 @@ export const CHAPTERS: Chapter[] = [
     to: 1989,
     title: "The golden age begins",
     intro:
-      "In five years rap transformed what an MC could do, what a producer could build and what a song could say. Samplers turned record collections into instruments, Def Jam made stars, Public Enemy and N.W.A made rap the most argued-about music in America, and women claimed the mic for good.",
+      "In five years rap transformed what an MC could do, what a producer could build and what a song could say. Samplers turned record collections into instruments, Def Jam made stars, Public Enemy and N.W.A made rap the most argued-about music in America, and women such as Salt-N-Pepa, MC Lyte and Queen Latifah reached wider audiences, building on the work of earlier MCs including Sha-Rock.",
     poster: "it-takes-a-nation-of-millions-to-hold-us-back",
     guide: {
       sound:
@@ -100,7 +100,7 @@ export const CHAPTERS: Chapter[] = [
       tech:
         "The E-mu SP-12 (1985) and SP-1200 (1987) and the Akai MPC60 (1988), designed with Roger Linn, put sampling and sequencing in one box. The SP-1200's short sample time forced producers to chop, which gave the era its gritty sound.",
       impact:
-        "Rap became a national political voice and the main target in fights over censorship: Parental Advisory stickers, the FBI's 1989 letter about N.W.A, and the 2 Live Crew obscenity case. 'Yo! MTV Raps' and The Source, both launched in 1988, gave the culture its own media.",
+        "Rap became a national political voice and the main target in fights over censorship: Parental Advisory stickers, the FBI's 1989 letter about N.W.A, and growing controversies around explicit lyrics; the major 2 Live Crew obscenity proceedings followed in 1990. 'Yo! MTV Raps' and The Source, both launched in 1988, gave the culture its own media.",
       legacy:
         "The era created crate digging and the producer as auteur. Gangsta rap and conscious rap became the two poles that defined the 1990s.",
     },
@@ -140,7 +140,7 @@ export const CHAPTERS: Chapter[] = [
     to: 1994,
     title: "The golden age peaks",
     intro:
-      "Many of the sounds, production techniques and approaches to lyrics that define hip-hop today were perfected in these five years. New York refined boom bap and jazz rap, Los Angeles invented G-funk, Atlanta and Houston arrived, and a court ruling changed how every record was made.",
+      "Many of the sounds, production techniques and approaches to lyrics that define hip-hop today were perfected in these five years. New York refined boom bap and jazz rap, Los Angeles producers developed G-funk from earlier funk and electro traditions, Atlanta and Houston arrived, and a court ruling changed how every record was made.",
     poster: "illmatic",
     guide: {
       sound:
@@ -197,7 +197,7 @@ export const CHAPTERS: Chapter[] = [
     to: 1999,
     title: "East, West and the rise of the South",
     intro:
-      "Rap became the dominant force in American music. A rivalry between New York and Los Angeles ended with the killings of 2Pac and The Notorious B.I.G., the South built independent empires, superstars went pop, and by 1998 rap outsold country.",
+      "Rap became the dominant force in American music. A rivalry between New York and Los Angeles ended with the killings of 2Pac and The Notorious B.I.G., the South built independent empires, superstars went pop, and hip-hop's commercial reach continued to expand.",
     poster: "aquemini",
     guide: {
       sound:
@@ -392,7 +392,7 @@ export const CHAPTERS: Chapter[] = [
     to: 2026,
     title: "Modern hip-hop",
     intro:
-      "Rap is now the main language of popular music worldwide. Drill and rage are the sounds of the young, independent veterans make some of the best records, women lead the charts, and hip-hop has been honoured at the Super Bowl and the Pulitzers. The story is still being written.",
+      "Rap is a major part of popular music worldwide, with distinct regional histories and styles. Drill and rage are the sounds of the young, independent veterans make some of the best records, women lead the charts, and hip-hop has been honoured at the Super Bowl and the Pulitzers. The story is still being written.",
     poster: "gnx",
     guide: {
       sound:
@@ -406,7 +406,7 @@ export const CHAPTERS: Chapter[] = [
       impact:
         "The Super Bowl, the Pulitzer and the Senate's Hip-Hop 50 resolution made hip-hop an institution. Women and queer artists are more visible than ever, and California limited the use of lyrics as evidence in 2022.",
       legacy:
-        "Still being written. The decade will likely be remembered for a rap feud fought at stadium scale, drill and rage as the youth sounds, independent veterans' comebacks, women reaching the top, and the open question of AI.",
+        "Still being written. Its longer-term legacy is still unfolding. Drill, rage, independent distribution, women's commercial breakthroughs and debates about AI are all part of the decade's developing history.",
     },
     moments: ["pop-smoke", "super-bowl-lvi", "fifty", "not-like-us", "super-bowl-lix", "most-awarded"],
     people: ["kendrick", "doechii", "megan", "cardi", "lilbaby", "popsmoke", "carti", "tyler", "clipse", "gibbs", "alchemist", "billywoods", "griselda", "glorilla", "mustard", "jcole", "asap", "babykeem"],
