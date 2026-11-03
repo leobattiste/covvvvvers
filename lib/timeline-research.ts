@@ -7,6 +7,47 @@ import type { Moment } from "./history";
  */
 export const RESEARCH_MOMENTS: Moment[] = [
   {
+    id: "schoolly-d-psk-1985",
+    when: "1985",
+    title: "Schoolly D records P.S.K. What Does It Mean? in Philadelphia",
+    text: "Philadelphia rapper Schoolly D released P.S.K. What Does It Mean? in 1985, describing neighborhood life over a sparse, forceful drum-machine beat. The record became an important precursor to the style later called gangsta rap and influenced Ice-T. In a 1994 interview with Big Shout, Schoolly D discussed his early career and independent releases. Calling any one record the genre's sole origin would oversimplify the history.",
+    tags: ["sound", "culture", "business"],
+    sources: ["philly-inquirer-schoolly", "bigshout-schoolly-1994"],
+  },
+  {
+    id: "slum-village-detroit",
+    when: "1996",
+    title: "Slum Village develops Detroit's distinctive production sound",
+    text: "In Detroit, T3, Baatin and producer J Dilla developed Slum Village's jazz-inflected, rhythmically loose approach during the 1990s. Accounts differ on the group's exact formation year, but the original trio's recordings and collaborations helped establish a recognizable Detroit voice in independent hip-hop. Interviews with T3 and later research into Dilla's work connect the group to Detroit's neighborhood music networks.",
+    tags: ["sound", "culture", "tech"],
+    sources: ["metrotimes-slum", "bandcamp-dilla"],
+  },
+  {
+    id: "hieroglyphics-independence-1997",
+    when: "1997",
+    title: "Oakland's Hieroglyphics crew pivots toward independence",
+    text: "After major-label deals unraveled in the mid-1990s, members of Oakland's Hieroglyphics collective developed an independent model for distributing recordings and building a direct relationship with listeners. Contemporary Rap Pages and Hip-Hop Connection interviews from 1997 document that transition; the group's later independent releases and recognizable eye logo became central to its identity.",
+    tags: ["business", "culture"],
+    sources: ["rap-pages-hiero-1997", "hiero-hiphopconnection-1997", "kqed-oakland"],
+  },
+  {
+    id: "hiero-logo-business-1999",
+    when: "1999",
+    title: "Hieroglyphics turns an independent label into a visual identity",
+    text: "By 1999, Hieroglyphics Imperium's eye emblem appeared across recordings, merchandise and promotional materials. A contemporary San Francisco Bay Guardian interview with label administrator Karen Dere describes the business operations behind the artist-run collective. The logo demonstrates how graphic identity could help an independent rap organization connect with its audience beyond album covers.",
+    tags: ["business", "culture"],
+    sources: ["sfbg-hiero-1999"],
+  },
+  {
+    id: "dilla-welcome-detroit-2001",
+    when: "2001",
+    title: "J Dilla releases Welcome 2 Detroit",
+    text: "Detroit producer J Dilla's Welcome 2 Detroit arrived in 2001, foregrounding his own musical vision after production work for Slum Village, A Tribe Called Quest, the Pharcyde and other artists. Bandcamp Daily's retrospective traces the album's creation through interviews and describes the relationships that brought Dilla's production to a wider audience.",
+    tags: ["sound", "tech", "culture"],
+    sources: ["bandcamp-dilla"],
+  },
+
+  {
     id: "freaknik-atlanta-1983",
     when: "1983",
     title: "Freaknik begins as a Black college spring-break gathering",
@@ -224,6 +265,15 @@ export const RESEARCH_MOMENTS: Moment[] = [
 ];
 
 export const RESEARCH_SOURCES = [
+  { id: "philly-inquirer-schoolly", title: "The Philadelphia Inquirer — How Schoolly D invented gangsta rap (2017)", url: "https://www.inquirer.com/philly/entertainment/music/How-Schoolly-D-invented-gangsta-rap.html" },
+  { id: "bigshout-schoolly-1994", title: "Big Shout Magazine (February 1994) — Interview: Schoolly D, archived transcript", url: "https://friendsofbigshout.com/interview-schoolly-d/" },
+  { id: "metrotimes-slum", title: "Detroit Metro Times (2013) — Village of the Slummed, interview with T3", url: "https://www.metrotimes.com/music-2/village-of-the-slummed-2146221/" },
+  { id: "bandcamp-dilla", title: "Bandcamp Daily (2021) — The Story of J Dilla's Foundational Album Welcome 2 Detroit", url: "https://daily.bandcamp.com/features/j-dilla-interview" },
+  { id: "rap-pages-hiero-1997", title: "Rap Pages (July 1997) — Second Wind, contemporary Hieroglyphics interview", url: "https://hieroglyphics.org/press/second-wind-rap-pages/" },
+  { id: "hiero-hiphopconnection-1997", title: "Hip-Hop Connection (July 1997) — The Hieros Return, contemporary interview", url: "https://hieroglyphics.org/press/the-hieros-return-hip-hop-connection/" },
+  { id: "kqed-oakland", title: "KQED (2011) — Interview: Oakland Hip Hop History and the Current Scene", url: "https://www.kqed.org/news/46773/interview-oakland-locals-eric-arnold-on-the-oakland-rap-scene" },
+  { id: "sfbg-hiero-1999", title: "San Francisco Bay Guardian (October 1999) — Hieroglyphics Imperium: Karen Dere Talks Keeping it Indie", url: "https://hieroglyphics.org/press/hieroglyphics-imperium-karen-dere-talks-keeping-it-indie-san-francisco-bay-guardian/" },
+
   { id: "ajc-freaknik-origins", title: "Atlanta Journal-Constitution — From the archives: The first Freaknik was a picnic, with music (2024)", url: "https://www.ajc.com/news/atlanta-news/from-the-archives-the-first-freaknik-was-a-picnic-with-music/X2OSDCM2ERHBTKIP4VZ4NUPFHI/" },
   { id: "gpb-georgia-hiphop", title: "Georgia Public Broadcasting — A history of hip-hop in Georgia (2023)", url: "https://www.gpb.org/news/2023/08/11/history-of-hip-hop-in-georgia-jack-the-rapper-raps-epicenter" },
   { id: "umass-bounce-book", title: "Matt Miller — Bounce: Rap Music and Local Identity in New Orleans (University of Massachusetts Press, 2012)", url: "https://www.jstor.org/stable/j.ctt5vk27f" },
