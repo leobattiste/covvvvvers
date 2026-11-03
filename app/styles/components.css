@@ -129,3 +129,18 @@ main img:not(.avatar-choices img):not(.card-saved img) { border-radius: var(--ra
   letter-spacing: normal;
   text-transform: none;
 }
+
+/* Timeline progress is an overlay, not a permanent separator. */
+.history .h-rail-wrap { border-bottom: 0; }
+.history .h-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: transparent;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 160ms ease;
+}
+.history .h-progress.is-visible { opacity: 1; }

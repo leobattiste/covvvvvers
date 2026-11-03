@@ -138,6 +138,7 @@ export type SourceGroup = { title: string; note: string; items: { title: string;
 export default function History({ eras, sources }: { eras: EraView[]; sources: SourceGroup[] }) {
   const [active, setActive] = useState<string | undefined>(eras[0]?.id);
   const [progress, setProgress] = useState(0);
+  const [hasScrolled, setHasScrolled] = useState(false);
   const [person, setPerson] = useState<{ era: string; index: number } | null>(null);
   const root = useRef<HTMLDivElement>(null);
 
@@ -151,6 +152,7 @@ export default function History({ eras, sources }: { eras: EraView[]; sources: S
     if (!el) return;
     const sections = [...el.querySelectorAll<HTMLElement>("[data-era]")];
     const onScroll = () => {
+      setHasScrolled(window.scrollY > 0);
       const line = window.innerHeight * 0.35;
       let current = sections[0]?.dataset.era;
       for (const s of sections) if (s.getBoundingClientRect().top <= line) current = s.dataset.era;
@@ -217,7 +219,7 @@ export default function History({ eras, sources }: { eras: EraView[]; sources: S
       </header>
 
       <nav className="h-rail-wrap" aria-label="Eras" style={{ "--era-bg": activeEra.bg, "--era-ink": activeEra.ink } as React.CSSProperties}>
-        <div className="h-progress" aria-hidden="true">
+        <div className={`h-progress${hasScrolled ? " is-visible" : ""}`} aria-hidden="true">
           <span style={{ transform: `scaleX(${progress})` }} />
         </div>
         <div className="h-rail">
