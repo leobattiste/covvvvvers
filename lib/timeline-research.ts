@@ -7,6 +7,39 @@ import type { Moment } from "./history";
  */
 export const RESEARCH_MOMENTS: Moment[] = [
   {
+    id: "theodore-scratch-1977",
+    when: "1975–1977",
+    title: "Grand Wizzard Theodore develops scratching as a DJ technique",
+    text: "Bronx DJ Grand Wizzard Theodore recalled discovering the rhythmic possibilities of moving a record backward and forward under the needle while practicing at home around 1975. He developed the sound into a deliberate performance technique and later recalled performing it publicly at the Sparkle club in 1977. Grandmaster Flash and other DJs were simultaneously experimenting with turntable manipulation, so the familiar origin story should be understood alongside their contributions. Scratching expanded the turntable's role from playback device to expressive instrument.",
+    tags: ["sound", "tech", "first"],
+    sources: ["theodore-rbma-interview", "theodore-guardian-history"],
+  },
+  {
+    id: "grand-upright-sampling-ruling-1991",
+    when: "1991",
+    title: "A federal sampling ruling changes the economics of hip-hop production",
+    text: "On December 17, 1991, a federal judge ruled in Grand Upright Music v. Warner Bros. Records, a dispute over Biz Markie's use of Gilbert O'Sullivan's Alone Again (Naturally). The ruling became a landmark in the industry's approach to licensing sampled compositions and recordings. It did not ban sampling; rather, its consequences encouraged labels to seek permissions and altered the budgets and workflows of sample-based producers. The decision's text provides the primary legal record.",
+    tags: ["business", "tech", "sound"],
+    sources: ["grand-upright-court-1991"],
+  },
+  {
+    id: "dj-drama-mixtape-raid-2007",
+    when: "2007",
+    title: "The DJ Drama raid exposes the changing mixtape economy",
+    text: "Police raided DJ Drama and Don Cannon's Atlanta offices in January 2007, seizing mixtape CDs and equipment amid allegations involving unauthorized recordings. Drama's Gangsta Grillz series had helped artists build national audiences outside conventional album campaigns. The raid highlighted the legal vulnerability of a physical mixtape business even as online distribution was accelerating. NPR's investigation, including Drama's account, traces how the industry and mixtape makers adapted.",
+    tags: ["business", "tech", "culture"],
+    sources: ["npr-drama-raid", "latimes-drama-2007"],
+  },
+  {
+    id: "lex-luger-laptop-trap-2010",
+    when: "2010",
+    title: "Lex Luger's laptop-produced beats help define modern trap",
+    text: "Virginia producer Lex Luger helped establish an influential trap production vocabulary through Waka Flocka Flame's Hard in da Paint and Rick Ross's B.M.F. (Blowin' Money Fast). His ominous synth lines, booming 808 kicks, rapid hi-hats and dramatic transitions showed how powerful commercial rap records could be made using inexpensive computer-based production tools. Later accounts of FL Studio's adoption document the shift toward younger, decentralized producers.",
+    tags: ["sound", "tech", "business"],
+    sources: ["reverb-fruity-loops-history", "native-lex-luger-interview"],
+  },
+
+  {
     id: "two-live-crew-obscenity-1990",
     when: "1990–1992",
     title: "2 Live Crew's obscenity cases test the boundaries of rap expression",
@@ -405,6 +438,14 @@ export const RESEARCH_MOMENTS: Moment[] = [
 ];
 
 export const RESEARCH_SOURCES = [
+  { id: "theodore-rbma-interview", title: "Red Bull Music Academy Daily (2017) — Interview: Grand Wizard Theodore", url: "https://daily.redbullmusicacademy.com/2017/03/grand-wizard-theodore-interview/" },
+  { id: "theodore-guardian-history", title: "The Guardian (2011) — Grand Wizard Theodore accidentally invents scratching (or does he?)", url: "https://www.theguardian.com/music/2011/jun/13/grand-wizard-invents-scratching" },
+  { id: "grand-upright-court-1991", title: "US District Court (1991) — Grand Upright Music v. Warner Bros. Records, 780 F. Supp. 182", url: "https://law.justia.com/cases/federal/district-courts/FSupp/780/182/1445286/" },
+  { id: "npr-drama-raid", title: "NPR (2020) — The Raid That Changed Rap", url: "https://www.nprillinois.org/generationlisten/2020-10-29/the-raid-that-changed-rap" },
+  { id: "latimes-drama-2007", title: "Los Angeles Times (2007) — Two DJs suspected of selling illegal CDs", url: "https://www.latimes.com/archives/la-xpm-2007-jan-18-fi-djdrama18-story.html" },
+  { id: "reverb-fruity-loops-history", title: "Reverb (2019) — How Generations of Beatmakers Evolved with Fruity Loops and FL Studio", url: "https://applink.reverb.com/news/how-generations-of-beatmakers-evolved-with-fruity-loops-and-fl-studio" },
+  { id: "native-lex-luger-interview", title: "Native Instruments — Lex Luger builds a cinematic trap beat", url: "https://blog.native-instruments.com/watch-lex-luger-build-a-cinematic-trap-beat-with-maschine/" },
+
   { id: "national-archives-2live", title: "US National Archives (2019) — The 2 Live Crew, Too Out of Line: What Words Are Permissible Free Speech?", url: "https://www.archives.gov/files/kansas-city/press/newsletter/2019-march.pdf" },
   { id: "washpost-2live-acquittal", title: "The Washington Post (20 October 1990) — Rap Group Acquitted in Florida", url: "https://www.washingtonpost.com/archive/politics/1990/10/21/rap-group-acquitted-in-florida/52cb05fc-03c8-4069-9c4d-d5691998a392/" },
   { id: "newyorker-missy-1997", title: "The New Yorker (1997) — Missy Elliott's Hip-Hop Transformations", url: "https://www.newyorker.com/magazine/1997/10/20/missy-elliotts-hip-hop-transformations" },
