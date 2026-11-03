@@ -7,6 +7,7 @@
     "build": "next build",
     "audit:timeline": "node scripts/audit-timeline.mjs",
     "audit:timeline:links": "node scripts/audit-timeline-links.mjs",
+    "audit:timeline:images": "node scripts/audit-timeline-images.mjs",
     "start": "next start"
   },
   "dependencies": {
