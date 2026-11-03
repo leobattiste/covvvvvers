@@ -15,6 +15,14 @@ export const RESEARCH_MOMENTS: Moment[] = [
     sources: ["cornell-flyers"],
   },
   {
+    id: "mc-lyte-debut",
+    when: "1988",
+    title: "MC Lyte releases Lyte as a Rock",
+    text: "MC Lyte's debut Lyte as a Rock became the first solo album released by a woman rapper, according to the Smithsonian's National Museum of African American History and Culture. It expanded the possibilities for women in recorded rap, building on the work of pioneering performers who were already central to hip-hop's live scene.",
+    tags: ["women", "first", "culture"],
+    sources: ["smithsonian-represent"],
+  },
+  {
     id: "joe-conzo-archive",
     when: "1976–1984",
     title: "Joe Conzo Jr. photographs hip-hop's earliest years",
@@ -29,6 +37,14 @@ export const RESEARCH_MOMENTS: Moment[] = [
     text: "Photographer Ernie Paniccioli recorded hip-hop artists, performances and communities over decades as the music expanded. Cornell University's Hip Hop Collection preserves his archive, with thousands of digitized photographs. Alongside Joe Conzo Jr.'s work, these images show how photography documented the culture's development.",
     tags: ["culture"],
     sources: ["cornell-archives"],
+  },
+  {
+    id: "the-message-registry",
+    when: "2002",
+    title: "The Message enters the National Recording Registry",
+    text: "The Library of Congress selected Grandmaster Flash and the Furious Five's 1982 recording The Message for the inaugural National Recording Registry in 2002. Its selection recognized a landmark in rap's treatment of urban social conditions. The song was released twenty years earlier; 2002 marks its preservation recognition, not its debut.",
+    tags: ["first", "culture"],
+    sources: ["loc-message-2002"],
   },
   {
     id: "hiphop-france-arrives",
@@ -70,6 +86,8 @@ export const RESEARCH_MOMENTS: Moment[] = [
 ];
 
 export const RESEARCH_SOURCES = [
+  { id: "loc-message-2002", title: "Library of Congress — 2002 National Recording Registry: The Message", url: "https://www.loc.gov/programs/national-recording-preservation-board/recording-registry/registry-by-induction-years/2002/" },
+  { id: "smithsonian-represent", title: "Smithsonian NMAAHC — Represent: women and identity in hip-hop", url: "https://nmaahc.si.edu/explore/exhibitions/represent" },
   { id: "cornell-conzo", title: "Cornell University Library — Joe Conzo Jr. Archive", url: "https://digital.library.cornell.edu/collections/conzo" },
   { id: "cornell-flyers", title: "Cornell University Library — Hip Hop Party and Event Flyers", url: "https://dcp-production-container.library.cornell.edu/collections/hiphopflyers" },
   { id: "cornell-archives", title: "Cornell Hip Hop Collection — Digital collections", url: "https://hiphop.library.cornell.edu/digital-collections/" },

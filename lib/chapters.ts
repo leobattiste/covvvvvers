@@ -73,7 +73,7 @@ export const CHAPTERS: Chapter[] = [
       a("Kurtis Blow", "Kurtis Blow", 1980, "The first rap album on a major label. It made the solo rapper a commercial proposition and carried 'The Breaks', the first gold rap single."),
       s("The Adventures of Grandmaster Flash on the Wheels of Steel", "Grandmaster Flash", 1981, "A hip-hop DJ performance captured on record, cut live from songs by Chic, Queen and Blondie."),
       s("Planet Rock", "Afrika Bambaataa & Soulsonic Force", 1982, "Fused hip-hop with electronic music through the TR-808 and Kraftwerk melodies, and inspired electro, Detroit techno and Miami bass."),
-      a("The Message", "Grandmaster Flash and the Furious Five", 1982, "Turned rap from party music into social commentary, bringing poverty, crime and inequality into the mainstream. The title song was the first hip-hop recording added to the National Recording Registry."),
+      a("The Message", "Grandmaster Flash and the Furious Five", 1982, "Turned rap from party music into social commentary, bringing poverty, crime and inequality into the mainstream. The title recording was selected for the inaugural National Recording Registry in 2002, recognizing its lasting historical importance."),
       s("Looking for the Perfect Beat", "Afrika Bambaataa & Soulsonic Force", 1983, "Pushed the electro sound of 'Planet Rock' further and influenced dance music for years."),
       s("Roxanne's Revenge", "Roxanne Shanté", 1984, "A 14-year-old's improvised answer to UTFO, produced by Marley Marl. It set off the Roxanne Wars, dozens of answer records, and made Shanté a star."),
       a("Escape", "Whodini", 1984, "Built a bridge between rap and R&B with synthesizers, electronic beats and melodic hooks, pointing toward new jack swing."),
