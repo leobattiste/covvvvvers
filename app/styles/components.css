@@ -69,3 +69,13 @@ main img:not(.avatar-choices img):not(.card-saved img) { border-radius: var(--ra
 .sleeve-back .sleeve-facts dt,
 .sleeve-back .sleeve-facts dd,
 .sleeve-back .sleeve-facts a { font-weight: 400; }
+
+/* Filter trigger: regular 16px Helvetica, including mobile. */
+.filter-open, button.filter-open {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: normal;
+  text-transform: none;
+}
