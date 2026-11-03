@@ -7,6 +7,68 @@ import type { Moment } from "./history";
  */
 export const RESEARCH_MOMENTS: Moment[] = [
   {
+    "id": "neptunes-minimal-production-2001",
+    "when": "2001–2004",
+    "title": "The Neptunes redefine the sound of mainstream rap production",
+    "text": "Virginia Beach producers Pharrell Williams and Chad Hugo brought sparse percussion, unusual synthesizer sounds, open space and sharply defined hooks to a string of influential records. Their work with Jay-Z, Clipse, Nelly and Snoop Dogg crossed between rap, R&B and pop, helping establish a leaner alternative to the dense arrangements of earlier sample-based production. Their influence is clear without relying on the widely repeated but unverified claim that they produced 43 percent of US radio songs in 2003.",
+    "tags": [
+      "sound",
+      "business"
+    ],
+    "sources": [
+      "washpost-neptunes-2002",
+      "shfl-neptunes-history",
+      "junkee-neptunes-43"
+    ]
+  },
+  {
+    "id": "datpiff-digital-mixtape-2005",
+    "when": "2005–2009",
+    "title": "DatPiff turns the mixtape into an online distribution network",
+    "text": "Launched in 2005, DatPiff became an important online destination for free rap mixtapes. Artists, DJs and fans could circulate projects through downloadable files rather than depending on street vendors or physical CDs. Its rise helped mixtapes function as a parallel release system for audience building, experimentation and promotion, especially for artists operating outside conventional album campaigns. Research on early digital mixtape communities documents the broader shift.",
+    "tags": [
+      "tech",
+      "business",
+      "culture"
+    ],
+    "sources": [
+      "complex-datpiff-interview",
+      "mit-digital-mixtapes"
+    ]
+  },
+  {
+    "id": "emo-rap-soundcloud-2016",
+    "when": "2016–2019",
+    "title": "Emo rap fuses trap production with confessional rock-influenced songwriting",
+    "text": "Artists including Lil Peep, XXXTentacion and Juice WRLD brought emo, pop-punk and alternative-rock influences into music built around rap percussion and internet-first release strategies. Lil Peep's 2016 mixtapes and Juice WRLD's 2018 breakout illustrate the movement's range, from guitar samples and raw bedroom recordings to melodic chart hits. The scene broadened mainstream expectations of rap vocals and emotional subject matter while revealing the risks surrounding rapidly rising young artists.",
+    "tags": [
+      "sound",
+      "tech",
+      "culture"
+    ],
+    "sources": [
+      "knkx-emo-rap",
+      "ringer-soundcloud-emo",
+      "latimes-emo-rap"
+    ]
+  },
+  {
+    "id": "short-form-video-music-discovery-2020",
+    "when": "2020–2024",
+    "title": "Short-form video changes how American audiences discover rap",
+    "text": "TikTok and other short-form video platforms accelerated a discovery model built around reusable song clips, dance trends and fan-made videos. Rap songs could reach large audiences through repeated participation before traditional radio campaigns. Luminate's US research found that TikTok users were more likely than comparable social-video users to discover music on those platforms, although the figures measure music overall rather than rap alone. The change altered how artists, listeners and labels approached promotion.",
+    "tags": [
+      "tech",
+      "business",
+      "culture"
+    ],
+    "sources": [
+      "luminate-tiktok-2023",
+      "luminate-2024-report"
+    ]
+  },
+
+  {
     id: "no-limit-priority-deal-1995",
     when: "1995",
     title: "No Limit's Priority deal expands the independent rap-label model",
@@ -463,6 +525,17 @@ export const RESEARCH_MOMENTS: Moment[] = [
 ];
 
 export const RESEARCH_SOURCES = [
+  {"id":"washpost-neptunes-2002","title":"The Washington Post (2002) — N.E.R.D. Finds Its Voice","url":"https://www.washingtonpost.com/archive/lifestyle/2002/05/31/nerd-finds-its-voice/09211fd5-4569-4ee9-9d57-636aa30a5d04/"},
+  {"id":"shfl-neptunes-history","title":"SHFL — The Neptunes: production history and influence","url":"https://www.theshfl.com/guide/The-Neptunes"},
+  {"id":"junkee-neptunes-43","title":"Junkee (2014) — That Time I Accidentally Changed Hip Hop History","url":"https://archive.junkee.com/that-time-i-accidentally-changed-hip-hop-history/31088"},
+  {"id":"complex-datpiff-interview","title":"Complex (2019) — How DatPiff Found Its Niche","url":"https://www.complex.com/music/a/kemet-high/datpiff-niche-interview-kp"},
+  {"id":"mit-digital-mixtapes","title":"MIT Comparative Media Studies — Stepping Your Game Up: Technical Innovation Among Young People of Color in Hip-Hop","url":"https://cmsw.mit.edu/wp/wp-content/uploads/2016/06/146381109-Kevin-Driscoll-Stepping-Your-Game-Up-Technical-Innovation-Among-Young-People-of-Color-in-Hip-Hop.pdf"},
+  {"id":"knkx-emo-rap","title":"KNKX / NPR (2024) — Emo rap at its limits","url":"https://www.knkx.org/2024-04-04/emo-rap-at-its-limits"},
+  {"id":"ringer-soundcloud-emo","title":"The Ringer (2021) — Comfort in the Discomforting: The History of SoundCloud Rap","url":"https://www.theringer.com/2021/12/16/music/juice-wrld-soundcloud-rap-history-retrospective"},
+  {"id":"latimes-emo-rap","title":"Los Angeles Times (2019) — Lil Peep and Juice Wrld are Soundcloud rap tragedies","url":"https://www.latimes.com/entertainment-arts/music/story/2019-12-10/lil-peep-juice-wrld-death-soundcloud-rap"},
+  {"id":"luminate-tiktok-2023","title":"Luminate and TikTok (2023) — Music Impact Report","url":"https://www.musicbusinessworldwide.com/files/2023/11/TikTok-Luminate-Report-2023-1.pdf"},
+  {"id":"luminate-2024-report","title":"Luminate (2024) — Music Year-End Report 2024","url":"https://view.ceros.com/luminate-data/music-year-end-report-2024"},
+
   { id: "grammy-artists-changed-rap", title: "Recording Academy (2023) — 50 Artists Who Changed Rap", url: "https://www.grammy.com/news/50-artists-who-changed-rap-list-years-hip-hop/" },
   { id: "grammy-southern-hiphop-guide", title: "Recording Academy (2023) — A Guide to Southern Hip-Hop", url: "https://qa.grammy.com/news/guide-to-dirty-south-hip-hop-major-releases-artists-labels-history-playlist" },
   { id: "grammy-hiphop-subgenres", title: "Recording Academy (2023) — 11 Hip-Hop Subgenres to Know", url: "https://www.grammy.com/news/11-subgenres-of-hip-hop-jersey-club-drill-trap-examples-videos/" },
