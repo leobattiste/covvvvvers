@@ -7,6 +7,47 @@ import type { Moment } from "./history";
  */
 export const RESEARCH_MOMENTS: Moment[] = [
   {
+    id: "detroit-def-sound-1985",
+    when: "1985",
+    title: "Detroit builds recording infrastructure for its first rap generation",
+    text: "Jerry Flynn Dale opened Def Sound Studios in Detroit in 1985 after making beats on a four-track recorder. His studio gave local rappers access to recording facilities at a time when established studios were often reluctant to work with hip-hop artists. Detroit Metro Times reconstructs this early scene through interviews with Dale and performer Kalimah Johnson, also known as Nikki D.",
+    tags: ["business", "tech", "culture"],
+    sources: ["metro-detroit-history"],
+  },
+  {
+    id: "chicago-rap-radio-1993",
+    when: "1993",
+    title: "Chicago's rap scene gains local radio and retail support",
+    text: "An August 1993 Billboard report documented Chicago's expanding hip-hop scene, including commercial rap programming at WJPC, independent music publications such as Fly Paper and record retailers supporting local artists. The contemporary account shows how the city's infrastructure was developing before its biggest national breakthroughs.",
+    tags: ["business", "culture"],
+    sources: ["billboard-chicago-1993"],
+  },
+  {
+    id: "common-resurrection-1994-research",
+    when: "1994",
+    title: "Common and No I.D. put Chicago's lyrical scene in focus",
+    text: "Common Sense released Resurrection in 1994, with production by No I.D. and Ynot. Its jazz-influenced sound and the single I Used to Love H.E.R. drew national attention to a Chicago rap scene often overlooked in coastal histories. Common, No I.D. and their collaborators later recounted the album's creation in an extensive oral history.",
+    tags: ["sound", "culture"],
+    sources: ["complex-common-oral", "npr-chicago-2023"],
+  },
+  {
+    id: "good-life-project-blowed-1995",
+    when: "1995",
+    title: "Los Angeles's Good Life open mic moves to KAOS Network",
+    text: "The Good Life health-food cafe in South Los Angeles hosted an influential open mic where Freestyle Fellowship, Volume 10 and other rappers developed improvisational styles. In late 1995, the event moved to Ben Caldwell's KAOS Network, whose recording and media facilities helped nurture the community that became associated with Project Blowed. LA Weekly's oral history records participants' differing recollections of the transition.",
+    tags: ["culture", "sound", "business"],
+    sources: ["laweekly-goodlife-2017"],
+  },
+  {
+    id: "detroit-hiphop-shop-1990s",
+    when: "1997",
+    title: "Detroit's Hip-Hop Shop becomes a proving ground for MCs",
+    text: "Maurice Malone's Hip-Hop Shop served as a meeting place and battle venue for Detroit rappers in the 1990s. Artists associated with the scene included Proof, Eminem, Elzhi and many others, while producers and local crews developed careers beyond the city. Detroit Metro Times documents its role through interviews and a detailed history of the local scene.",
+    tags: ["culture", "business"],
+    sources: ["metro-detroit-history"],
+  },
+
+  {
     id: "schoolly-d-psk-1985",
     when: "1985",
     title: "Schoolly D records P.S.K. What Does It Mean? in Philadelphia",
@@ -265,6 +306,12 @@ export const RESEARCH_MOMENTS: Moment[] = [
 ];
 
 export const RESEARCH_SOURCES = [
+  { id: "metro-detroit-history", title: "Detroit Metro Times (2016) — An instant lesson in the history of Detroit hip-hop", url: "https://www.metrotimes.com/detroit-guides/an-instant-lesson-in-the-history-of-detroit-hip-hop-2401879/" },
+  { id: "billboard-chicago-1993", title: "Billboard (21 August 1993) — Burgeoning scenes help dispel myth of the Second City, contemporary reporting", url: "https://www.worldradiohistory.com/Archive-All-Music/Billboard/90s/1993/BB-1993-08-21.pdf" },
+  { id: "complex-common-oral", title: "Complex — The Making of Common's Resurrection, oral history with Common and No I.D.", url: "https://www.complex.com/music/a/insanulahmed/the-making-of-commons-resurrection" },
+  { id: "npr-chicago-2023", title: "WBEZ / NPR (2023) — How Chicago rap became a home for controversial, visionary stars", url: "https://www.wbez.org/culture-the-arts/2023/07/25/how-chicago-rap-became-a-home-for-controversial-visionary-stars" },
+  { id: "laweekly-goodlife-2017", title: "LA Weekly (2017) — A Special Reunion Show Celebrates the Legacy of the Good Life Cafe Open Mic", url: "https://www.laweekly.com/a-special-reunion-show-celebrates-the-legacy-of-the-good-life-cafe-open-mic/" },
+
   { id: "philly-inquirer-schoolly", title: "The Philadelphia Inquirer — How Schoolly D invented gangsta rap (2017)", url: "https://www.inquirer.com/philly/entertainment/music/How-Schoolly-D-invented-gangsta-rap.html" },
   { id: "bigshout-schoolly-1994", title: "Big Shout Magazine (February 1994) — Interview: Schoolly D, archived transcript", url: "https://friendsofbigshout.com/interview-schoolly-d/" },
   { id: "metrotimes-slum", title: "Detroit Metro Times (2013) — Village of the Slummed, interview with T3", url: "https://www.metrotimes.com/music-2/village-of-the-slummed-2146221/" },
