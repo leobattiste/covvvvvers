@@ -7,6 +7,39 @@ import type { Moment } from "./history";
  */
 export const RESEARCH_MOMENTS: Moment[] = [
   {
+    id: "no-limit-priority-deal-1995",
+    when: "1995",
+    title: "No Limit's Priority deal expands the independent rap-label model",
+    text: "Master P's No Limit Records entered a distribution arrangement with Priority Records in 1995 that let the label shoulder recording and marketing costs while retaining unusual creative control and a larger share of profits. Drawing on experience selling music independently in the Bay Area, Master P developed a prolific release schedule and recognizable branding. The model helped make New Orleans a national center of rap business and influenced other independent label owners.",
+    tags: ["business", "culture"],
+    sources: ["grammy-artists-changed-rap", "grammy-southern-hiphop-guide"],
+  },
+  {
+    id: "atlanta-trap-pioneers-2003-2005",
+    when: "2003–2005",
+    title: "Atlanta producers and MCs establish trap as a distinct rap sound",
+    text: "T.I.'s Trap Muzik in 2003 helped popularize the term trap as a rap identity, while Young Jeezy, Gucci Mane and producers including DJ Toomp, Shawty Redd and Zaytoven developed its musical vocabulary in Atlanta. Heavy programmed drums, insistent hi-hats, synthesizers and street narratives would become a foundation of mainstream rap production in the following decade. The sound emerged from several artists and neighborhoods rather than a single inventor.",
+    tags: ["sound", "culture", "business"],
+    sources: ["grammy-southern-hiphop-guide", "grammy-hiphop-subgenres"],
+  },
+  {
+    id: "future-metro-melodic-trap-2013",
+    when: "2013–2015",
+    title: "Future and Metro Boomin push trap toward melody and atmosphere",
+    text: "Future and Metro Boomin's collaboration developed from Karate Chop in 2013 into a run of influential mixtapes and albums, including Monster and DS2. Future's Auto-Tuned, emotionally expressive vocals combined with Metro's atmospheric, often ominous production to broaden trap's sonic palette. Their work helped normalize the rapper-producer partnership as a central creative identity and influenced the melodic direction of mainstream rap.",
+    tags: ["sound", "tech", "culture"],
+    sources: ["grammy-future-metro-2025", "grammy-artists-changed-rap"],
+  },
+  {
+    id: "young-thug-vocal-experimentation-2014",
+    when: "2014–2016",
+    title: "Young Thug stretches the possibilities of the rapped voice",
+    text: "Across his 2014 collaborative recordings, Barter 6 in 2015 and Jeffery in 2016, Atlanta rapper Young Thug treated the voice as a highly flexible instrument. Slurred syllables, sudden pitch changes, melodic runs and unexpected rhythmic accents challenged older divisions between rapping and singing. His approach became an important influence on younger melodic trap artists and the wider Atlanta scene.",
+    tags: ["sound", "culture"],
+    sources: ["grammy-artists-changed-rap", "grammy-1994-atlanta"],
+  },
+
+  {
     id: "theodore-scratch-1977",
     when: "1975–1977",
     title: "Grand Wizzard Theodore develops scratching as a DJ technique",
@@ -430,6 +463,12 @@ export const RESEARCH_MOMENTS: Moment[] = [
 ];
 
 export const RESEARCH_SOURCES = [
+  { id: "grammy-artists-changed-rap", title: "Recording Academy (2023) — 50 Artists Who Changed Rap", url: "https://www.grammy.com/news/50-artists-who-changed-rap-list-years-hip-hop/" },
+  { id: "grammy-southern-hiphop-guide", title: "Recording Academy (2023) — A Guide to Southern Hip-Hop", url: "https://qa.grammy.com/news/guide-to-dirty-south-hip-hop-major-releases-artists-labels-history-playlist" },
+  { id: "grammy-hiphop-subgenres", title: "Recording Academy (2023) — 11 Hip-Hop Subgenres to Know", url: "https://www.grammy.com/news/11-subgenres-of-hip-hop-jersey-club-drill-trap-examples-videos/" },
+  { id: "grammy-future-metro-2025", title: "Recording Academy (2025) — How Future and Metro Boomin Became Trap Music's Greatest Duo", url: "https://www.grammy.com/news/future-metro-boomin-trap-music-career-timeline/" },
+  { id: "grammy-1994-atlanta", title: "Recording Academy (2024) — How 1994 Changed the Game for Hip-Hop", url: "https://www.grammy.com/news/how-1994-changed-the-hip-hop-game/" },
+
   { id: "theodore-rbma-interview", title: "Red Bull Music Academy Daily (2017) — Interview: Grand Wizard Theodore", url: "https://daily.redbullmusicacademy.com/2017/03/grand-wizard-theodore-interview/" },
   { id: "theodore-guardian-history", title: "The Guardian (2011) — Grand Wizard Theodore accidentally invents scratching (or does he?)", url: "https://www.theguardian.com/music/2011/jun/13/grand-wizard-invents-scratching" },
   { id: "grand-upright-court-1991", title: "US District Court (1991) — Grand Upright Music v. Warner Bros. Records, 780 F. Supp. 182", url: "https://law.justia.com/cases/federal/district-courts/FSupp/780/182/1445286/" },
