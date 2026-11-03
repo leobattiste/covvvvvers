@@ -86,10 +86,6 @@ export default async function CoverPage({ params }: Params) {
             width={cover.image_width ?? 1400}
             height={cover.image_height ?? 1400}
           />
-          <Palette
-            src={squareImage(cover.image_url, 120)}
-            fallback={[cover.color, cover.accent_color].filter(Boolean) as string[]}
-          />
         </div>
 
         <div className="cover-body">
@@ -153,6 +149,12 @@ export default async function CoverPage({ params }: Params) {
                 </div>
               )}
             </dl>
+            <div className="sleeve-palette">
+              <Palette
+                src={squareImage(cover.image_url, 120)}
+                fallback={[cover.color, cover.accent_color].filter(Boolean) as string[]}
+              />
+            </div>
           </section>
 
           <nav className="cover-nav" aria-label="More covers">

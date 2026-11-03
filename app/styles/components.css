@@ -15,3 +15,27 @@ main img:not(.avatar-choices img):not(.card-saved img) { border-radius: var(--ra
 .button, input, select, textarea { min-height: var(--control-height); }
 /* Consistent collection grids, without changing their column behavior. */
 .cover-grid, .collection-list, .h-key-grid { row-gap: var(--space-5); }
+
+/* Compact palette integrated into the cover's information card. */
+.sleeve-palette {
+  margin-top: var(--space-4);
+  padding-top: var(--space-4);
+  border-top: 1px solid color-mix(in srgb, currentColor 20%, transparent);
+}
+.sleeve-palette .palette { margin-top: 0; }
+.sleeve-palette .palette ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+.sleeve-palette .palette li { flex: 0 1 64px; min-width: 0; }
+.sleeve-palette .palette button {
+  min-height: 0;
+  gap: 4px;
+  border-radius: 0;
+}
+.sleeve-palette .palette-chip {
+  height: 22px;
+  border-radius: 4px;
+}
+.sleeve-palette .palette-hex { font-size: 11px; }
