@@ -213,8 +213,7 @@ export default function History({ eras, sources }: { eras: EraView[]; sources: S
       <header className="h-hero">
         <h1>Through the Years</h1>
         <p className="h-hero-lede">
-          How a back-to-school party in a Bronx rec room grew into the biggest music in the world, year by year, {FIRST} to {NOW}:{" "}
-          {total} milestones, {records} key records and {people} people who made it happen.
+          Explore the evolution of hip-hop through a timeline highlighting the people, songs, albums, and innovations that shaped the genre into what it is today.
         </p>
       </header>
 
