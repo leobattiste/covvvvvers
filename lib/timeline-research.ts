@@ -15,6 +15,14 @@ export const RESEARCH_MOMENTS: Moment[] = [
     sources: ["cornell-flyers"],
   },
   {
+    id: "sharock-1979-flyer",
+    when: "1979",
+    title: "Sha-Rock and the visual record of early hip-hop",
+    text: "Surviving flyers in Cornell University's Hip Hop Collection document women performers in early hip-hop and the graphic designers who promoted live events. Sha-Rock was a pioneering MC in the Funky Four Plus One, while designers including Buddy Esquire helped establish the visual language of the scene.",
+    tags: ["women", "culture"],
+    sources: ["cornell-flyers"],
+  },
+  {
     id: "mc-lyte-debut",
     when: "1988",
     title: "MC Lyte releases Lyte as a Rock",
@@ -42,7 +50,7 @@ export const RESEARCH_MOMENTS: Moment[] = [
     id: "the-message-registry",
     when: "2002",
     title: "The Message enters the National Recording Registry",
-    text: "The Library of Congress selected Grandmaster Flash and the Furious Five's 1982 recording The Message for the inaugural National Recording Registry in 2002. Its selection recognized a landmark in rap's treatment of urban social conditions. The song was released twenty years earlier; 2002 marks its preservation recognition, not its debut.",
+    text: "The Library of Congress included Grandmaster Flash and the Furious Five's 1982 recording The Message in the inaugural 2002 National Recording Registry selection. The selection was publicly announced in January 2003. The registry date refers to the preservation selection, not the song's release.",
     tags: ["first", "culture"],
     sources: ["loc-message-2002"],
   },
