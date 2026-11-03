@@ -7,6 +7,39 @@ import type { Moment } from "./history";
  */
 export const RESEARCH_MOMENTS: Moment[] = [
   {
+    id: "miami-bass-1986",
+    when: "1986",
+    title: "Miami bass establishes a distinct Southern rap sound",
+    text: "Miami's dance-oriented bass music developed through local clubs, DJs and independent record labels in the 1980s. Artists including 2 Live Crew helped popularize a fast, low-frequency sound that would become influential across Southern rap and dance music. Hip-Hop Evolution explores the scene in its episode The Southern Way; the chronology and wider regional context require independent sources.",
+    tags: ["sound", "culture", "business"],
+    sources: ["netflix-evolution", "netflix-southern-way"],
+  },
+  {
+    id: "bay-area-independent-1988",
+    when: "1988",
+    title: "Bay Area rappers build an independent distribution model",
+    text: "Too Short's early independent releases and the Bay Area's local sales networks helped establish a route to rap audiences outside the major-label system. The regional history includes Oakland, the wider Bay Area and artists whose styles did not fit New York or Los Angeles narratives. Hip-Hop Evolution examines these networks in Out the Trunk: The Bay.",
+    tags: ["business", "culture"],
+    sources: ["netflix-bay"],
+  },
+  {
+    id: "houston-oral-history",
+    when: "1990",
+    title: "Houston rap grows through neighborhood networks",
+    text: "Houston rap developed through neighborhood-based performers, DJs, promoters and independent labels. The Geto Boys and later UGK emerged from a broader scene that also included distinctive local visual identities and distribution networks. Lance Scott Walker's Houston Rap Tapes documents these histories through firsthand interviews with musicians, producers and label figures.",
+    tags: ["business", "culture", "sound"],
+    sources: ["houston-rap-tapes"],
+  },
+  {
+    id: "mixtape-2000s-networks",
+    when: "2003",
+    title: "Mixtapes become an alternative route to national audiences",
+    text: "In the early 2000s, street mixtapes and DJ-hosted compilations helped artists build reputations outside traditional album campaigns. Artists including 50 Cent, T.I. and Lil Wayne used the format in different ways, while informal distribution and copyright disputes shaped its economics. Hip-Hop Evolution's Street Dreams traces this movement through interviews.",
+    tags: ["business", "tech", "culture"],
+    sources: ["netflix-evolution"],
+  },
+
+  {
     id: "grime-mercury-2003",
     when: "2003",
     title: "Dizzee Rascal's Boy in da Corner wins the Mercury Prize",
@@ -169,6 +202,10 @@ export const RESEARCH_MOMENTS: Moment[] = [
 ];
 
 export const RESEARCH_SOURCES = [
+  { id: "netflix-evolution", title: "Netflix — Hip-Hop Evolution, official series and episode descriptions (2016–2020)", url: "https://www.netflix.com/title/80141782" },
+  { id: "netflix-southern-way", title: "TV Guide — Hip-Hop Evolution, Season 2: The Southern Way", url: "https://www.tvguide.com/tvshows/hip-hop-evolution/episodes-season-2/1000644163/" },
+  { id: "netflix-bay", title: "TV Guide — Hip-Hop Evolution, Season 2: Out the Trunk: The Bay", url: "https://www.tvguide.com/tvshows/hip-hop-evolution/episodes-season-2/1000644163/" },
+  { id: "houston-rap-tapes", title: "University of Texas Press — Houston Rap Tapes: An Oral History of Bayou City Hip-Hop", url: "https://utpress.utexas.edu/9781477317938/" },
   { id: "london-grime", title: "London Museum — London's grime stars", url: "https://www.londonmuseum.org.uk/collections/london-stories/londons-grime-stars/" },
   { id: "npg-grime", title: "National Portrait Gallery — Garage and grime musicians", url: "https://www.npg.org.uk/collections/about/photographs-collection/featured-collections-archive/garage-and-grime-musicians/" },
   { id: "smithsonian-photography", title: "Smithsonian NMAAHC — Photographing Hip-Hop Culture", url: "https://nmaahc.si.edu/explore/stories/photographing-hip-hop-culture" },
