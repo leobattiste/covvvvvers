@@ -196,7 +196,15 @@ let overrides = { records: {} };
 try {
   overrides = JSON.parse(readFileSync("scripts/image-overrides.json", "utf8"));
 } catch {}
-const blocked = new Set(["Apache|Incredible Bongo Band"]);
+// Historical sleeve verified against original 1973 Pride PRD-0028 pressing.
+const verifiedSleeves = {
+  "Apache|Incredible Bongo Band": {
+    src: "https://ticro.com/cdn/shop/products/image-2022-05-21T163421.714_0e73a66c-66fc-46d7-be89-e3a1c23daf2d.jpg?v=1653118566",
+    full: "https://ticro.com/cdn/shop/products/image-2022-05-21T163421.714_0e73a66c-66fc-46d7-be89-e3a1c23daf2d.jpg?v=1653118566",
+    source: { name: "TICRO MARKET — original 1973 Bongo Rock LP sleeve", url: "https://ticro.com/en/products/i00000604" },
+  },
+};
+const blocked = new Set(Object.keys(verifiedSleeves));
 const out = { records: {}, missing: { records: [] } };
 // Images found before are kept, so a run only searches for what's new or still missing.
 // ONLY=records or FRESH=1 searches everything again from scratch.
@@ -212,6 +220,7 @@ for (const [i, r] of req.records.entries()) {
   const page = overrides.records?.[r.key];
   // If no source answers this time (MusicBrainz busy, say), keep the image found on an earlier run.
   const hit =
+    verifiedSleeves[r.key] ??
     (await fromAppleMusic(r)) ??
     (await fromCoverArtArchive(r)) ??
     (page && (await fromWikipediaPage(page))) ??
