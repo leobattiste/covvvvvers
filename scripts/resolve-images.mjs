@@ -158,7 +158,19 @@ async function fromAppleMusic(r) {
   const data = await get(`https://itunes.apple.com/search?${new URLSearchParams({ term: `${r.title} ${artist}`, entity: "album", limit: "25", country: "us" })}`);
   await sleep(400);
   const release = (name = "") => name.replace(/ - (Single|EP)$/i, "");
-  const hits = (data?.results ?? []).filter((it) => norm(release(it.collectionName)) === norm(r.title) && loose(it.artistName, artist) && it.artworkUrl100);
+  // Require the exact artist and release title. Loose substring matching can attach
+  // remixes or compilations to the historically important original recording.
+  const hits = (data?.results ?? []).filter((it) => {
+    const title = release(it.collectionName ?? "");
+    const isExact = norm(title) === norm(r.title);
+    const artistExact = norm(it.artistName ?? "") === norm(artist);
+    const wrongEdition = /\\b(remix|re-record|rerecord|karaoke|tribute|cover version|instrumental version|sped up|slowed|live version)\\b/i.test(it.collectionName ?? "");
+    const year = Number((it.releaseDate ?? "").slice(0, 4));
+    // For historically dated tracks, do not silently use a later digital
+    // rerelease as if it were the original physical sleeve.
+    const plausibleYear = !r.year || (year >= r.year - 1 && year <= r.year + 3);
+    return isExact && artistExact && !wrongEdition && plausibleYear && it.artworkUrl100;
+  });
   // Singles for songs, albums for albums; then the earliest release (the original, not a reissue).
   const isSingle = (it) => / - (Single|EP)$/i.test(it.collectionName ?? "");
   hits.sort(
@@ -184,12 +196,13 @@ let overrides = { records: {} };
 try {
   overrides = JSON.parse(readFileSync("scripts/image-overrides.json", "utf8"));
 } catch {}
+const blocked = new Set(["Apache|Incredible Bongo Band"]);
 const out = { records: {}, missing: { records: [] } };
 // Images found before are kept, so a run only searches for what's new or still missing.
 // ONLY=records or FRESH=1 searches everything again from scratch.
 const only = process.env.ONLY;
 const fresh = process.env.FRESH === "1";
-const keep = (half, key) => !fresh && only !== half && prev[half]?.[key];
+const keep = (half, key) => !blocked.has(key) && !fresh && only !== half && prev[half]?.[key];
 
 for (const [i, r] of req.records.entries()) {
   if (keep("records", r.key) && !overrides.records?.[r.key]) {
@@ -203,7 +216,8 @@ for (const [i, r] of req.records.entries()) {
     (await fromCoverArtArchive(r)) ??
     (page && (await fromWikipediaPage(page))) ??
     (await fromWikipedia(r)) ??
-    prev.records?.[r.key] ??
+    // Never reinstate a known-bad match from the previous generated file.
+    (blocked.has(r.key) ? null : prev.records?.[r.key]) ??
     null;
   // "cover": a collection cover whose art comes from here, so the site keeps crediting it.
   if (hit) out.records[r.key] = r.cover ? { ...hit, cover: true } : hit;
