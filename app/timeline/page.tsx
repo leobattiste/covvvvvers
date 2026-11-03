@@ -13,7 +13,7 @@ export const revalidate = 3600;
 export const metadata: Metadata = {
   title: "Through the Years",
   description:
-    "The history of hip-hop from a Bronx rec room in 1973 to now: how it sounded and looked, where and why it grew, the records, technology, milestones and people that shaped each era.",
+    "The history of hip-hop in the United States from the Bronx in 1973 to today: the regional scenes, landmark records, production, cover art, photography and people that shaped each era.",
 };
 
 const pageColor = (hex: string | null) => (hex && /^#[0-9a-f]{6}$/i.test(hex) ? hex : "#111111");
