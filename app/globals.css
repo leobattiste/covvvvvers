@@ -4761,3 +4761,68 @@ button[aria-busy="true"]::after {
   margin: 16px 0 6px;
   font-size: 1.125rem;
 }
+
+
+/* Consistent geometry across the archive: 10px artwork and cards,
+   fully pill-shaped controls at every size. */
+:root { --archive-corner: 10px; }
+
+/* Square artwork and rectangular card surfaces. Keep round vinyls,
+   avatars, status dots and other intentionally circular artwork round. */
+.card-art,
+.card-art img,
+.ring-link img,
+.art-frame,
+.art-frame img,
+.cover-art img,
+.index-list img,
+.creator-index img,
+.collection-card,
+.collection-stack img,
+.stack-empty,
+.h-key,
+.h-key-art,
+.h-key-art img,
+.h-era-poster-art img,
+.h-record-art img,
+.lightbox-stage img,
+.editor-preview img,
+.admin-list img,
+.admin-noimg,
+.quiz-frame img,
+.quiz-review img,
+.first-art img,
+.game-art img {
+  border-radius: var(--archive-corner);
+}
+
+/* Rounded corners for all other content images without changing avatars. */
+main img:not(.avatar-choices img):not(.card-saved img) {
+  border-radius: var(--archive-corner);
+}
+
+/* Card containers and dialog surfaces. */
+.collection-card,
+.h-key,
+.h-card,
+.sheet,
+.menu-sheet,
+.game-card {
+  border-radius: var(--archive-corner);
+}
+
+/* Controls: buttons, inputs, selects, and button-like links. */
+button:not(.art-frame),
+.button,
+input:not([type="checkbox"]):not([type="radio"]):not([type="color"]):not([type="range"]):not([type="file"]),
+select,
+.filter-open,
+.quiz-options button,
+.order-tools button,
+.h-filters button,
+.h-tags button {
+  border-radius: 9999px;
+}
+
+/* Multiline fields remain rectangular with 10px corners. */
+textarea { border-radius: var(--archive-corner); }
