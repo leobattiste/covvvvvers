@@ -152,14 +152,6 @@ export const RESEARCH_MOMENTS: Moment[] = [
   },
 
   {
-    id: "chicago-drill-video-breakthrough-2012",
-    when: "2012",
-    title: "Chicago drill reaches a national audience through online video",
-    text: "Chief Keef's I Don't Like became a breakout Chicago drill record in 2012, amplified by inexpensive music videos, online sharing and a Kanye West remix. The scene was already developing through artists including King Louie, Pac Man, Lil Durk and Katie Got Bandz. Contemporary accounts and later Chicago reporting emphasize the musicians' creativity while examining the city's segregation and violence without reducing the artists to those conditions.",
-    tags: ["sound", "tech", "culture"],
-    sources: ["wbez-chicago-rap", "pitchfork-drill-2019"],
-  },
-  {
     id: "soundcloud-independent-wave-2016",
     when: "2016–2017",
     title: "SoundCloud-era artists reshape how American rap breaks through",
@@ -175,15 +167,6 @@ export const RESEARCH_MOMENTS: Moment[] = [
     tags: ["tech", "business"],
     sources: ["riaa-2015-year-end"],
   },
-  {
-    id: "kendrick-pulitzer-2018-research",
-    when: "2018",
-    title: "Kendrick Lamar wins the Pulitzer Prize for Music",
-    text: "On April 16, 2018, the Pulitzer Prize Board named Kendrick Lamar's DAMN. the winner of the Music prize. The album, released in 2017, became the first hip-hop work to receive the award, marking a major institutional recognition of rap composition and storytelling. The Pulitzer's own record documents the winning work and the award's citation.",
-    tags: ["culture", "first"],
-    sources: ["pulitzer-damn-official"],
-  },
-
   {
     id: "cleveland-mc-brains-1992",
     when: "1992",
@@ -409,22 +392,6 @@ export const RESEARCH_MOMENTS: Moment[] = [
   },
 
   {
-    id: "houston-screw-slab",
-    when: "1995",
-    title: "Houston's screw sound develops alongside slab culture",
-    text: "In Houston, slowed-down recordings associated with DJ Screw became part of a distinctive local hip-hop tradition. Ethnomusicologist Langston Wilkins connects screw music with slab car culture and the creative practices of working-class Black Houstonians. Both traditions shaped the city's musical identity well beyond conventional album releases.",
-    tags: ["sound", "culture", "tech"],
-    sources: ["loc-street-folk"],
-  },
-  {
-    id: "southern-rap-outkast-1995",
-    when: "1995",
-    title: "Outkast challenges the East Coast–West Coast narrative",
-    text: "At the 1995 Source Awards, Outkast received the Best New Rap Group award amid a tense atmosphere dominated by coastal rivalries. Big Boi later described how the duo and Atlanta's Dungeon Family developed their sound in producer Rico Wade's basement. The moment illustrates Southern hip-hop's growing visibility during a period too often summarized through New York and Los Angeles alone.",
-    tags: ["culture", "business"],
-    sources: ["smithsonian-bigboi"],
-  },
-  {
     id: "smithsonian-anthology-2021",
     when: "2021",
     title: "The Smithsonian publishes a major hip-hop anthology",
@@ -449,15 +416,6 @@ export const RESEARCH_MOMENTS: Moment[] = [
     tags: ["women", "culture"],
     sources: ["smithsonian-class88"],
   },
-  {
-    id: "sampling-rights-1991",
-    when: "1991",
-    title: "Sampling disputes change the economics of rap production",
-    text: "Legal disputes over unlicensed samples changed how rap records were produced and released in the early 1990s. The Library of Congress's Citizen DJ project describes how sample-heavy albums by Public Enemy and De La Soul reflected a creative approach that later became much more expensive to sustain. Clearance costs increasingly influenced the sounds producers could use.",
-    tags: ["tech", "business", "sound"],
-    sources: ["loc-citizen-dj"],
-  },
-
   {
     id: "bronx-flyers-archive",
     when: "1977–1983",
