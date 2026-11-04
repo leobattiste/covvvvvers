@@ -386,3 +386,37 @@ main img:not(.avatar-choices img):not(.card-saved img) { border-radius: var(--ra
 @media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .cms-cover-state.is-live {color:#8fe6b7;background:#163c2b} :root:not([data-theme="light"]) .cms-cover-state.is-draft {color:#ffda94;background:#493719}}
 :root[data-theme="dark"] .cms-cover-state.is-live {color:#8fe6b7;background:#163c2b}
 :root[data-theme="dark"] .cms-cover-state.is-draft {color:#ffda94;background:#493719}
+
+.cms-member-list { margin-top:24px; }
+.cms-member-row { display:grid; grid-template-columns:minmax(180px,1fr) minmax(0,2fr); gap:18px; align-items:center; padding:16px 0; border-bottom:1px solid var(--line); }
+.cms-member-info { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+.cms-member-info strong { font-size:.875rem; }
+.cms-member-info small { color:var(--muted); font-size:.75rem; }
+.cms-member-state { border-radius:999px; padding:4px 8px; font-size:.7rem; }
+.cms-member-state.is-active { background:#e4f6ed;color:#13734b; }
+.cms-member-state.is-blocked { background:#fde7e7;color:#a52222; }
+.cms-member-state.is-admin { background:var(--soft);color:var(--ink); }
+.cms-member-controls { display:flex; align-items:center; gap:8px; min-width:0; }
+.cms-member-controls select { flex:0 0 170px; min-width:0; font-size:.8125rem; }
+.cms-member-controls input { flex:1; min-width:0; font-size:.8125rem; }
+.cms-member-controls button { flex:none; font-size:.8125rem; }
+.cms-activity-stats { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; margin:24px 0; }
+.cms-activity-stats > div { display:grid; gap:8px; padding:18px; border:1px solid var(--line); border-radius:10px; }
+.cms-activity-stats span { color:var(--muted); font-size:.8125rem; }
+.cms-activity-stats strong { font:400 2rem var(--display); }
+.cms-traffic-panel { display:flex; justify-content:space-between; align-items:center; gap:24px; padding:24px; border:1px solid var(--line); border-radius:12px; margin:24px 0; }
+.cms-traffic-panel h2 { margin:0 0 8px; }
+.cms-traffic-panel p { max-width:65ch; font-size:.875rem; color:var(--muted); }
+.cms-traffic-panel a { flex:none; font-size:.875rem; }
+.cms-activity-signups { margin:32px 0; }
+@media(max-width:1100px) {
+ .cms-member-row { grid-template-columns:minmax(0,1fr); }
+ .cms-activity-stats { grid-template-columns:repeat(2,minmax(0,1fr)); }
+}
+@media(max-width:760px) {
+ .cms-member-controls { flex-wrap:wrap; }
+ .cms-member-controls select,.cms-member-controls input { flex:1 1 100%; }
+ .cms-member-controls button { width:100%; }
+ .cms-traffic-panel { flex-direction:column; align-items:stretch; padding:18px; }
+ .cms-activity-stats > div { padding:14px; }
+}
