@@ -451,3 +451,40 @@ main img:not(.avatar-choices img):not(.card-saved img) { border-radius: var(--ra
  .cms-mb-search input,.cms-mb-search button { width:100%; flex:auto; min-height:44px; }
  .cms-mb-results li button { min-height:56px; }
 }
+
+/* Studio dashboard: inset sidebar, four metric cards, analytics and management panels */
+.cms-shell { gap:0; }
+.cms-workspace { min-width:0; }
+.cms-main { min-width:0; }
+.cms-overview { display:grid; gap:24px; }
+.cms-overview-head { display:flex; align-items:center; justify-content:space-between; gap:20px; padding-bottom:4px; }
+.cms-overview-head h1 { letter-spacing:-.035em; }
+.cms-stats { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px; }
+.cms-stat { display:flex; flex-direction:column; min-width:0; gap:12px; border:1px solid var(--line); border-radius:14px; padding:20px; text-decoration:none; transition:transform .15s,border-color .15s; }
+.cms-stat:hover { transform:translateY(-2px); border-color:var(--ink); }
+.cms-stat-label { font-size:.825rem; font-weight:600; }
+.cms-stat-value { font-size:clamp(1.7rem,3vw,2.6rem); letter-spacing:-.035em; }
+.cms-stat-detail { font-size:.76rem; }
+.cms-section { border:1px solid var(--line); border-radius:14px; overflow:hidden; }
+.cms-section-heading { padding:20px 20px 14px; }
+.cms-overview-columns { display:grid; grid-template-columns:minmax(0,1.7fr) minmax(280px,1fr); gap:18px; align-items:start; }
+.cms-overview-side { display:grid; gap:18px; }
+.cms-recent-list li>a { padding:12px 20px; }
+.cms-shortcuts a { padding:13px 20px; }
+.cms-chart-card { display:grid; gap:18px; border:1px solid var(--line); border-radius:14px; padding:22px; min-width:0; }
+.cms-chart-header { display:flex; align-items:start; justify-content:space-between; gap:18px; }
+.cms-chart-header h2 { margin:5px 0 6px; font-size:1.35rem; }
+.cms-chart-header p { margin:0; font-size:.83rem; color:var(--muted); }
+.cms-chart-period { display:flex; gap:4px; border:1px solid var(--line); border-radius:9px; padding:3px; }
+.cms-chart-period button { background:transparent; border:0; border-radius:6px; padding:7px 12px; color:var(--muted); font-size:.8rem; cursor:pointer; white-space:nowrap; }
+.cms-chart-period button.is-active { background:var(--ink); color:var(--bg); }
+.cms-chart-summary { display:flex; align-items:baseline; gap:10px; }
+.cms-chart-summary strong { font-size:2rem; letter-spacing:-.04em; }
+.cms-chart-summary span { color:var(--muted); font-size:.8rem; }
+.cms-chart-svg { width:100%; height:230px; overflow:visible; }
+.cms-chart-foot { display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; font-size:.75rem; color:var(--muted); }
+.cms-chart-foot a { text-decoration:underline; }
+.cms-sidebar .cms-brand { font-size:1rem; letter-spacing:0; }
+.cms-sidebar .cms-brand span { font-size:.6rem; }
+@media(max-width:1100px){.cms-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.cms-overview-columns{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:760px){.cms-overview{gap:16px}.cms-overview-head{flex-wrap:wrap}.cms-overview-head .button{width:100%;text-align:center}.cms-stat{padding:15px}.cms-chart-card{padding:16px}.cms-chart-header{flex-wrap:wrap}.cms-chart-svg{height:190px}.cms-section-heading{padding:16px}}
