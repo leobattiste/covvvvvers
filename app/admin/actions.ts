@@ -231,21 +231,62 @@ export async function bulkCoverAction(ids: string[], action: "draft" | "delete")
   return { ok: true, message: `${unique.length} cover${unique.length === 1 ? "" : "s"} ${action === "draft" ? "moved to drafts" : "deleted"}.` };
 }
 
-/** Create a prefilled draft from a selected MusicBrainz edition. */
-export async function addMusicBrainzCover(input: {title:string;artist:string;year:number;country:string;label:string;imageUrl:string;genres:string[]}) {
+/** Resolve metadata on the server. The browser only supplies the MusicBrainz release-group ID. */
+export async function addMusicBrainzCover(groupId: string): Promise<{id:string;existing:boolean}> {
  const db=await adminClient();
- const title=input.title.trim().slice(0,250);
- const artist=input.artist.trim().slice(0,250);
- if(!title||!artist)throw new Error("Missing album or artist.");
- const year=Number(input.year);
- if(!Number.isInteger(year)||year<1970||year>2100)throw new Error("Invalid release year.");
- const id=await createDraft(db,{title,artist,year});
- const {error}=await db.from("covers").update({
-  country:input.country.slice(0,100)||null,
-  label:input.label.slice(0,250)||null,
-  image_url:/^https:\/\//.test(input.imageUrl)?input.imageUrl:"",
-  subgenres:input.genres.slice(0,12).map(x=>x.slice(0,80))
- }).eq("id",id);
- if(error)throw new Error(error.message);
- return id;
+ if(!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(groupId))throw new Error("Invalid MusicBrainz album.");
+ const root="https://musicbrainz.org/ws/2";
+ const headers={"User-Agent":"Covvvers/1.0 (https://covvvers.com)","Accept":"application/json"};
+ const read=async(path:string)=>{
+  const r=await fetch(root+path,{headers,next:{revalidate:86400},signal:AbortSignal.timeout(12000)});
+  if(!r.ok)throw new Error("MusicBrainz is temporarily unavailable ("+r.status+").");
+  return r.json();
+ };
+ type ArtistPart={name?:string;joinphrase?:string}|string;
+ type Edition={id:string;title:string;date?:string;country?:string;status?:string;"label-info"?:{label?:{name?:string}}[];"cover-art-archive"?:{front?:boolean}};
+ const group=await read("/release-group/"+groupId+"?inc=artists+genres+url-rels&fmt=json");
+ const title=String(group.title??"").trim().slice(0,250);
+ const artist=(group["artist-credit"] as ArtistPart[]|undefined??[]).map(x=>typeof x==="string"?x:(x.name??"")+(x.joinphrase??"")).join("").trim().slice(0,250);
+ const year=Number(String(group["first-release-date"]??"").slice(0,4));
+ if(!title||!artist||!Number.isInteger(year)||year<1970||year>2100)throw new Error("This album has incomplete metadata. Please verify it on MusicBrainz.");
+ const {data:matching,error:lookupError}=await db.from("covers").select("id,title,artist,release_year").eq("release_year",year).ilike("artist",artist.replace(/[\\%_]/g,x=>"\\"+x)).limit(100);
+ if(lookupError)throw new Error(lookupError.message);
+ const norm=(x:string)=>x.normalize("NFKC").trim().toLocaleLowerCase();
+ const duplicate=matching?.find(c=>norm(c.artist)===norm(artist)&&norm(c.title)===norm(title));
+ if(duplicate)return {id:duplicate.id,existing:true};
+ const releaseData=await read("/release/?release-group="+groupId+"&limit=100&fmt=json");
+ const editions:Edition[]=releaseData.releases??[];
+ // Prefer original, official releases with artwork over reissues and compilations.
+ const ranked=editions.map(r=>({r,score:
+   (r.date?.startsWith(String(year))?8:0)+
+   (r.status==="Official"?4:0)+
+   (r["cover-art-archive"]?.front?12:0)+
+   (r.country?1:0)
+ })).sort((a,b)=>b.score-a.score);
+ const edition=ranked[0]?.r;
+ const labels=[...new Set((edition?.["label-info"]??[]).map(x=>x.label?.name).filter((x):x is string=>Boolean(x)))];
+ const genres=(group.genres as {name?:string;count?:number}[]|undefined??[])
+   .filter(g=>Boolean(g.name)).sort((a,b)=>(b.count??0)-(a.count??0)).slice(0,12).map(g=>g.name!.slice(0,80));
+ const rels=(group.relations as {type?:string;url?:{resource?:string}}[]|undefined??[]).map(x=>x.url?.resource??"");
+ const find=(host:string,pattern:RegExp)=>rels.find(link=>{try{const u=new URL(link);return (u.hostname===host||u.hostname.endsWith("."+host))&&pattern.test(u.pathname);}catch{return false;}})??null;
+ const spotify=find("spotify.com",/^\/album\//);
+ const apple=find("music.apple.com",/\/album\//);
+ const youtube=find("youtube.com",/\/playlist|\/watch/)||find("youtu.be",/^\//);
+ // The group endpoint is the artwork displayed in search; absent artwork must not be treated as real.
+ let artwork="";
+ try{
+  const art=await fetch("https://coverartarchive.org/release-group/"+groupId+"/front-500",{method:"HEAD",headers:{"User-Agent":"Covvvers/1.0 (https://covvvers.com)"},signal:AbortSignal.timeout(6000),next:{revalidate:86400}});
+  if(art.ok)artwork="https://coverartarchive.org/release-group/"+groupId+"/front";
+ }catch{/* Missing art is optional for drafts. */}
+ const slug=await uniqueSlug(db,"covers",title);
+ const {data:created,error}=await db.from("covers").insert({
+  slug,title,artist,release_year:year,decade:decadeOf(year),
+  label:labels.join(", ").slice(0,250)||null,country:edition?.country||null,
+  subgenres:genres,image_url:artwork,status:"draft",
+  spotify_url:spotify,spotify_album_id:spotify?.match(/spotify\.com\/album\/([A-Za-z0-9]+)/)?.[1]??null,
+  apple_music_url:apple,youtube_url:youtube
+ }).select("id").single();
+ if(error||!created)throw new Error(error?.message??"Couldn't create the draft.");
+ revalidatePath("/admin/covers");
+ return {id:created.id,existing:false};
 }
