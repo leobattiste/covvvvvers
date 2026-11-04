@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import CoverGrid from "@/components/CoverGrid";
+import DecadeEssay from "@/components/DecadeEssay";
+import { decadeEssays } from "@/lib/decade-essays";
 import { getDecade, getDecadesWithCovers, toCard } from "@/lib/data";
 
 export const revalidate = 3600;
@@ -24,6 +26,7 @@ export default async function DecadePage({ params }: Params) {
       <header className="page-head">
         <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Covers", href: "/covers" }, { label: "Decades", href: "/decades" }, { label: decade.title }]} />
         <h1>{decade.title}</h1>
+        <DecadeEssay decade={decade.title} paragraphs={decadeEssays[decade.slug] ?? []} />
         <p className="page-count">{decade.covers.length} {decade.covers.length === 1 ? "cover" : "covers"}</p>
       </header>
       <CoverGrid covers={decade.covers.map(toCard)} emptyText="No covers from this decade yet." />
