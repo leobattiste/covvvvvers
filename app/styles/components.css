@@ -161,3 +161,19 @@ main img:not(.avatar-choices img):not(.card-saved img) { border-radius: var(--ra
 .cover-pagination { display: grid; justify-items: center; gap: 12px; padding: 40px var(--gutter) 24px; }
 .cover-pagination p { color: var(--muted); font-size: .875rem; }
 .cover-pagination .button { min-width: 190px; }
+
+/* Private editorial CMS workspace */
+.cms-shell { display: grid; grid-template-columns: 220px minmax(0,1fr); min-height: 75vh; }
+.cms-sidebar { display: flex; flex-direction: column; gap: 20px; padding: 28px 20px; border-right: 1px solid var(--line); background: var(--paper); }
+.cms-brand { font-weight: 800; text-decoration: none; font-size: 1.15rem; }
+.cms-brand span { font-size: .7rem; font-weight: 600; opacity: .65; }
+.cms-sidebar nav { display: grid; gap: 5px; }
+.cms-sidebar nav h2 { margin: 8px 0; font-size: .7rem; text-transform: uppercase; letter-spacing: .08em; opacity: .6; }
+.cms-sidebar nav a, .cms-return { display: block; padding: 9px 10px; border-radius: 6px; color: var(--ink); text-decoration: none; font-size: .9rem; }
+.cms-sidebar nav a:hover, .cms-sidebar nav a:focus-visible { background: var(--line); }
+.cms-return { margin-top: auto; }
+.cms-main { min-width: 0; padding: 20px clamp(12px,3vw,48px); }
+.cms-main .panel { max-width: 1100px; }
+.cms-list-row { display: flex; gap: 20px; align-items: center; padding: 14px 0; flex-wrap: wrap; }
+.cms-list-row span { color: var(--muted); font-size: .85rem; }
+@media(max-width:760px) { .cms-shell { grid-template-columns: 1fr; } .cms-sidebar { border-right: 0; border-bottom: 1px solid var(--line); padding: 14px; gap: 8px; } .cms-sidebar nav { display: flex; flex-wrap: wrap; } .cms-sidebar nav h2 { width: 100%; } .cms-sidebar nav a { padding: 7px; } .cms-main { padding: 12px; } }
