@@ -1,4 +1,6 @@
 import type { Metadata, Viewport } from "next";
+import { createClient } from "@supabase/supabase-js";
+import { SUPABASE_URL, SUPABASE_ANON_KEY, supabaseEnabled } from "@/lib/supabase/config";
 import { Analytics } from "@vercel/analytics/next";
 import Link from "next/link";
 import Script from "next/script";
@@ -28,7 +30,13 @@ export const viewport: Viewport = {
   ],
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const fallbackFooter = "Rap album covers that mean something, from the 1980s to now. Cover art belongs to its artists and labels.";
+  const settings = supabaseEnabled
+    ? await createClient(SUPABASE_URL, SUPABASE_ANON_KEY, { auth: { persistSession: false } })
+        .from("site_settings").select("value").eq("key", "footer_description").maybeSingle()
+    : null;
+  const footerDescription = settings?.data?.value || fallbackFooter;
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -53,8 +61,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 Covvvvvers
               </Link>
               <p>
-                Rap album covers that mean something, from the 1980s to now. Cover art belongs to its artists and
-                labels.
+                {footerDescription}
               </p>
             </div>
             <NewsletterForm />
