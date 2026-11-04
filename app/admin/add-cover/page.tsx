@@ -4,7 +4,6 @@ import {useRouter} from "next/navigation";
 import {addMusicBrainzCover} from "../actions";
 
 type Album={id:string;title:string;artist:string;year:string;type:string;genres?:string[];cover?:string};
-type Edition={id:string;title:string;date:string;country:string;label:string;artwork:string};
 export default function AddCover(){
  const router=useRouter();
  const [q,setQ]=useState("");
@@ -27,24 +26,15 @@ export default function AddCover(){
  async function add(album:Album){
   setAdding(album.id);setError("");
   try{
-   const response=await fetch("/api/admin/musicbrainz?action=releases&id="+album.id);
-   const data=await response.json();
-   if(!response.ok)throw new Error(data.error||"Couldn't load album editions.");
-   const editions:Edition[]=data.releases||[];
-   const preferred=editions.find(x=>x.date?.startsWith(album.year)&&x.country)||editions.find(x=>x.date?.startsWith(album.year))||editions[0];
-   const id=await addMusicBrainzCover({
-    title:album.title,artist:album.artist,year:Number(album.year)||Number(preferred?.date?.slice(0,4))||new Date().getFullYear(),
-    country:preferred?.country||"",label:preferred?.label||"",
-    imageUrl:preferred?.id?"https://coverartarchive.org/release/"+preferred.id+"/front":"",
-    genres:album.genres||[]
-   });
-   router.push("/admin/covers/"+id);
+   const result=await addMusicBrainzCover(album.id);
+   if(result.existing)setError("This album is already in the collection. Opening its existing record.");
+   router.push("/admin/covers/"+result.id);
   }catch(e){setError((e as Error).message);setAdding("");}
  }
  return <section className="panel wide" style={{minHeight:"75vh"}}>
   <p className="crumb">Admin / Collection</p>
   <h1>Add Cover</h1>
-  <p className="hint">Search for an album, select Add Cover, then review its prefilled details before publishing. MusicBrainz does not provide reliable visual design credits or cover stories.</p>
+  <p className="hint">Search MusicBrainz and choose an album. Available details, original artwork, and verified listening links are added automatically. Research the cover story and design credits before publishing.</p>
   <form onSubmit={e=>{e.preventDefault();void search();}} style={{display:"flex",gap:12,margin:"24px 0",flexWrap:"wrap"}}>
    <input type="search" aria-label="Search albums" placeholder="Search album title or artist…" value={q} onChange={e=>setQ(e.target.value)} style={{flex:"1 1 260px",minWidth:0}}/>
    <button className="button solid" disabled={loading||q.trim().length<2}>{loading?"Searching…":"Search albums"}</button>
