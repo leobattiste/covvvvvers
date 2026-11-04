@@ -64,6 +64,7 @@ export default function CoverEditor({ initial, types, creatorNames }: Props) {
   const [msg, setMsg] = useState<{ ok: boolean; text: string } | null>(null);
   const [saving, setSaving] = useState(false);
   const [uploading, setUploading] = useState("");
+  const [imageLink,setImageLink] = useState("");
 
   const set = <K extends keyof CoverInput>(k: K, v: CoverInput[K]) => setF((x) => ({ ...x, [k]: v }));
   const field = (k: keyof CoverInput) => ({
@@ -143,7 +144,22 @@ export default function CoverEditor({ initial, types, creatorNames }: Props) {
               onChange={(e) => e.target.files?.[0] && upload(e.target.files[0])}
             />
           </label>
-          <p className="hint">A square image, at least 1500px, works best. The site makes the smaller sizes.</p>
+          <div className="cms-image-link">
+            <label htmlFor="cover-image-link">Or use an image URL</label>
+            <div className="cms-image-link-row">
+              <input id="cover-image-link" type="url" value={imageLink} onChange={e=>setImageLink(e.target.value)} placeholder="https://example.com/album-cover.jpg" />
+              <button type="button" className="button" disabled={Boolean(uploading)} onClick={()=>{
+                try {
+                  const u=new URL(imageLink);
+                  if(!["https:","http:"].includes(u.protocol))throw new Error("Use an HTTPS or HTTP image link.");
+                  setF(x=>({...x,image_url:u.toString(),image_width:null,image_height:null}));
+                  setMsg({ok:true,text:"Image link added. Save the cover to keep it. External links can stop working."});
+                }catch {setMsg({ok:false,text:"Enter a valid HTTP or HTTPS image URL."});}
+              }}>Use link ↗</button>
+            </div>
+            <p className="hint">Use a direct public image URL. Uploading a file stores a copy in Covvvers; using a link references the external image.</p>
+          </div>
+          <p className="hint">A square image, at least 1500px, works best. The site makes the smaller sizes for uploads.</p>
           <div className="editor-colors">
             <label>
               <span>Main colour</span>
