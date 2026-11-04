@@ -85,7 +85,7 @@ export default function CoverEditor({ initial, types, creatorNames }: Props) {
       finally{savingLock.current=false;}
     },1800);
     return ()=>clearTimeout(timer);
-  },[f,uploading]);
+  },[f,uploading,autoState]);
 
   const set = <K extends keyof CoverInput>(k: K, v: CoverInput[K]) => setF((x) => ({ ...x, [k]: v }));
   const field = (k: keyof CoverInput) => ({
