@@ -51,18 +51,23 @@ export default function AddCover(){
   </form>
   {error&&<p role="alert" className="form-error">{error}</p>}
   {more&&<p className="hint">{results.length} results. Scroll to browse albums.</p>}
-  <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(min(100%,210px),1fr))",gap:20,maxHeight:"70vh",overflowY:"auto",padding:"8px 2px"}}>
-   {results.map(album=><article key={album.id} style={{border:"1px solid var(--border, #ddd)",borderRadius:12,overflow:"hidden",display:"flex",flexDirection:"column"}}>
-    <div style={{aspectRatio:"1",background:"var(--muted,#eee)",overflow:"hidden"}}>
-     <img src={album.cover||"https://coverartarchive.org/release-group/"+album.id+"/front-250"} alt={album.title+" album cover"} loading="lazy" style={{width:"100%",height:"100%",objectFit:"cover"}} onError={e=>{e.currentTarget.style.display="none";}}/>
+  <div className="cms-add-results">
+   {results.map(album=><article key={album.id} className="cms-add-album">
+    <div className="cms-add-art">
+     <AlbumArt id={album.id} title={album.title}/>
     </div>
-    <div style={{padding:14,display:"flex",flexDirection:"column",gap:8,flex:1}}>
-     <strong>{album.title}</strong>
-     <span>{album.artist}</span>
-     <small>{album.year||"Unknown year"} · {album.genres?.join(", ")||album.type||"Genre unavailable"}</small>
-     <button type="button" className="button solid" style={{marginTop:"auto"}} disabled={Boolean(adding)} onClick={()=>void add(album)}>{adding===album.id?"Preparing draft…":"Add Cover"}</button>
+    <div className="cms-add-info">
+     <strong title={album.title}>{album.title}</strong>
+     <span title={album.artist}>{album.artist||"Artist unavailable"}</span>
+     <small>{album.year||"Year unknown"} <span aria-hidden="true">·</span> {album.genres?.length?album.genres.slice(0,3).join(", "):album.type||"Genre unavailable"}</small>
+     <button type="button" className="button solid" disabled={Boolean(adding)} onClick={()=>void add(album)}>{adding===album.id?"Preparing draft…":"Add Cover"}</button>
     </div>
    </article>)}
   </div>
  </section>;
+}
+
+function AlbumArt({id,title}:{id:string;title:string}){
+ const [failed,setFailed]=useState(false);
+ return failed?<div className="cms-add-art-empty" aria-label="Artwork unavailable"><svg viewBox="0 0 24 24" width="35" height="35" fill="none" stroke="currentColor" strokeWidth="1.2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2"/></svg><span>Artwork unavailable</span></div>:<img src={"/api/admin/musicbrainz/artwork?id="+encodeURIComponent(id)} alt={"Artwork for "+title} loading="lazy" onError={()=>setFailed(true)}/>;
 }
