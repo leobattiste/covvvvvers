@@ -269,7 +269,7 @@ export async function addMusicBrainzCover(groupId: string): Promise<{id:string;e
  const editions:Edition[]=releaseData.releases??[];
  // Prefer original, official releases with artwork over reissues and compilations.
  const ranked=editions.map(r=>({r,score:
-   (r.date?.startsWith(String(year))?8:0)+
+   (r.date?.startsWith(String(year))?30:0)+
    (r.status==="Official"?4:0)+
    (r["cover-art-archive"]?.front?12:0)+
    (r.country?1:0)
