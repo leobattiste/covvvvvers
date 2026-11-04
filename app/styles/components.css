@@ -548,3 +548,26 @@ main img:not(.avatar-choices img):not(.card-saved img) { border-radius: var(--ra
  .cms-add-button-mobile{display:inline;line-height:1;font-size:1.4rem;font-weight:400;}
  .cms-add-info .cms-add-button{width:42px;height:42px;min-height:42px;align-self:flex-end;display:inline-flex;align-items:center;justify-content:center;padding:0;border-radius:50%;margin-top:auto;}
 }
+
+/* Cover editor organized in the same editorial order as the public sleeve. */
+.cms-cover-editor{display:grid;gap:24px;}
+.cms-editor-intro{display:flex;justify-content:space-between;align-items:start;gap:24px;padding-bottom:22px;border-bottom:1px solid var(--line);}
+.cms-editor-intro h2{font-size:clamp(1.35rem,2.6vw,1.9rem);margin:5px 0 10px;}
+.cms-editor-intro p{font-size:.85rem;line-height:1.6;color:var(--muted);max-width:62ch;margin:0;}
+.cms-editor-kicker,.cms-editor-section-heading>span{font-family:var(--sans);font-size:.67rem;letter-spacing:.1em;font-weight:600;color:var(--muted);}
+.cms-editor-progress{display:grid;gap:5px;min-width:180px;}
+.cms-editor-progress strong{font-size:1.4rem;}
+.cms-editor-progress>span{font-size:.73rem;color:var(--muted);}
+.cms-editor-meter{height:5px;background:var(--soft);border-radius:8px;overflow:hidden;margin-top:8px;}
+.cms-editor-meter span{display:block;height:100%;background:var(--ink);transition:width .2s ease;}
+.cms-editor-checks{display:flex;gap:8px;flex-wrap:wrap;margin-top:-8px;}
+.cms-editor-checks>span{padding:6px 11px;font-size:.72rem;border:1px solid var(--line);border-radius:50px;color:var(--muted);}
+.cms-editor-checks>span.is-done{color:var(--ink);background:var(--soft);}
+.cms-editor-section-heading{display:grid;gap:6px;padding:28px 0 12px;border-top:1px solid var(--line);margin-top:20px;}
+.cms-editor-section-heading:first-child{padding-top:0;margin-top:0;border-top:0;}
+.cms-editor-section-heading h3{font-size:1.2rem;letter-spacing:-.02em;margin:0;}
+.cms-editor-section-heading p{font-size:.82rem;line-height:1.55;color:var(--muted);margin:0;max-width:62ch;}
+.cms-cover-editor .editor-fields{gap:16px;}
+.cms-cover-editor .editor-fields .cms-editor-section-heading:not(:first-child){margin-top:22px;}
+.cms-cover-editor .editor-art .cms-editor-section-heading{margin-bottom:12px;}
+@media(max-width:760px){.cms-editor-intro{flex-direction:column;gap:16px}.cms-editor-progress{width:100%}.cms-cover-editor{gap:18px}.cms-editor-section-heading{margin-top:14px;}}
