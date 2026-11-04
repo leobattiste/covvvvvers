@@ -60,7 +60,7 @@ export default function AddCover(){
      <strong title={album.title}>{album.title}</strong>
      <span title={album.artist}>{album.artist||"Artist unavailable"}</span>
      <small>{album.year||"Year unknown"} <span aria-hidden="true">·</span> {album.genres?.length?album.genres.slice(0,3).join(", "):album.type||"Genre unavailable"}</small>
-     <button type="button" className="button solid" disabled={Boolean(adding)} onClick={()=>void add(album)}>{adding===album.id?"Preparing draft…":"Add Cover"}</button>
+     <button type="button" className="button solid cms-add-button" aria-label={`Add ${album.title} by ${album.artist} to covers`} disabled={Boolean(adding)} onClick={()=>void add(album)}>{adding===album.id?<><span className="cms-add-button-desktop">Preparing draft…</span><span className="cms-add-button-mobile" aria-hidden="true">…</span></>:<><span className="cms-add-button-desktop">Add Cover</span><span className="cms-add-button-mobile" aria-hidden="true">+</span></>}</button>
     </div>
    </article>)}
   </div>
