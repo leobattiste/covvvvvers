@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { requireAdmin } from "@/lib/admin";
 import { saveCoverType, createCoverType, deleteCoverType } from "../catalog-actions";
+import DeleteTypeButton from "./DeleteTypeButton";
 
 export const dynamic = "force-dynamic";
 export const metadata: Metadata = { title: "Cover types | Admin", robots: { index: false } };
@@ -30,7 +31,7 @@ export default async function AdminTypes() {
     <div className="cms-type-deletions">{(data ?? []).map(t=><form action={deleteCoverType} key={t.id}>
       <input type="hidden" name="id" value={t.id} />
       <span>{t.title}</span>
-      <button type="submit" className="button danger" title="Deleting a type clears its classification from covers">✕ Delete type</button>
+      <DeleteTypeButton title={t.title} />
     </form>)}</div>
   </section>;
 }
