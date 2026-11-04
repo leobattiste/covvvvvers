@@ -14,7 +14,7 @@ type Raw = {
   types: Omit<CoverType, "count">[];
   creators: Creator[];
   covers: RawCover[];
-  cover_creators: { cover_id: string; creator_id: string }[];
+  cover_creators: { cover_id: string; creator_id: string; role?: string | null }[];
 };
 
 const byTimeline = (a: Cover, b: Cover) =>
@@ -55,7 +55,7 @@ const assemble = cache(async () => {
     const c = creatorById.get(l.creator_id);
     if (!c) continue;
     const list = creatorsByCover.get(l.cover_id) ?? [];
-    list.push(c);
+    list.push({ ...c, role: l.role ?? c.role });
     creatorsByCover.set(l.cover_id, list);
   }
   const covers: Cover[] = raw.covers
