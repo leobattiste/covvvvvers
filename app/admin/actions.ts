@@ -212,3 +212,21 @@ export async function markFeedback(form: FormData) {
   await db.from("feedback").update({ status }).eq("id", String(form.get("id") ?? ""));
   revalidatePath("/admin/feedback");
 }
+
+/** Applies a deliberate bulk action to selected cover records only. */
+export async function bulkCoverAction(ids: string[], action: "draft" | "delete"): Promise<{ ok: boolean; message: string }> {
+  const db = await adminClient();
+  if (!Array.isArray(ids) || !ids.length || ids.length > 200 || !["draft", "delete"].includes(action)) return { ok: false, message: "Choose 1 to 200 covers." };
+  const valid = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+  const unique = [...new Set(ids)];
+  if (unique.some(id => !valid.test(id))) return { ok: false, message: "Invalid cover selection." };
+  const { data: found, error: readError } = await db.from("covers").select("id").in("id", unique);
+  if (readError || found?.length !== unique.length) return { ok: false, message: "Some covers could not be found. Refresh and try again." };
+  const result = action === "draft"
+    ? await db.from("covers").update({ status: "draft", updated_at: new Date().toISOString() }).in("id", unique).select("id")
+    : await db.from("covers").delete().in("id", unique).select("id");
+  if (result.error || result.data?.length !== unique.length) return { ok: false, message: result.error?.message ?? "Some changes could not be completed. Refresh the list." };
+  revalidatePath("/", "layout");
+  revalidatePath("/admin/covers");
+  return { ok: true, message: `${unique.length} cover${unique.length === 1 ? "" : "s"} ${action === "draft" ? "moved to drafts" : "deleted"}.` };
+}
