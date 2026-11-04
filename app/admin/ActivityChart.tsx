@@ -8,7 +8,7 @@ export default function ActivityChart({points}:{points:{date:string;events:numbe
  const coords=data.map((p,i)=>({x:25+i*750/Math.max(1,data.length-1),y:170-145*p.events/max,...p}));
  const line=coords.map((p,i)=>(i?"L":"M")+p.x+" "+p.y).join(" ");
  return <section className="cms-chart-card">
-  <div className="cms-chart-header"><div><span className="cms-eyebrow">SITE ACTIVITY</span><h2>Activity overview</h2><p>Community interactions recorded in Covvvers</p></div><div className="cms-chart-period">{[7,30].map(n=><button type="button" key={n} className={days===n?"is-active":""} aria-pressed={days===n} onClick={()=>setDays(n)}>{n} days</button>)}</div></div>
+  <div className="cms-chart-header"><div><span className="cms-eyebrow">SITE ACTIVITY</span><h2>Activity overview</h2><p>Editorial changes recorded in Covvvers</p></div><div className="cms-chart-period">{[7,30].map(n=><button type="button" key={n} className={days===n?"is-active":""} aria-pressed={days===n} onClick={()=>setDays(n)}>{n} days</button>)}</div></div>
   <div className="cms-chart-summary"><strong>{total.toLocaleString("en-US")}</strong><span>events in the last {days} days</span></div>
   <svg className="cms-chart-svg" viewBox="0 0 800 200" preserveAspectRatio="none" role="img" aria-label={"Site events over "+days+" days"}>
    {[0,.25,.5,.75,1].map(f=><line key={f} x1="25" x2="775" y1={170-f*145} y2={170-f*145} stroke="currentColor" strokeOpacity=".12"/>)}
