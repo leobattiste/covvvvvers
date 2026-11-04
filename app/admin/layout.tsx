@@ -12,7 +12,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
   return (
     <div className="cms-shell">
       <aside className="cms-sidebar" aria-label="Admin navigation">
-        <Link href="/admin" className="cms-brand">Covvvers.com <span>CMS</span></Link>
+        <Link href="/admin" className="cms-brand">Covvvers <span>CMS</span></Link>
         {groups.map((group) => (
           <nav key={group.label} aria-label={group.label}>
             <h2>{group.label}</h2>
