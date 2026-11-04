@@ -3,6 +3,7 @@ import Link from "next/link";
 import { requireAdmin } from "@/lib/admin";
 import FetchArt from "./FetchArt";
 import MoveImages from "./MoveImages";
+import ActivityChart from "./ActivityChart";
 
 export const dynamic = "force-dynamic";
 export const metadata: Metadata = { title: "Admin", robots: { index: false } };
@@ -35,7 +36,7 @@ export default async function AdminHome() {
   ];
   const shortcuts = [
     { label: "Manage covers", href: "/admin/covers", detail: "Edit the archive" },
-    { label: "Artwork library", href: "/admin/media", detail: `${noImage} missing · ${lowRes} low resolution` },
+    { label: "Image health", href: "/admin/covers", detail: `${noImage} missing · ${lowRes} low resolution` },
     { label: "Creators", href: "/admin/creators", detail: "Credits and attribution" },
     { label: "Cover types", href: "/admin/types", detail: "Collection taxonomy" },
     { label: "Newsletter", href: "/admin/newsletter", detail: `${subscribers} subscribers` },
@@ -46,9 +47,9 @@ export default async function AdminHome() {
     <div className="cms-overview">
       <header className="cms-overview-head">
         <div>
-          <span className="cms-eyebrow">OVERVIEW / COVVVERS</span>
-          <h1>Overview</h1>
-          <p>Your collection at a glance. Keep the archive accurate, complete, and ready to explore.</p>
+          <span className="cms-eyebrow">WORKSPACE</span>
+          <h1>Dashboard</h1>
+          <p>Manage your collection, community, and editorial workflow in one place.</p>
         </div>
         <Link href="/admin/covers" className="button solid">Manage covers ↗</Link>
       </header>
