@@ -10,7 +10,6 @@ import CoverCard, { cardMeta } from "./CoverCard";
 type Sort = "newest" | "oldest" | "saved" | "added";
 type Filters = { type: string; color: string; decade: string; q: string; sort: Sort };
 const PAGE_SIZE = 24;
-const PAGE_SIZE = 24;
 const EMPTY: Filters = { type: "", color: "", decade: "", q: "", sort: "newest" };
 
 const SORTS: { value: Sort; label: string }[] = [
@@ -36,7 +35,6 @@ export default function CoverGrid({ covers, filters = false, types = [], emptyTe
   const [f, setF] = useState<Filters>(EMPTY);
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
   const [initialized, setInitialized] = useState(false);
-  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
   const [restoring, setRestoring] = useState(filters);
   const [saves, setSaves] = useState<Map<string, number> | null>(null);
   const sheet = useRef<HTMLDialogElement>(null);
@@ -54,20 +52,16 @@ export default function CoverGrid({ covers, filters = false, types = [], emptyTe
       q: p.get("q") ?? "",
       sort: sort && SORTS.some((s) => s.value === sort) ? sort : "newest",
     });
-    const key = `covvvvvers:grid:${window.location.pathname}${window.location.search}`;
-    try {
-      const previous = Number(window.sessionStorage.getItem(key));
-      if (Number.isFinite(previous) && previous >= PAGE_SIZE) setVisibleCount(Math.ceil(previous / PAGE_SIZE) * PAGE_SIZE);
-    } catch { /* Storage may be disabled. */ }
     setInitialized(true);
     const page = Math.max(1, Math.min(1000, Number(p.get("page")) || 1));
     setVisibleCount(page * PAGE_SIZE);
     if (p.get("focus") === "search") search.current?.focus();
     const scrollKey = `covers-scroll:${window.location.pathname}${window.location.search}`;
-    const savedY = sessionStorage.getItem(scrollKey);
+    let savedY: string | null = null;
+    try { savedY = sessionStorage.getItem(scrollKey); } catch { /* Storage may be disabled. */ }
     if (savedY) {
       requestAnimationFrame(() => requestAnimationFrame(() => window.scrollTo(0, Number(savedY))));
-      sessionStorage.removeItem(scrollKey);
+      try { sessionStorage.removeItem(scrollKey); } catch { /* Storage may be disabled. */ }
     }
     setRestoring(false);
   }, [filters]);
@@ -79,16 +73,7 @@ export default function CoverGrid({ covers, filters = false, types = [], emptyTe
     if (visibleCount > PAGE_SIZE) p.set("page", String(Math.ceil(visibleCount / PAGE_SIZE)));
     const qs = p.toString();
     window.history.replaceState(window.history.state, "", qs ? `?${qs}` : window.location.pathname);
-  }, [f, filters, initialized]);
-
-  // Keep the expanded grid when returning from an album detail page.
-  useEffect(() => {
-    if (!filters || !initialized) return;
-    try {
-      const key = `covvvvvers:grid:${window.location.pathname}${window.location.search}`;
-      window.sessionStorage.setItem(key, String(visibleCount));
-    } catch { /* Storage may be disabled. */ }
-  }, [filters, initialized, f, visibleCount]);
+  }, [f, filters, initialized, visibleCount]);
 
   // Store scroll position before opening a cover, so Back returns to the same row.
   useEffect(() => {
@@ -97,7 +82,7 @@ export default function CoverGrid({ covers, filters = false, types = [], emptyTe
       const target = event.target;
       if (!(target instanceof Element) || !target.closest("a[data-cover-link]")) return;
       const key = `covers-scroll:${window.location.pathname}${window.location.search}`;
-      sessionStorage.setItem(key, String(window.scrollY));
+      try { sessionStorage.setItem(key, String(window.scrollY)); } catch { /* Storage may be disabled. */ }
     };
     document.addEventListener("click", remember, true);
     return () => document.removeEventListener("click", remember, true);
@@ -278,14 +263,6 @@ export default function CoverGrid({ covers, filters = false, types = [], emptyTe
             </li>
           ))}
         </ul>
-      )}
-      {filters && shown.length > visibleCount && (
-        <div className="load-more" role="group" aria-label="Load more covers">
-          <p aria-live="polite">Showing {Math.min(visibleCount, shown.length)} of {shown.length} covers</p>
-          <button type="button" className="button" onClick={() => setVisibleCount((n) => n + PAGE_SIZE)}>
-            Load more covers
-          </button>
-        </div>
       )}
       {filters && shown.length > 0 && (
         <div className="cover-pagination">
