@@ -1204,6 +1204,36 @@
       "slug": "wolf-haley",
       "name": "Wolf Haley",
       "role": "Art Director"
+    },
+    {
+      "id": "c0de0181-1234-4abc-8def-000000000182",
+      "slug": "doug-rowell",
+      "name": "Doug Rowell",
+      "role": "Photographer"
+    },
+    {
+      "id": "c0de0182-1234-4abc-8def-000000000183",
+      "slug": "richard-slick-wyrgatsch",
+      "name": "Richard “Slick” Wyrgatsch",
+      "role": "Illustrator"
+    },
+    {
+      "id": "c0de0183-1234-4abc-8def-000000000184",
+      "slug": "arnold-turner",
+      "name": "Arnold Turner",
+      "role": "Photographer"
+    },
+    {
+      "id": "c0de0184-1234-4abc-8def-000000000185",
+      "slug": "lili-picou",
+      "name": "Lili Picou",
+      "role": "Art Director"
+    },
+    {
+      "id": "c0de0185-1234-4abc-8def-000000000186",
+      "slug": "john-jay",
+      "name": "John Jay",
+      "role": "Photographer"
     }
   ],
   "covers": [
@@ -6026,6 +6056,30 @@
     {
       "cover_id": "86a9ad88-943d-4449-9814-a2952a5957da",
       "creator_id": "62d86a15-1637-4957-800e-aaeca8bdb8c5"
+    },
+    {
+      "cover_id": "d0c00101-a25b-4e3d-9d1a-000000000001",
+      "creator_id": "c0de0181-1234-4abc-8def-000000000182"
+    },
+    {
+      "cover_id": "d0c00102-a25b-4e3d-9d1a-000000000002",
+      "creator_id": "c0de0182-1234-4abc-8def-000000000183"
+    },
+    {
+      "cover_id": "d0c00103-a25b-4e3d-9d1a-000000000003",
+      "creator_id": "c0de0183-1234-4abc-8def-000000000184"
+    },
+    {
+      "cover_id": "d0c00103-a25b-4e3d-9d1a-000000000003",
+      "creator_id": "0fdb8d68-397e-4ba6-9bba-4325449768a0"
+    },
+    {
+      "cover_id": "d0c00103-a25b-4e3d-9d1a-000000000003",
+      "creator_id": "c0de0184-1234-4abc-8def-000000000185"
+    },
+    {
+      "cover_id": "d0c00105-a25b-4e3d-9d1a-000000000005",
+      "creator_id": "c0de0185-1234-4abc-8def-000000000186"
     }
   ]
 }
