@@ -67,11 +67,13 @@ export default function CoverEditor({ initial, types, creatorNames }: Props) {
   const [imageLink,setImageLink] = useState("");
   const [autoState,setAutoState] = useState("saved");
   const savedSnapshot=useRef(JSON.stringify(initial));
+  const failedSnapshot=useRef("");
   const savingLock=useRef(false);
   useEffect(()=>{
     if(f.status!=="draft"||uploading||savingLock.current)return;
     const snapshot=JSON.stringify(f);
     if(snapshot===savedSnapshot.current){setAutoState("saved");return;}
+    if(snapshot===failedSnapshot.current)return;
     setAutoState("unsaved");
     const timer=setTimeout(async()=>{
       if(savingLock.current)return;
@@ -79,9 +81,9 @@ export default function CoverEditor({ initial, types, creatorNames }: Props) {
       setAutoState("saving");
       try{
         const result=await saveCover({...f,status:"draft"});
-        if(result.ok){savedSnapshot.current=snapshot;setAutoState("saved");}
-        else{setAutoState("error");setMsg({ok:false,text:"Autosave: "+result.message});}
-      }catch(e){setAutoState("error");setMsg({ok:false,text:"Autosave: "+(e instanceof Error?e.message:"Unknown error")});}
+        if(result.ok){savedSnapshot.current=snapshot;failedSnapshot.current="";setAutoState("saved");}
+        else{failedSnapshot.current=snapshot;setAutoState("error");setMsg({ok:false,text:"Autosave: "+result.message});}
+      }catch(e){failedSnapshot.current=snapshot;setAutoState("error");setMsg({ok:false,text:"Autosave: "+(e instanceof Error?e.message:"Unknown error")});}
       finally{savingLock.current=false;}
     },1800);
     return ()=>clearTimeout(timer);
@@ -140,7 +142,7 @@ export default function CoverEditor({ initial, types, creatorNames }: Props) {
     try {
       const res = await saveCover({ ...f, status });
       setMsg({ ok: res.ok, text: res.message });
-      if (res.ok){const next={...f,status,slug:res.slug??f.slug};savedSnapshot.current=JSON.stringify(next);setAutoState("saved");setF(next);}
+      if (res.ok){const next={...f,status,slug:res.slug??f.slug};savedSnapshot.current=JSON.stringify(next);failedSnapshot.current="";setAutoState("saved");setF(next);}
     } catch (error) {
       setMsg({ok:false,text:error instanceof Error?error.message:"Unable to save this cover."});
     } finally {
