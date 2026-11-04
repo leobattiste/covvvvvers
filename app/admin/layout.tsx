@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { requireAdmin } from "@/lib/admin";
 import AdminNavigation from "./AdminNavigation";
 
@@ -8,13 +7,6 @@ export default async function AdminLayout({ children }: { children: React.ReactN
     <div className="cms-shell">
       <AdminNavigation />
       <div className="cms-workspace">
-        <div className="cms-toolbar">
-          <span className="cms-toolbar-label">EDITORIAL WORKSPACE</span>
-          <div className="cms-toolbar-actions">
-            <Link href="/admin/covers" className="cms-top-action">Manage covers</Link>
-            <Link href="/covers" className="cms-top-visit">View site ↗</Link>
-          </div>
-        </div>
         <main className="cms-main" id="admin-content">{children}</main>
       </div>
     </div>
