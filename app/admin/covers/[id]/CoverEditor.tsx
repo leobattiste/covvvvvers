@@ -114,10 +114,15 @@ export default function CoverEditor({ initial, types, creatorNames }: Props) {
   const submit = async (status: "draft" | "published") => {
     setSaving(true);
     setMsg(null);
-    const res = await saveCover({ ...f, status });
-    setSaving(false);
-    setMsg({ ok: res.ok, text: res.message });
-    if (res.ok) setF((x) => ({ ...x, status, slug: res.slug ?? x.slug }));
+    try {
+      const res = await saveCover({ ...f, status });
+      setMsg({ ok: res.ok, text: res.message });
+      if (res.ok) setF((x) => ({ ...x, status, slug: res.slug ?? x.slug }));
+    } catch (error) {
+      setMsg({ok:false,text:error instanceof Error?error.message:"Unable to save this cover."});
+    } finally {
+      setSaving(false);
+    }
   };
 
 
@@ -303,7 +308,8 @@ export default function CoverEditor({ initial, types, creatorNames }: Props) {
             <span>Pull quote (not currently displayed on the public cover page)</span>
             <textarea {...field("pull_quote")} rows={2} />
           </label>
-          <div className="cms-editor-section-heading"><span>05 / LINKS</span><h3>Listen to the album</h3><p>Displayed in the public Listen row. Blank fields use search links.</p></div>
+          <div className="cms-editor-section-heading"><span>05 / LINKS</span><h3>Listen to the album</h3><p>MusicBrainz supplies recognized album links when available. Search links are used otherwise. Edit only when you need a different destination.</p></div>
+          <details className="cms-editor-optional-links"><summary>Review or override listening links</summary>
           <label>
             <span>Spotify album link</span>
             <input {...field("spotify_url")} placeholder="https://open.spotify.com/album/..." />
@@ -316,6 +322,7 @@ export default function CoverEditor({ initial, types, creatorNames }: Props) {
             <span>YouTube link</span>
             <input {...field("youtube_url")} />
           </label>
+          </details>
           <div className="cms-editor-section-heading"><span>06 / PUBLISHING</span><h3>Publication settings</h3><p>Control the cover URL and featured status.</p></div>
           <label>
             <span>Web address</span>
