@@ -18,7 +18,7 @@ export default async function AdminTypes() {
       <label>Description (optional)<input name="description" maxLength={1200} placeholder="What defines this cover style?" /></label>
       <button className="button solid" type="submit">＋ Add type</button>
     </form>
-    {error && <p role="alert">Could not load cover types.</p>
+    {error && <p role="alert">Could not load cover types.</p>}
     <div className="cms-edit-list">{(data ?? []).map(t => <form action={saveCoverType} className="cms-edit-row" key={t.id}>
       <input type="hidden" name="id" value={t.id} />
       <label>Title<input name="title" defaultValue={t.title} maxLength={120} required /></label>
@@ -26,10 +26,11 @@ export default async function AdminTypes() {
       <label>Order<input name="sort_order" type="number" min={0} max={10000} defaultValue={t.sort_order ?? 0} required /></label>
       <button className="button" type="submit">✓ Save</button>
     </form>)}
+    </div>
     <div className="cms-type-deletions">{(data ?? []).map(t=><form action={deleteCoverType} key={t.id}>
       <input type="hidden" name="id" value={t.id} />
       <span>{t.title}</span>
       <button type="submit" className="button danger" title="Deleting a type clears its classification from covers">✕ Delete type</button>
-    </form>)}</div>}</div>
+    </form>)}</div>
   </section>;
 }
