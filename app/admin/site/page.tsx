@@ -2,13 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { requireAdmin } from "@/lib/admin";
 import { saveHomepage } from "./actions";
+import { saveFooter } from "./footer-actions";
 
 export const dynamic = "force-dynamic";
 export const metadata: Metadata = { title: "Homepage | Admin", robots: { index: false } };
 
 export default async function HomepageSettings() {
  const { db } = await requireAdmin("/admin/site");
- const { data, error } = await db.from("site_settings").select("key,value").in("key", ["home_title", "home_description"]);
+ const { data, error } = await db.from("site_settings").select("key,value").in("key", ["home_title", "home_description", "footer_description"]);
  const values = Object.fromEntries((data ?? []).map(x => [x.key, x.value]));
  return <section className="panel wide">
   <p className="crumb"><Link href="/admin">Admin</Link></p>
@@ -18,6 +19,12 @@ export default async function HomepageSettings() {
     <label>Headline<input name="home_title" defaultValue={values.home_title ?? "Every rap album cover has a story."} maxLength={120} required /></label>
     <label>Supporting description<textarea name="home_description" defaultValue={values.home_description ?? ""} maxLength={300} rows={4} placeholder="Automatic cover count and year range" /></label>
     <button className="button solid" type="submit">Save homepage</button>
+  </form>}
+  <h2>Footer</h2>
+  <p>Manage the description displayed on every page.</p>
+  {!error && <form action={saveFooter} className="stack" style={{ maxWidth: 720, marginTop: 24 }}>
+    <label>Footer description<textarea name="footer_description" defaultValue={values.footer_description ?? ""} maxLength={400} rows={4} required /></label>
+    <button className="button solid" type="submit">Save footer</button>
   </form>}
  </section>;
 }
