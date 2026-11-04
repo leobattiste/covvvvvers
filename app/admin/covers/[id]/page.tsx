@@ -15,12 +15,12 @@ export default async function EditCover({ params }: { params: Promise<{ id: stri
   const [{ data: cover }, { data: types }, { data: links }, { data: creators }] = await Promise.all([
     db.from("covers").select("*").eq("id", id).maybeSingle(),
     db.from("cover_types").select("id, title").order("sort_order"),
-    db.from("cover_creators").select("creator_id").eq("cover_id", id),
+    db.from("cover_creators").select("creator_id,role").eq("cover_id", id),
     db.from("creators").select("id, name, role").order("name"),
   ]);
   if (!cover) notFound();
-  const linked = new Set((links ?? []).map((l) => l.creator_id));
-  const people = (creators ?? []).filter((c) => linked.has(c.id)).map((c) => ({ name: c.name, role: c.role ?? "" }));
+  const creditRoles = new Map((links ?? []).map((l) => [l.creator_id,l.role]));
+  const people = (creators ?? []).filter((c) => creditRoles.has(c.id)).map((c) => ({ name: c.name, role: creditRoles.get(c.id) ?? c.role ?? "" }));
 
   return (
     <section className="panel wide">
