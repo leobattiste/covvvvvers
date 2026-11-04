@@ -10,6 +10,7 @@ import CoverCard, { cardMeta } from "./CoverCard";
 type Sort = "newest" | "oldest" | "saved" | "added";
 type Filters = { type: string; color: string; decade: string; q: string; sort: Sort };
 const PAGE_SIZE = 24;
+const PAGE_SIZE = 24;
 const EMPTY: Filters = { type: "", color: "", decade: "", q: "", sort: "newest" };
 
 const SORTS: { value: Sort; label: string }[] = [
@@ -35,6 +36,8 @@ export default function CoverGrid({ covers, filters = false, types = [], emptyTe
   const [f, setF] = useState<Filters>(EMPTY);
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
   const [initialized, setInitialized] = useState(false);
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
+  const [restoring, setRestoring] = useState(filters);
   const [saves, setSaves] = useState<Map<string, number> | null>(null);
   const sheet = useRef<HTMLDialogElement>(null);
   const search = useRef<HTMLInputElement>(null);
@@ -57,13 +60,23 @@ export default function CoverGrid({ covers, filters = false, types = [], emptyTe
       if (Number.isFinite(previous) && previous >= PAGE_SIZE) setVisibleCount(Math.ceil(previous / PAGE_SIZE) * PAGE_SIZE);
     } catch { /* Storage may be disabled. */ }
     setInitialized(true);
+    const page = Math.max(1, Math.min(1000, Number(p.get("page")) || 1));
+    setVisibleCount(page * PAGE_SIZE);
     if (p.get("focus") === "search") search.current?.focus();
+    const scrollKey = `covers-scroll:${window.location.pathname}${window.location.search}`;
+    const savedY = sessionStorage.getItem(scrollKey);
+    if (savedY) {
+      requestAnimationFrame(() => requestAnimationFrame(() => window.scrollTo(0, Number(savedY))));
+      sessionStorage.removeItem(scrollKey);
+    }
+    setRestoring(false);
   }, [filters]);
 
   useEffect(() => {
     if (!filters || !initialized) return;
     const p = new URLSearchParams();
     (Object.entries(f) as [keyof Filters, string][]).forEach(([k, v]) => v && !(k === "sort" && v === "newest") && p.set(k, v));
+    if (visibleCount > PAGE_SIZE) p.set("page", String(Math.ceil(visibleCount / PAGE_SIZE)));
     const qs = p.toString();
     window.history.replaceState(window.history.state, "", qs ? `?${qs}` : window.location.pathname);
   }, [f, filters, initialized]);
@@ -76,6 +89,19 @@ export default function CoverGrid({ covers, filters = false, types = [], emptyTe
       window.sessionStorage.setItem(key, String(visibleCount));
     } catch { /* Storage may be disabled. */ }
   }, [filters, initialized, f, visibleCount]);
+
+  // Store scroll position before opening a cover, so Back returns to the same row.
+  useEffect(() => {
+    if (!filters || restoring) return;
+    const remember = (event: MouseEvent) => {
+      const target = event.target;
+      if (!(target instanceof Element) || !target.closest("a[data-cover-link]")) return;
+      const key = `covers-scroll:${window.location.pathname}${window.location.search}`;
+      sessionStorage.setItem(key, String(window.scrollY));
+    };
+    document.addEventListener("click", remember, true);
+    return () => document.removeEventListener("click", remember, true);
+  }, [filters, restoring]);
 
   // Save counts load only when someone sorts by them.
   useEffect(() => {
@@ -132,6 +158,10 @@ export default function CoverGrid({ covers, filters = false, types = [], emptyTe
   };
 
   const visible = shown.slice(0, filters ? visibleCount : shown.length);
+  const updateFilter = (next: Filters) => {
+    setVisibleCount(PAGE_SIZE);
+    setF(next);
+  };
   const activeCount = [f.type, f.color, f.decade].filter(Boolean).length;
   const set = (k: keyof Filters) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) =>
     { setVisibleCount(PAGE_SIZE); setF({ ...f, [k]: e.target.value }); };
@@ -248,6 +278,14 @@ export default function CoverGrid({ covers, filters = false, types = [], emptyTe
             </li>
           ))}
         </ul>
+      )}
+      {filters && shown.length > visibleCount && (
+        <div className="load-more" role="group" aria-label="Load more covers">
+          <p aria-live="polite">Showing {Math.min(visibleCount, shown.length)} of {shown.length} covers</p>
+          <button type="button" className="button" onClick={() => setVisibleCount((n) => n + PAGE_SIZE)}>
+            Load more covers
+          </button>
+        </div>
       )}
       {filters && shown.length > 0 && (
         <div className="cover-pagination">
