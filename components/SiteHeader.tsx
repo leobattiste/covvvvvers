@@ -60,7 +60,7 @@ export default function SiteHeader() {
     <header className="site-header">
       <div className="header-bar">
         <Link href="/" className="wordmark">
-          Covvvers.com
+          Covvvers
         </Link>
         <div className="header-actions" ref={wrap}>
           <button type="button" className="shuffle" onClick={() => shuffle(router)} title="Random cover (R)" aria-label="Random cover">
