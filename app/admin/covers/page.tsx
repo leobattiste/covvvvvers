@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { requireAdmin } from "@/lib/admin";
 import CoverBulkList from "./CoverBulkList";
-import { newCover } from "../actions";
 
 export const dynamic = "force-dynamic";
 export const metadata: Metadata = { title: "Edit covers", robots: { index: false } };
@@ -26,13 +25,6 @@ export default async function AdminCovers({ searchParams }: { searchParams: Prom
         <Link href="/admin">Admin</Link>
       </p>
       <h1>Covers</h1>
-      <form action={newCover} className="admin-new">
-        <input name="title" placeholder="Album title" aria-label="Album title" required />
-        <input name="artist" placeholder="Artist" aria-label="Artist" required />
-        <button className="button solid" type="submit">
-          Start a new cover
-        </button>
-      </form>
       <form className="admin-search" method="get">
         <input name="q" defaultValue={q} placeholder="Find a cover" aria-label="Find a cover" type="search" />
         <select name="status" defaultValue={status} aria-label="Status">
