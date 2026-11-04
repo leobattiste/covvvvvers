@@ -41,3 +41,23 @@ export async function saveCoverType(form: FormData) {
   revalidatePath("/admin/types");
   revalidatePath("/", "layout");
 }
+
+export async function createCoverType(form: FormData) {
+  const db = await adminClient();
+  const title = field(form,"title",120);
+  const description = field(form,"description",1200);
+  if(!title) throw new Error("Type title is required.");
+  const slug = slugify(title);
+  if(!slug) throw new Error("Invalid type name.");
+  const { data: last } = await db.from("cover_types").select("sort_order").order("sort_order",{ascending:false}).limit(1).maybeSingle();
+  const { error } = await db.from("cover_types").insert({ title, slug, description: description||null, sort_order: (last?.sort_order??0)+1 });
+  if(error) throw new Error("Could not create cover type. Check for an existing name.");
+  revalidatePath("/admin/types");revalidatePath("/", "layout");
+}
+export async function deleteCoverType(form: FormData) {
+  const db = await adminClient();
+  const id = uuid(field(form,"id"));
+  const { error } = await db.from("cover_types").delete().eq("id",id);
+  if(error) throw new Error("Could not delete cover type.");
+  revalidatePath("/admin/types");revalidatePath("/", "layout");
+}
