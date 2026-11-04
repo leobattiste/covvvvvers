@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { adminClient } from "@/lib/admin";
 import { decadeOf, paragraphsToHtml, slugify } from "@/lib/text";
+import sharp from "sharp";
 
 /** Approve, reject or reopen a submission. "draft" approves it and opens a new draft cover. */
 export async function reviewSubmission(form: FormData) {
@@ -181,10 +182,11 @@ export async function saveCover(input: CoverInput): Promise<SaveResult> {
     }
     // Add new links first so a failed insert does not erase all existing credits.
     const uniqueIds=[...new Set(ids)];
+    const creditRows=people.map((person,i)=>({creator_id:ids[i],role:person.role||null}));
     if(uniqueIds.length){
       const {error:linkError}=await db.from("cover_creators").upsert(
-        uniqueIds.map(creator_id=>({cover_id:input.id,creator_id})),
-        {onConflict:"cover_id,creator_id",ignoreDuplicates:true}
+        creditRows.map(x=>({cover_id:input.id,creator_id:x.creator_id,role:x.role})),
+        {onConflict:"cover_id,creator_id"}
       );
       if(linkError)return {ok:false,message:"Cover saved, but credits could not be linked: "+linkError.message};
     }
@@ -260,11 +262,17 @@ export async function addMusicBrainzCover(groupId: string): Promise<{id:string;e
  const artist=((group["artist-credit"] as ArtistPart[] | undefined) ?? []).map(x=>typeof x==="string"?x:(x.name??"")+(x.joinphrase??"")).join("").trim().slice(0,250);
  const year=Number(String(group["first-release-date"]??"").slice(0,4));
  if(!title||!artist||!Number.isInteger(year)||year<1970||year>2100)throw new Error("This album has incomplete metadata. Please verify it on MusicBrainz.");
+ const {data:existingMb,error:mbError}=await db.from("covers").select("id").eq("musicbrainz_release_group_id",groupId).maybeSingle();
+ if(mbError)throw new Error(mbError.message);
+ if(existingMb)return {id:existingMb.id,existing:true};
  const {data:matching,error:lookupError}=await db.from("covers").select("id,title,artist,release_year").eq("release_year",year).ilike("artist",artist.replace(/[\\%_]/g,x=>"\\"+x)).limit(100);
  if(lookupError)throw new Error(lookupError.message);
  const norm=(x:string)=>x.normalize("NFKC").trim().toLocaleLowerCase();
  const duplicate=matching?.find(c=>norm(c.artist)===norm(artist)&&norm(c.title)===norm(title));
- if(duplicate)return {id:duplicate.id,existing:true};
+ if(duplicate){
+  await db.from("covers").update({musicbrainz_release_group_id:groupId}).eq("id",duplicate.id).is("musicbrainz_release_group_id",null);
+  return {id:duplicate.id,existing:true};
+ }
  const releaseData=await read("/release/?release-group="+groupId+"&limit=100&inc=labels&fmt=json");
  const editions:Edition[]=releaseData.releases??[];
  // Prefer original, official releases with artwork over reissues and compilations.
