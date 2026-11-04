@@ -24,7 +24,7 @@ export default function PasswordAuthForm({ next = "/me" }: { next?: string }) {
   setBusy(true);
   try {
    if(mode==="reset") {
-    const {error}=await db.auth.resetPasswordForEmail(email,{redirectTo:window.location.origin+"/auth/reset"});
+    const {error}=await db.auth.resetPasswordForEmail(email,{redirectTo:window.location.origin+"/auth/callback?next="+encodeURIComponent("/auth/reset")});
     if(error)throw error;
     setNotice("If an account exists for that email, you will receive a password reset link.");
    } else if(mode==="signup") {
