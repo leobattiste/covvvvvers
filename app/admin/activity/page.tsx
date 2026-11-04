@@ -21,6 +21,7 @@ export default async function AdminActivity() {
    .select("id, created_at, actor_id, entity_table, entity_id, action, before_data, after_data")
    .order("created_at", { ascending: false }).limit(100);
  const events = (data ?? []) as Audit[];
+ const {data:siteEvents,error:siteError}=await db.from("site_activity").select("id,created_at,actor_id,event_type,entity_table").order("created_at",{ascending:false}).limit(100);
  const [{count:members},{count:newMembers},{data:signups},{count:publishedCovers},{count:pendingSubmissions}] = await Promise.all([
    db.from("profiles").select("id",{count:"exact",head:true}),
    db.from("profiles").select("id",{count:"exact",head:true}).gte("created_at",new Date(Date.now()-30*86400000).toISOString()),
@@ -44,6 +45,17 @@ export default async function AdminActivity() {
    </section>
    <section className="cms-activity-signups"><h2>◉ Recent member signups</h2>
      <ul className="admin-list">{(signups??[]).map(member=><li key={member.id}><div className="cms-list-row"><strong>{member.display_name||member.username||"Member"}</strong><span>Joined</span><time dateTime={member.created_at}>{new Date(member.created_at).toLocaleString("en-US")}</time></div></li>)}</ul>
+   </section>
+   <section className="cms-activity-site"><h2>◉ Site activity</h2>
+     <p>Recent signups, saves, ratings, lists, submissions, feedback, newsletter changes and moderation events. Recording starts from when activity tracking was enabled.</p>
+     {siteError&&<p role="alert">Site activity is temporarily unavailable.</p>}
+     <ul className="admin-list">{(siteEvents??[]).map(e=><li key={e.id}><div className="cms-list-row">
+       <strong>{e.entity_table.replaceAll("_"," ")}</strong>
+       <span>{e.event_type==="INSERT"?"Added":e.event_type==="DELETE"?"Removed":"Updated"}</span>
+       <time dateTime={e.created_at}>{new Date(e.created_at).toLocaleString("en-US")}</time>
+       <span>{e.actor_id?"Member activity":"Visitor or system"}</span>
+     </div></li>)}</ul>
+     {!siteError&&!siteEvents?.length&&<p>No site events have been recorded yet.</p>}
    </section>
    <h2>◉ Editorial activity</h2>
    {error && <p role="alert">Unable to load activity history.</p>}
