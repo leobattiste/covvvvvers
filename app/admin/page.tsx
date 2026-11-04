@@ -28,6 +28,13 @@ export default async function AdminHome() {
     count(db.from("covers").select("id", { count: "exact", head: true }).lt("image_width", 1200)),
   ]);
 
+  const start = new Date();
+  start.setDate(start.getDate()-29);
+  const {data:chartEvents}=await db.from("admin_audit_log").select("created_at").gte("created_at",start.toISOString()).limit(1000);
+  const activityPoints=Array.from({length:30},(_,i)=>{
+    const date=new Date(start.getTime()+i*86400000).toISOString().slice(0,10);
+    return {date,events:(chartEvents??[]).filter(event=>event.created_at.startsWith(date)).length};
+  });
   const stats = [
     { label: "Published covers", value: published, href: "/admin/covers", detail: "Live in the collection" },
     { label: "Draft covers", value: drafts, href: "/admin/covers", detail: "Still in progress" },
@@ -60,6 +67,7 @@ export default async function AdminHome() {
           <span className="cms-stat-detail">{stat.detail} <span aria-hidden="true">↗</span></span>
         </Link>)}
       </section>
+      <ActivityChart points={activityPoints}/>
       <div className="cms-overview-columns">
         <section className="cms-section">
           <div className="cms-section-heading"><div><span className="cms-eyebrow">COLLECTION</span><h2>Recently edited</h2></div><Link href="/admin/covers">All covers ↗</Link></div>
