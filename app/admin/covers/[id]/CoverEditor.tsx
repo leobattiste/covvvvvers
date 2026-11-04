@@ -7,6 +7,7 @@ import { fullImage } from "@/lib/img";
 import { getBrowserClient } from "@/lib/supabase/client";
 import { slugify } from "@/lib/text";
 import { saveCover, type CoverInput } from "../../actions";
+import MusicBrainzImport, { type MusicBrainzSelection } from "./MusicBrainzImport";
 
 type Props = {
   initial: CoverInput;
@@ -120,6 +121,21 @@ export default function CoverEditor({ initial, types, creatorNames }: Props) {
     if (res.ok) setF((x) => ({ ...x, status, slug: res.slug ?? x.slug }));
   };
 
+  const importMusicBrainz = (item: MusicBrainzSelection) => {
+    setF(previous=>({
+      ...previous,
+      title:item.title||previous.title,
+      artist:item.artist||previous.artist,
+      release_year:item.year??previous.release_year,
+      country:item.country||previous.country,
+      label:item.label||previous.label,
+      image_url:item.imageUrl??previous.image_url,
+      image_width:item.imageUrl?null:previous.image_width,
+      image_height:item.imageUrl?null:previous.image_height,
+    }));
+    setMsg({ok:true,text:"MusicBrainz metadata applied. Review the fields and save as a draft or publish when ready."});
+  };
+
   const people = f.creators;
   const setPerson = (i: number, k: "name" | "role", v: string) =>
     set(
@@ -129,6 +145,7 @@ export default function CoverEditor({ initial, types, creatorNames }: Props) {
 
   return (
     <form className="editor" onSubmit={(e) => e.preventDefault()}>
+      <MusicBrainzImport onImport={importMusicBrainz} />
       <div className="editor-grid">
         <div className="editor-art">
           <div className="editor-preview" style={{ backgroundColor: f.color || "#eee" }}>
