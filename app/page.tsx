@@ -1,3 +1,5 @@
+import { createClient } from "@supabase/supabase-js";
+import { SUPABASE_ANON_KEY, SUPABASE_URL, supabaseEnabled } from "@/lib/supabase/config";
 import HeroRing, { type RingCover } from "@/components/HeroRing";
 import { getCovers } from "@/lib/data";
 import { squareImage } from "@/lib/img";
@@ -6,6 +8,11 @@ export const revalidate = 3600;
 
 export default async function Home() {
   const covers = (await getCovers()).filter((c) => c.image_url);
+  const settings = supabaseEnabled
+    ? await createClient(SUPABASE_URL, SUPABASE_ANON_KEY, { auth: { persistSession: false } })
+        .from("site_settings").select("key,value").in("key", ["home_title", "home_description"])
+    : { data: null };
+  const siteText = Object.fromEntries((settings.data ?? []).map((row) => [row.key, row.value]));
   const since = Math.min(...covers.map((c) => c.release_year));
 
   // 32 covers for the two rings, spread across the years and mixed so neighbours differ.
@@ -25,8 +32,8 @@ export default async function Home() {
   return (
     <HeroRing
       covers={ring}
-      title="Every rap album cover has a story."
-      sub={`${covers.length} covers from ${since} to now, and the people, places and ideas behind each one.`}
+      title={siteText.home_title || "Every rap album cover has a story."}
+      sub={siteText.home_description || `${covers.length} covers from ${since} to now, and the people, places and ideas behind each one.`}
     />
   );
 }
