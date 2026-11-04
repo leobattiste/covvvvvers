@@ -17,9 +17,9 @@ import "./styles/components.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: { default: "Covvvers.com", template: "%s | Covvvers.com" },
+  title: { default: "Covvvers", template: "%s | Covvvers" },
   description: "Rap album covers from every era, with the stories behind them and the people who made them.",
-  openGraph: { siteName: "Covvvers.com", type: "website" },
+  openGraph: { siteName: "Covvvers", type: "website" },
   twitter: { card: "summary_large_image" },
 };
 
@@ -58,7 +58,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           <div className="footer-top">
             <div className="footer-about">
               <Link href="/" className="footer-mark">
-                Covvvers.com
+                Covvvers
               </Link>
               <p>
                 {footerDescription}
