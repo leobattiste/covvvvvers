@@ -119,6 +119,8 @@ export async function saveCover(input: CoverInput): Promise<SaveResult> {
     if (input.status === "published" && !input.image_url) {
       return { ok: false, message: "Upload the cover art before publishing." };
     }
+    const {data:existing,error:existingError}=await db.from("covers").select("id,status").eq("id",input.id).maybeSingle();
+    if(existingError||!existing)return {ok:false,message:existingError?.message??"This cover no longer exists."};
     const slug = await uniqueSlug(db, "covers", input.slug || input.title, input.id);
     const spotifyId = input.spotify_url.match(/open\.spotify\.com\/album\/([A-Za-z0-9]+)/)?.[1] ?? null;
 
@@ -153,7 +155,7 @@ export async function saveCover(input: CoverInput): Promise<SaveResult> {
         status: input.status,
         updated_at: new Date().toISOString(),
       })
-      .eq("id", input.id);
+      .eq("id", input.id).select("id");
     if (error) return { ok: false, message: error.message };
 
     // Creators: match by name, create the ones that are new, then relink.
@@ -164,7 +166,7 @@ export async function saveCover(input: CoverInput): Promise<SaveResult> {
       const exact = p.name.replace(/[\\%_]/g, (m) => `\\${m}`);
       const { data: found } = await db.from("creators").select("id, role").ilike("name", exact).limit(1).maybeSingle();
       if (found) {
-        if (p.role && p.role !== found.role) await db.from("creators").update({ role: p.role }).eq("id", found.id);
+        // A shared creator's role must not be silently rewritten while editing one cover.
         ids.push(found.id);
       } else {
         const cslug = await uniqueSlug(db, "creators", p.name);
@@ -177,12 +179,21 @@ export async function saveCover(input: CoverInput): Promise<SaveResult> {
         ids.push(made.id);
       }
     }
-    await db.from("cover_creators").delete().eq("cover_id", input.id);
-    if (ids.length) {
-      const { error: lErr } = await db
-        .from("cover_creators")
-        .insert([...new Set(ids)].map((creator_id) => ({ cover_id: input.id, creator_id })));
-      if (lErr) return { ok: false, message: lErr.message };
+    // Add new links first so a failed insert does not erase all existing credits.
+    const uniqueIds=[...new Set(ids)];
+    if(uniqueIds.length){
+      const {error:linkError}=await db.from("cover_creators").upsert(
+        uniqueIds.map(creator_id=>({cover_id:input.id,creator_id})),
+        {onConflict:"cover_id,creator_id",ignoreDuplicates:true}
+      );
+      if(linkError)return {ok:false,message:"Cover saved, but credits could not be linked: "+linkError.message};
+    }
+    const obsolete=await db.from("cover_creators").select("creator_id").eq("cover_id",input.id);
+    if(obsolete.error)return {ok:false,message:"Cover saved, but credits could not be verified: "+obsolete.error.message};
+    const toRemove=(obsolete.data??[]).map(x=>x.creator_id).filter(id=>!uniqueIds.includes(id));
+    if(toRemove.length){
+      const removed=await db.from("cover_creators").delete().eq("cover_id",input.id).in("creator_id",toRemove);
+      if(removed.error)return {ok:false,message:"Cover saved, but old credits could not be removed: "+removed.error.message};
     }
 
     revalidatePath("/", "layout");
@@ -246,7 +257,7 @@ export async function addMusicBrainzCover(groupId: string): Promise<{id:string;e
  type Edition={id:string;title:string;date?:string;country?:string;status?:string;"label-info"?:{label?:{name?:string}}[];"cover-art-archive"?:{front?:boolean}};
  const group=await read("/release-group/"+groupId+"?inc=artists+genres+url-rels&fmt=json");
  const title=String(group.title??"").trim().slice(0,250);
- const artist=(group["artist-credit"] as ArtistPart[]|undefined??[]).map(x=>typeof x==="string"?x:(x.name??"")+(x.joinphrase??"")).join("").trim().slice(0,250);
+ const artist=((group["artist-credit"] as ArtistPart[] | undefined) ?? []).map(x=>typeof x==="string"?x:(x.name??"")+(x.joinphrase??"")).join("").trim().slice(0,250);
  const year=Number(String(group["first-release-date"]??"").slice(0,4));
  if(!title||!artist||!Number.isInteger(year)||year<1970||year>2100)throw new Error("This album has incomplete metadata. Please verify it on MusicBrainz.");
  const {data:matching,error:lookupError}=await db.from("covers").select("id,title,artist,release_year").eq("release_year",year).ilike("artist",artist.replace(/[\\%_]/g,x=>"\\"+x)).limit(100);
@@ -265,9 +276,9 @@ export async function addMusicBrainzCover(groupId: string): Promise<{id:string;e
  })).sort((a,b)=>b.score-a.score);
  const edition=ranked[0]?.r;
  const labels=[...new Set((edition?.["label-info"]??[]).map(x=>x.label?.name).filter((x):x is string=>Boolean(x)))];
- const genres=(group.genres as {name?:string;count?:number}[]|undefined??[])
+ const genres=((group.genres as {name?:string;count?:number}[] | undefined) ?? [])
    .filter(g=>Boolean(g.name)).sort((a,b)=>(b.count??0)-(a.count??0)).slice(0,12).map(g=>g.name!.slice(0,80));
- const rels=(group.relations as {type?:string;url?:{resource?:string}}[]|undefined??[]).map(x=>x.url?.resource??"");
+ const rels=((group.relations as {type?:string;url?:{resource?:string}}[] | undefined) ?? []).map(x=>x.url?.resource??"");
  const find=(host:string,pattern:RegExp)=>rels.find(link=>{try{const u=new URL(link);return (u.hostname===host||u.hostname.endsWith("."+host))&&pattern.test(u.pathname);}catch{return false;}})??null;
  const spotify=find("spotify.com",/^\/album\//);
  const apple=find("music.apple.com",/\/album\//);
