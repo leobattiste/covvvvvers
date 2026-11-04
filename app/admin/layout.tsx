@@ -2,7 +2,7 @@ import Link from "next/link";
 import { requireAdmin } from "@/lib/admin";
 
 const groups = [
-  { label: "Workspace", links: [["Overview", "/admin"], ["Covers", "/admin/covers"], ["Creators", "/admin/creators"], ["Cover types", "/admin/types"]] },
+  { label: "Workspace", links: [["Overview", "/admin"], ["Activity", "/admin/activity"], ["Covers", "/admin/covers"], ["Creators", "/admin/creators"], ["Cover types", "/admin/types"]] },
   { label: "Community", links: [["Submissions", "/admin/submissions"], ["Feedback", "/admin/feedback"], ["Members", "/admin/members"], ["Newsletter", "/admin/newsletter"]] },
 ] as const;
 
