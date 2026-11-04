@@ -291,20 +291,36 @@ export async function addMusicBrainzCover(groupId: string): Promise<{id:string;e
  const spotify=find("spotify.com",/^\/album\//);
  const apple=find("music.apple.com",/\/album\//);
  const youtube=find("youtube.com",/\/playlist|\/watch/)||find("youtu.be",/^\//);
- // The group endpoint is the artwork displayed in search; absent artwork must not be treated as real.
+ // Import artwork into permanent Supabase Storage instead of recording a remote image URL.
  let artwork="";
- try{
-  const art=await fetch("https://coverartarchive.org/release-group/"+groupId+"/front-500",{method:"HEAD",headers:{"User-Agent":"Covvvers/1.0 (https://covvvers.com)"},signal:AbortSignal.timeout(6000),next:{revalidate:86400}});
-  if(art.ok)artwork="https://coverartarchive.org/release-group/"+groupId+"/front";
- }catch{/* Missing art is optional for drafts. */}
+ let imageWidth:number|null=null,imageHeight:number|null=null;
+ try {
+  const response=await fetch("https://coverartarchive.org/release-group/"+groupId+"/front",{headers:{"User-Agent":"Covvvers/1.0 (https://covvvers.com)","Accept":"image/*"},signal:AbortSignal.timeout(12000)});
+  const size=Number(response.headers.get("content-length")??0);
+  if(response.ok&&(response.headers.get("content-type")??"").startsWith("image/")&&size<=12000000){
+   const bytes=Buffer.from(await response.arrayBuffer());
+   if(bytes.length<=12000000){
+    const processed=await sharp(bytes,{limitInputPixels:25000000}).rotate().resize({width:2000,height:2000,fit:"inside",withoutEnlargement:true}).jpeg({quality:88}).toBuffer({resolveWithObject:true});
+    const location="musicbrainz/"+groupId+".jpg";
+    const result=await db.storage.from("covers").upload(location,processed.data,{contentType:"image/jpeg",cacheControl:"31536000",upsert:true});
+    if(result.error)throw new Error(result.error.message);
+    artwork=db.storage.from("covers").getPublicUrl(location).data.publicUrl;
+    imageWidth=processed.info.width;imageHeight=processed.info.height;
+   }
+  }
+ } catch(e){console.warn("Artwork import skipped:",e instanceof Error?e.message:"Unknown error");}
  const slug=await uniqueSlug(db,"covers",title);
  const {data:created,error}=await db.from("covers").insert({
   slug,title,artist,release_year:year,decade:decadeOf(year),
   label:labels.join(", ").slice(0,250)||null,country:edition?.country||null,
-  subgenres:genres,image_url:artwork,status:"draft",
+  subgenres:genres,image_url:artwork,image_width:imageWidth,image_height:imageHeight,musicbrainz_release_group_id:groupId,status:"draft",
   spotify_url:spotify,spotify_album_id:spotify?.match(/spotify\.com\/album\/([A-Za-z0-9]+)/)?.[1]??null,
   apple_music_url:apple,youtube_url:youtube
  }).select("id").single();
+ if(error?.code==="23505"){
+  const {data:existing}=await db.from("covers").select("id").eq("musicbrainz_release_group_id",groupId).maybeSingle();
+  if(existing)return {id:existing.id,existing:true};
+ }
  if(error||!created)throw new Error(error?.message??"Couldn't create the draft.");
  revalidatePath("/admin/covers");
  return {id:created.id,existing:false};
