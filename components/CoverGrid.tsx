@@ -9,6 +9,7 @@ import CoverCard, { cardMeta } from "./CoverCard";
 
 type Sort = "newest" | "oldest" | "saved" | "added";
 type Filters = { type: string; color: string; decade: string; q: string; sort: Sort };
+const PAGE_SIZE = 24;
 const EMPTY: Filters = { type: "", color: "", decade: "", q: "", sort: "newest" };
 
 const SORTS: { value: Sort; label: string }[] = [
@@ -32,6 +33,8 @@ type Props = {
 
 export default function CoverGrid({ covers, filters = false, types = [], emptyText, eager = 8, showType = true }: Props) {
   const [f, setF] = useState<Filters>(EMPTY);
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
+  const [initialized, setInitialized] = useState(false);
   const [saves, setSaves] = useState<Map<string, number> | null>(null);
   const sheet = useRef<HTMLDialogElement>(null);
   const search = useRef<HTMLInputElement>(null);
@@ -48,16 +51,31 @@ export default function CoverGrid({ covers, filters = false, types = [], emptyTe
       q: p.get("q") ?? "",
       sort: sort && SORTS.some((s) => s.value === sort) ? sort : "newest",
     });
+    const key = `covvvvvers:grid:${window.location.pathname}${window.location.search}`;
+    try {
+      const previous = Number(window.sessionStorage.getItem(key));
+      if (Number.isFinite(previous) && previous >= PAGE_SIZE) setVisibleCount(Math.ceil(previous / PAGE_SIZE) * PAGE_SIZE);
+    } catch { /* Storage may be disabled. */ }
+    setInitialized(true);
     if (p.get("focus") === "search") search.current?.focus();
   }, [filters]);
 
   useEffect(() => {
-    if (!filters) return;
+    if (!filters || !initialized) return;
     const p = new URLSearchParams();
     (Object.entries(f) as [keyof Filters, string][]).forEach(([k, v]) => v && !(k === "sort" && v === "newest") && p.set(k, v));
     const qs = p.toString();
     window.history.replaceState(window.history.state, "", qs ? `?${qs}` : window.location.pathname);
-  }, [f, filters]);
+  }, [f, filters, initialized]);
+
+  // Keep the expanded grid when returning from an album detail page.
+  useEffect(() => {
+    if (!filters || !initialized) return;
+    try {
+      const key = `covvvvvers:grid:${window.location.pathname}${window.location.search}`;
+      window.sessionStorage.setItem(key, String(visibleCount));
+    } catch { /* Storage may be disabled. */ }
+  }, [filters, initialized, f, visibleCount]);
 
   // Save counts load only when someone sorts by them.
   useEffect(() => {
@@ -113,9 +131,10 @@ export default function CoverGrid({ covers, filters = false, types = [], emptyTe
     return inTitle ? undefined : `${cardMeta(c, showType)}. Mentioned in the story`;
   };
 
+  const visible = shown.slice(0, filters ? visibleCount : shown.length);
   const activeCount = [f.type, f.color, f.decade].filter(Boolean).length;
   const set = (k: keyof Filters) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) =>
-    setF({ ...f, [k]: e.target.value });
+    { setVisibleCount(PAGE_SIZE); setF({ ...f, [k]: e.target.value }); };
 
   const selects = (
     <>
@@ -185,7 +204,7 @@ export default function CoverGrid({ covers, filters = false, types = [], emptyTe
             <p className="filter-count" aria-live="polite">
               {shown.length} {shown.length === 1 ? "cover" : "covers"}
               {(activeCount > 0 || f.q) && (
-                <button type="button" className="text-button" onClick={() => setF({ ...EMPTY, sort: f.sort })}>
+                <button type="button" className="text-button" onClick={() => { setVisibleCount(PAGE_SIZE); setF({ ...EMPTY, sort: f.sort }); }}>
                   Clear
                 </button>
               )}
@@ -202,7 +221,7 @@ export default function CoverGrid({ covers, filters = false, types = [], emptyTe
               <div className="sheet-head">
                 <h2 id="sheet-title">Filter and sort</h2>
                 {activeCount > 0 && (
-                  <button type="button" className="text-button" onClick={() => setF({ ...EMPTY, q: f.q, sort: f.sort })}>
+                  <button type="button" className="text-button" onClick={() => { setVisibleCount(PAGE_SIZE); setF({ ...EMPTY, q: f.q, sort: f.sort }); }}>
                     Clear filters
                   </button>
                 )}
@@ -223,12 +242,22 @@ export default function CoverGrid({ covers, filters = false, types = [], emptyTe
         </div>
       ) : (
         <ul className="cover-grid">
-          {shown.map((c, i) => (
+          {visible.map((c, i) => (
             <li key={c.id}>
               <CoverCard c={c} eager={i < eager} meta={essayHit(c)} showType={showType} />
             </li>
           ))}
         </ul>
+      )}
+      {filters && shown.length > 0 && (
+        <div className="cover-pagination">
+          <p aria-live="polite">Showing {visible.length} of {shown.length} covers</p>
+          {visible.length < shown.length && (
+            <button type="button" className="button" onClick={() => setVisibleCount((count) => count + PAGE_SIZE)}>
+              Load more covers
+            </button>
+          )}
+        </div>
       )}
     </>
   );
