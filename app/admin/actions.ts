@@ -124,7 +124,7 @@ export async function saveCover(input: CoverInput): Promise<SaveResult> {
     const slug = await uniqueSlug(db, "covers", input.slug || input.title, input.id);
     const spotifyId = input.spotify_url.match(/open\.spotify\.com\/album\/([A-Za-z0-9]+)/)?.[1] ?? null;
 
-    const { error } = await db
+    const { error, data: updated } = await db
       .from("covers")
       .update({
         slug,
@@ -156,7 +156,7 @@ export async function saveCover(input: CoverInput): Promise<SaveResult> {
         updated_at: new Date().toISOString(),
       })
       .eq("id", input.id).select("id");
-    if (error) return { ok: false, message: error.message };
+    if (error || updated?.length !== 1) return { ok: false, message: error?.message ?? "Cover not updated. Check your permissions and try again." };
 
     // Creators: match by name, create the ones that are new, then relink.
     const people = input.creators.map((c) => ({ name: c.name.trim(), role: c.role.trim() })).filter((c) => c.name);
