@@ -420,3 +420,34 @@ main img:not(.avatar-choices img):not(.card-saved img) { border-radius: var(--ra
  .cms-traffic-panel { flex-direction:column; align-items:stretch; padding:18px; }
  .cms-activity-stats > div { padding:14px; }
 }
+
+/* MusicBrainz-assisted album import */
+.cms-mb { display:grid; gap:14px; padding:20px; margin-bottom:28px; border:1px solid var(--line); border-radius:14px; background:var(--surface,transparent); }
+.cms-mb-heading { display:flex; justify-content:space-between; align-items:start; gap:16px; }
+.cms-mb-heading h2 { font-size:1.25rem; margin:0 0 6px; }
+.cms-mb-heading p,.cms-mb-confirm p { font-size:.875rem; color:var(--muted); margin:0; }
+.cms-mb-heading a { font-size:.8125rem; white-space:nowrap; }
+.cms-mb-search { display:flex; gap:10px; }
+.cms-mb-search input { flex:1; min-width:0; }
+.cms-mb-search button { flex:none; }
+.cms-mb-results { display:grid; gap:10px; }
+.cms-mb-results > strong { font-size:.875rem; }
+.cms-mb-results ul { list-style:none; padding:0; margin:0; max-height:290px; overflow-y:auto; border:1px solid var(--line); border-radius:8px; }
+.cms-mb-results li+li { border-top:1px solid var(--line); }
+.cms-mb-results li button { display:flex; align-items:center; justify-content:space-between; gap:14px; width:100%; padding:12px; background:transparent; border:0; color:inherit; cursor:pointer; text-align:left; }
+.cms-mb-results li button:hover,.cms-mb-results li button.is-active { background:var(--soft); }
+.cms-mb-results li button span:first-child { display:grid; gap:4px; min-width:0; }
+.cms-mb-results li button strong { font-size:.875rem; }
+.cms-mb-results li button small { font-size:.75rem; color:var(--muted); }
+.cms-mb-results li button span:last-child { font-size:.75rem; white-space:nowrap; }
+.cms-mb-confirm { display:grid; gap:12px; padding:16px; border:1px solid var(--line); border-radius:8px; }
+.cms-mb-confirm .button { justify-self:start; }
+.cms-mb-artcheck { display:flex; gap:8px; align-items:center; font-size:.875rem; }
+.cms-mb-artcheck input { width:18px; height:18px; }
+@media(max-width:760px) {
+ .cms-mb { padding:14px; }
+ .cms-mb-heading { flex-wrap:wrap; }
+ .cms-mb-search { flex-wrap:wrap; }
+ .cms-mb-search input,.cms-mb-search button { width:100%; flex:auto; min-height:44px; }
+ .cms-mb-results li button { min-height:56px; }
+}
