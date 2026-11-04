@@ -14,6 +14,7 @@ import "./globals.css";
 import "./styles/tokens.css";
 import "./styles/typography.css";
 import "./styles/components.css";
+import "./styles/decades.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
