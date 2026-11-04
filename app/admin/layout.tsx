@@ -11,7 +11,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
         <div className="cms-toolbar">
           <span className="cms-toolbar-label">EDITORIAL WORKSPACE</span>
           <div className="cms-toolbar-actions">
-            <Link href="/admin/covers/new" className="cms-top-action">+ New cover</Link>
+            <Link href="/admin/covers" className="cms-top-action">Manage covers</Link>
             <Link href="/covers" className="cms-top-visit">View site ↗</Link>
           </div>
         </div>
