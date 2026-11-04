@@ -177,3 +177,10 @@ main img:not(.avatar-choices img):not(.card-saved img) { border-radius: var(--ra
 .cms-list-row { display: flex; gap: 20px; align-items: center; padding: 14px 0; flex-wrap: wrap; }
 .cms-list-row span { color: var(--muted); font-size: .85rem; }
 @media(max-width:760px) { .cms-shell { grid-template-columns: 1fr; } .cms-sidebar { border-right: 0; border-bottom: 1px solid var(--line); padding: 14px; gap: 8px; } .cms-sidebar nav { display: flex; flex-wrap: wrap; } .cms-sidebar nav h2 { width: 100%; } .cms-sidebar nav a { padding: 7px; } .cms-main { padding: 12px; } }
+
+.cms-edit-list { display: grid; gap: 12px; margin-top: 20px; }
+.cms-edit-row { display: grid; grid-template-columns: minmax(150px,1fr) minmax(150px,1fr) auto; gap: 12px; align-items: end; padding: 16px 0; border-bottom: 1px solid var(--line); }
+.cms-edit-row label { display: grid; gap: 6px; font-size: .85rem; font-weight: 600; }
+.cms-edit-row textarea { min-height: 44px; }
+.cms-main h2 { margin: 24px 0 12px; }
+@media(max-width:760px) { .cms-edit-row { grid-template-columns: minmax(0,1fr); } }
