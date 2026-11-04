@@ -21,7 +21,14 @@ export default async function AdminHome() {
     count(db.from("covers").select("id", { count: "exact", head: true }).is("image_url", null)),
   ]);
 
+  const [{ data: recentCovers }, { data: recentActivity }, lowRes] = await Promise.all([
+    db.from("covers").select("id,title,artist,status,updated_at").order("updated_at", { ascending: false }).limit(6),
+    db.from("admin_audit_log").select("id,action,entity_table,created_at").order("created_at", { ascending: false }).limit(5),
+    count(db.from("covers").select("id", { count: "exact", head: true }).lt("image_width", 1200)),
+  ]);
+
   const tiles = [
+    { href: "/admin/media", label: "Artwork", note: `${noImage} missing images, ${lowRes} under 1200px` },
     { href: "/admin/covers", label: "Covers", note: `${published} live${drafts ? `, ${drafts} drafts` : ""}` },
     { href: "/admin/submissions", label: "Submissions", note: pending ? `${pending} waiting for review` : "Nothing waiting" },
     { href: "/admin/feedback", label: "Feedback", note: feedback ? `${feedback} new` : "Nothing new" },
@@ -45,6 +52,24 @@ export default async function AdminHome() {
           </li>
         ))}
       </ul>
+      <section className="review-group">
+        <h2>Recently edited covers</h2>
+        <ul className="admin-list">
+          {(recentCovers ?? []).map((cover) => <li key={cover.id}>
+            <Link href={`/admin/covers/${cover.id}`}>
+              <span className="admin-list-text"><strong>{cover.title}</strong><span>{cover.artist} · {cover.status === "draft" ? "Draft" : "Published"}</span></span>
+              <time dateTime={cover.updated_at ?? undefined}>{cover.updated_at ? new Date(cover.updated_at).toLocaleDateString("en-US") : "No edit date"}</time>
+            </Link>
+          </li>)}
+        </ul>
+      </section>
+      <section className="review-group">
+        <h2>Latest activity</h2>
+        <ul className="admin-list">{(recentActivity ?? []).map((event) => <li key={event.id}>
+          <Link href="/admin/activity"><span>{event.action.toLowerCase()} · {event.entity_table.replaceAll("_", " ")}</span>
+          <time dateTime={event.created_at}>{new Date(event.created_at).toLocaleDateString("en-US")}</time></Link>
+        </li>)}</ul>
+      </section>
       {coversOnWix + typesOnWix > 0 && (
         <section className="review-group">
           <h2>Cover images</h2>
