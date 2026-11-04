@@ -1,17 +1,19 @@
 import type { MetadataRoute } from "next";
-import { getCovers, getTypes } from "@/lib/data";
+import { getCovers, getTypes, getDecadesWithCovers } from "@/lib/data";
 import { SITE_URL } from "@/lib/supabase/config";
 
 export const revalidate = 3600;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const [covers, types] = await Promise.all([getCovers(), getTypes()]);
+  const [covers, types, decades] = await Promise.all([getCovers(), getTypes(), getDecadesWithCovers()]);
   return [
     { url: SITE_URL },
     { url: `${SITE_URL}/covers` },
     { url: `${SITE_URL}/types` },
+    { url: `${SITE_URL}/decades` },
     { url: `${SITE_URL}/timeline` },
     ...covers.map((c) => ({ url: `${SITE_URL}/covers/${c.slug}` })),
     ...types.map((t) => ({ url: `${SITE_URL}/types/${t.slug}` })),
+    ...decades.map((d) => ({ url: `${SITE_URL}/decades/${d.slug}` })),
   ];
 }
