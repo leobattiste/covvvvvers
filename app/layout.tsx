@@ -69,6 +69,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           <nav aria-label="Footer">
             <Link href="/covers">Covers</Link>
             <Link href="/types">Cover types</Link>
+            <Link href="/decades">Decades</Link>
             <Link href="/timeline">Through the Years</Link>
             <Link href="/submit">Submit a cover</Link>
             <Link href="/feedback">Feedback</Link>
