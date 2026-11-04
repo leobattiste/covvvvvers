@@ -325,3 +325,31 @@ export async function addMusicBrainzCover(groupId: string): Promise<{id:string;e
  revalidatePath("/admin/covers");
  return {id:created.id,existing:false};
 }
+
+/** Migrate one legacy Cover Art Archive image safely; return remaining work for the admin UI. */
+export async function migrateLegacyArtwork():Promise<{ok:boolean;remaining:number;message:string}>{
+ const db=await adminClient();
+ const {data:records,error:readError}=await db.from("covers").select("id,image_url").ilike("image_url","%coverartarchive.org%").order("created_at").limit(1);
+ if(readError) return {ok:false,remaining:0,message:readError.message};
+ const item=records?.[0];
+ if(!item)return {ok:true,remaining:0,message:"All Cover Art Archive images are stored locally."};
+ try{
+  const source=new URL(item.image_url);
+  if(source.protocol!=="https:"||source.hostname!=="coverartarchive.org"||!/^\/(release|release-group)\/[0-9a-f-]{36}\/front(?:-\d+)?$/i.test(source.pathname))throw new Error("Legacy image URL is not an approved Cover Art Archive path.");
+  const res=await fetch(source.toString(),{headers:{"User-Agent":"Covvvers/1.0 (https://covvvers.com)","Accept":"image/*"},signal:AbortSignal.timeout(12000)});
+  if(!res.ok||!(res.headers.get("content-type")??"").startsWith("image/"))throw new Error("Source artwork is currently unavailable.");
+  if(Number(res.headers.get("content-length")??0)>12000000)throw new Error("Source artwork is too large.");
+  const bytes=Buffer.from(await res.arrayBuffer());
+  if(bytes.length>12000000)throw new Error("Source artwork is too large.");
+  const converted=await sharp(bytes,{limitInputPixels:25000000}).rotate().resize({width:2000,height:2000,fit:"inside",withoutEnlargement:true}).jpeg({quality:88}).toBuffer({resolveWithObject:true});
+  const location="legacy/"+item.id+".jpg";
+  const result=await db.storage.from("covers").upload(location,converted.data,{contentType:"image/jpeg",cacheControl:"31536000",upsert:true});
+  if(result.error)throw new Error(result.error.message);
+  const saved=db.storage.from("covers").getPublicUrl(location).data.publicUrl;
+  const update=await db.from("covers").update({image_url:saved,image_width:converted.info.width,image_height:converted.info.height,updated_at:new Date().toISOString()}).eq("id",item.id).eq("image_url",item.image_url).select("id");
+  if(update.error||update.data?.length!==1)throw new Error(update.error?.message??"The cover changed while migrating; reload before retrying.");
+  const {count}=await db.from("covers").select("id",{count:"exact",head:true}).ilike("image_url","%coverartarchive.org%");
+  revalidatePath("/", "layout");
+  return {ok:true,remaining:count??0,message:"Artwork stored in Supabase."};
+ }catch(e){return {ok:false,remaining:records.length,message:e instanceof Error?e.message:"Artwork migration failed."};}
+}
