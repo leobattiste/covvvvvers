@@ -3,6 +3,7 @@ import Link from "next/link";
 import { requireAdmin } from "@/lib/admin";
 import FetchArt from "./FetchArt";
 import MoveImages from "./MoveImages";
+import MigrateArtwork from "./MigrateArtwork";
 import ActivityChart from "./ActivityChart";
 
 export const dynamic = "force-dynamic";
@@ -11,7 +12,7 @@ export const metadata: Metadata = { title: "Admin", robots: { index: false } };
 export default async function AdminHome() {
   const { db } = await requireAdmin("/admin");
   const count = async (q: PromiseLike<{ count: number | null }>) => (await q).count ?? 0;
-  const [published, drafts, pending, feedback, subscribers, coversOnWix, typesOnWix, noImage] = await Promise.all([
+  const [published, drafts, pending, feedback, subscribers, coversOnWix, typesOnWix, noImage, remoteArt] = await Promise.all([
     count(db.from("covers").select("id", { count: "exact", head: true }).eq("status", "published")),
     count(db.from("covers").select("id", { count: "exact", head: true }).eq("status", "draft")),
     count(db.from("submissions").select("id", { count: "exact", head: true }).eq("status", "pending")),
@@ -20,6 +21,7 @@ export default async function AdminHome() {
     count(db.from("covers").select("id", { count: "exact", head: true }).like("image_url", "%static.wixstatic.com%")),
     count(db.from("cover_types").select("id", { count: "exact", head: true }).like("hero_image", "%static.wixstatic.com%")),
     count(db.from("covers").select("id", { count: "exact", head: true }).is("image_url", null)),
+    count(db.from("covers").select("id", { count: "exact", head: true }).ilike("image_url", "%coverartarchive.org%")),
   ]);
 
   const [{ data: recentCovers }, { data: recentActivity }, lowRes] = await Promise.all([
@@ -94,10 +96,11 @@ export default async function AdminHome() {
           </section>
         </div>
       </div>
-      {(coversOnWix+typesOnWix>0||noImage>0)&&<section className="cms-section cms-maintenance">
+      {(coversOnWix+typesOnWix>0||noImage>0||remoteArt>0)&&<section className="cms-section cms-maintenance">
         <div className="cms-section-heading"><div><span className="cms-eyebrow">MAINTENANCE</span><h2>Artwork health</h2></div><Link href="/admin/covers">Open covers ↗</Link></div>
         {coversOnWix+typesOnWix>0&&<div className="cms-maintenance-row"><MoveImages remaining={coversOnWix+typesOnWix}/></div>}
         {noImage>0&&<div className="cms-maintenance-row"><FetchArt remaining={noImage}/></div>}
+        {remoteArt>0&&<div className="cms-maintenance-row"><MigrateArtwork remaining={remoteArt}/></div>}
       </section>}
     </div>
   );
