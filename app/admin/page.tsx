@@ -86,7 +86,7 @@ export default async function AdminHome() {
         </div>
       </div>
       {(coversOnWix+typesOnWix>0||noImage>0)&&<section className="cms-section cms-maintenance">
-        <div className="cms-section-heading"><div><span className="cms-eyebrow">MAINTENANCE</span><h2>Artwork health</h2></div><Link href="/admin/media">Open artwork library ↗</Link></div>
+        <div className="cms-section-heading"><div><span className="cms-eyebrow">MAINTENANCE</span><h2>Artwork health</h2></div><Link href="/admin/covers">Open covers ↗</Link></div>
         {coversOnWix+typesOnWix>0&&<div className="cms-maintenance-row"><MoveImages remaining={coversOnWix+typesOnWix}/></div>}
         {noImage>0&&<div className="cms-maintenance-row"><FetchArt remaining={noImage}/></div>}
       </section>}
