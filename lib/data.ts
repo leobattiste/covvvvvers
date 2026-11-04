@@ -173,23 +173,25 @@ export async function getCreator(slug: string) {
   return creator ? { creator, covers: matched } : null;
 }
 
-/** Decades with published covers, newest decade first, matching the Types collection layout. */
+/** All editorial decade pages, including periods without published covers yet. */
+export const DECADES = ["2020s", "2010s", "2000s", "1990s", "1980s", "1970s"] as const;
+
 export async function getDecadesWithCovers(preview = 4) {
   const { covers } = await assemble();
-  const decades = new Map<string, Cover[]>();
-  for (const cover of covers) {
-    const decade = `${Math.floor(cover.release_year / 10) * 10}s`;
-    decades.set(decade, [...(decades.get(decade) ?? []), cover]);
-  }
-  return [...decades.entries()]
-    .sort(([a], [b]) => Number.parseInt(b, 10) - Number.parseInt(a, 10))
-    .map(([slug, items]) => ({ slug, title: slug, count: items.length, covers: items.slice(0, preview) }));
+  return DECADES.map((slug) => {
+    const start = Number.parseInt(slug, 10);
+    const matches = covers.filter((cover) => cover.release_year >= start && cover.release_year < start + 10);
+    return { slug, title: slug, count: matches.length, covers: matches.slice(0, preview) };
+  });
 }
 
 export async function getDecade(slug: string) {
-  if (!/^\\d{4}s$/.test(slug)) return null;
+  if (!DECADES.some((d) => d === slug)) return null;
   const { covers } = await assemble();
-  const year = Number.parseInt(slug, 10);
-  const matched = covers.filter(c => c.release_year >= year && c.release_year < year + 10);
-  return matched.length ? { slug, title: slug, covers: matched } : null;
+  const start = Number.parseInt(slug, 10);
+  return {
+    slug,
+    title: slug,
+    covers: covers.filter((cover) => cover.release_year >= start && cover.release_year < start + 10),
+  };
 }
