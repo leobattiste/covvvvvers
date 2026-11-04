@@ -13,7 +13,6 @@ const MAIN = [
   { href: "/covers", label: "Covers" },
   { href: "/types", label: "Types" },
   { href: "/decades", label: "Decades" },
-  { href: "/timeline", label: "Through the Years" },
 ];
 
 
