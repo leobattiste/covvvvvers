@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useId, useState } from "react";
 const groups = [
  {label:"Workspace",links:[["Overview","/admin"],["Activity","/admin/activity"]]},
- {label:"Collection",links:[["Covers","/admin/covers"],["Creators","/admin/creators"],["Cover types","/admin/types"]]},
+ {label:"Collection",links:[["Covers","/admin/covers"],["Auto Import","/admin/auto-import"],["Creators","/admin/creators"],["Cover types","/admin/types"]]},
  {label:"Community",links:[["Submissions","/admin/submissions"],["Feedback","/admin/feedback"],["Members","/admin/members"],["Newsletter","/admin/newsletter"]]},
  {label:"Settings",links:[["Homepage","/admin/site"]]}
 ] as const;
