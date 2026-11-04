@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { requireAdmin } from "@/lib/admin";
-import { squareImage } from "@/lib/img";
+import CoverBulkList from "./CoverBulkList";
 import { newCover } from "../actions";
 
 export const dynamic = "force-dynamic";
@@ -44,26 +44,7 @@ export default async function AdminCovers({ searchParams }: { searchParams: Prom
           Show
         </button>
       </form>
-      <ul className="admin-list">
-        {(covers ?? []).map((c) => (
-          <li key={c.id}>
-            <Link href={`/admin/covers/${c.id}`}>
-              {c.image_url ? (
-                <img src={squareImage(c.image_url, 120)} alt="" width={48} height={48} loading="lazy" />
-              ) : (
-                <span className="admin-noimg" style={{ backgroundColor: c.color ?? undefined }} />
-              )}
-              <span className="admin-list-text">
-                <strong>{c.title}</strong>
-                <span>
-                  {c.artist}, {c.release_year}
-                </span>
-              </span>
-              {c.status === "draft" && <span className="badge">Draft</span>}
-            </Link>
-          </li>
-        ))}
-      </ul>
+      <CoverBulkList covers={covers ?? []} />
     </section>
   );
 }
