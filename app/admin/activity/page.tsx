@@ -21,10 +21,31 @@ export default async function AdminActivity() {
    .select("id, created_at, actor_id, entity_table, entity_id, action, before_data, after_data")
    .order("created_at", { ascending: false }).limit(100);
  const events = (data ?? []) as Audit[];
+ const [{count:members},{count:newMembers},{data:signups},{count:publishedCovers},{count:pendingSubmissions}] = await Promise.all([
+   db.from("profiles").select("id",{count:"exact",head:true}),
+   db.from("profiles").select("id",{count:"exact",head:true}).gte("created_at",new Date(Date.now()-30*86400000).toISOString()),
+   db.from("profiles").select("id,display_name,username,created_at").order("created_at",{ascending:false}).limit(15),
+   db.from("covers").select("id",{count:"exact",head:true}).eq("status","published"),
+   db.from("submissions").select("id",{count:"exact",head:true}).eq("status","pending")
+ ]);
  return <section className="panel wide">
    <p className="crumb"><Link href="/admin">Admin</Link></p>
    <h1>Activity log</h1>
-   <p>Recent changes to covers, creators and cover types. This is a read-only history; older changes made before logging was enabled are not included.</p>
+   <p>Editorial changes, member signups, and website analytics in one workspace. Historical events are available only from when their tracking began.</p>
+   <div className="cms-activity-stats">
+     <div><span>Members</span><strong>{members??0}</strong></div>
+     <div><span>New members · 30 days</span><strong>{newMembers??0}</strong></div>
+     <div><span>Published covers</span><strong>{publishedCovers??0}</strong></div>
+     <div><span>Pending submissions</span><strong>{pendingSubmissions??0}</strong></div>
+   </div>
+   <section className="cms-traffic-panel">
+     <div><h2>◉ Website traffic</h2><p>Covvvers already records page views and visitors through Vercel Web Analytics. Open the traffic dashboard for visitor trends, top pages and sources.</p></div>
+     <a className="button solid" href="https://vercel.com/leobaptistea-gmailcoms-projects/covvvvvers/analytics" target="_blank" rel="noopener noreferrer">View traffic ↗</a>
+   </section>
+   <section className="cms-activity-signups"><h2>◉ Recent member signups</h2>
+     <ul className="admin-list">{(signups??[]).map(member=><li key={member.id}><div className="cms-list-row"><strong>{member.display_name||member.username||"Member"}</strong><span>Joined</span><time dateTime={member.created_at}>{new Date(member.created_at).toLocaleString("en-US")}</time></div></li>)}</ul>
+   </section>
+   <h2>◉ Editorial activity</h2>
    {error && <p role="alert">Unable to load activity history.</p>}
    {!error && !events.length && <p>No recorded changes yet.</p>}
    <ul className="admin-list">{events.map(e => {
