@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { familyOf } from "@/lib/color";
 import { fullImage } from "@/lib/img";
 import { getBrowserClient } from "@/lib/supabase/client";
@@ -65,6 +65,27 @@ export default function CoverEditor({ initial, types, creatorNames }: Props) {
   const [saving, setSaving] = useState(false);
   const [uploading, setUploading] = useState("");
   const [imageLink,setImageLink] = useState("");
+  const [autoState,setAutoState] = useState("saved");
+  const savedSnapshot=useRef(JSON.stringify(initial));
+  const savingLock=useRef(false);
+  useEffect(()=>{
+    if(f.status!=="draft"||uploading||savingLock.current)return;
+    const snapshot=JSON.stringify(f);
+    if(snapshot===savedSnapshot.current){setAutoState("saved");return;}
+    setAutoState("unsaved");
+    const timer=setTimeout(async()=>{
+      if(savingLock.current)return;
+      savingLock.current=true;
+      setAutoState("saving");
+      try{
+        const result=await saveCover({...f,status:"draft"});
+        if(result.ok){savedSnapshot.current=snapshot;setAutoState("saved");}
+        else{setAutoState("error");setMsg({ok:false,text:"Autosave: "+result.message});}
+      }catch(e){setAutoState("error");setMsg({ok:false,text:"Autosave: "+(e instanceof Error?e.message:"Unknown error")});}
+      finally{savingLock.current=false;}
+    },1800);
+    return ()=>clearTimeout(timer);
+  },[f,uploading]);
 
   const set = <K extends keyof CoverInput>(k: K, v: CoverInput[K]) => setF((x) => ({ ...x, [k]: v }));
   const field = (k: keyof CoverInput) => ({
@@ -112,15 +133,18 @@ export default function CoverEditor({ initial, types, creatorNames }: Props) {
   };
 
   const submit = async (status: "draft" | "published") => {
+    if(savingLock.current)return;
+    savingLock.current=true;
     setSaving(true);
     setMsg(null);
     try {
       const res = await saveCover({ ...f, status });
       setMsg({ ok: res.ok, text: res.message });
-      if (res.ok) setF((x) => ({ ...x, status, slug: res.slug ?? x.slug }));
+      if (res.ok){const next={...f,status,slug:res.slug??f.slug};savedSnapshot.current=JSON.stringify(next);setAutoState("saved");setF(next);}
     } catch (error) {
       setMsg({ok:false,text:error instanceof Error?error.message:"Unable to save this cover."});
     } finally {
+      savingLock.current=false;
       setSaving(false);
     }
   };
@@ -339,6 +363,7 @@ export default function CoverEditor({ initial, types, creatorNames }: Props) {
       </div>
 
       <div className="editor-bar">
+        {f.status==="draft"&&<span className="cms-autosave" role="status">{autoState==="saving"?"Saving draft…":autoState==="unsaved"?"Unsaved changes":autoState==="error"?"Autosave failed":"All changes saved"}</span>}
         <span className={`badge ${f.status === "draft" ? "" : "live"}`}>{f.status === "draft" ? "Draft" : "Live"}</span>
         <button type="button" className="button" disabled={saving} onClick={() => submit("draft")}>
           {f.status === "draft" ? "Save draft" : "Unpublish"}
