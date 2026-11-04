@@ -1,27 +1,22 @@
 import Link from "next/link";
 import { requireAdmin } from "@/lib/admin";
-
-const groups = [
-  { label: "Workspace", links: [["Overview", "/admin"], ["Activity", "/admin/activity"], ["Articles", "/admin/articles"], ["Covers", "/admin/covers"], ["Artwork", "/admin/media"], ["Creators", "/admin/creators"], ["Cover types", "/admin/types"]] },
-  { label: "Website", links: [["Homepage", "/admin/site"]] },
-  { label: "Community", links: [["Submissions", "/admin/submissions"], ["Feedback", "/admin/feedback"], ["Members", "/admin/members"], ["Newsletter", "/admin/newsletter"]] },
-] as const;
+import AdminNavigation from "./AdminNavigation";
 
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {
   await requireAdmin("/admin");
   return (
     <div className="cms-shell">
-      <aside className="cms-sidebar" aria-label="Admin navigation">
-        <Link href="/admin" className="cms-brand">Covvvers <span>CMS</span></Link>
-        {groups.map((group) => (
-          <nav key={group.label} aria-label={group.label}>
-            <h2>{group.label}</h2>
-            {group.links.map(([title, href]) => <Link key={href} href={href}>{title}</Link>)}
-          </nav>
-        ))}
-        <Link href="/covers" className="cms-return">View website ↗</Link>
-      </aside>
-      <main className="cms-main" id="admin-content">{children}</main>
+      <AdminNavigation />
+      <div className="cms-workspace">
+        <div className="cms-toolbar">
+          <span className="cms-toolbar-label">EDITORIAL WORKSPACE</span>
+          <div className="cms-toolbar-actions">
+            <Link href="/admin/covers/new" className="cms-top-action">+ New cover</Link>
+            <Link href="/covers" className="cms-top-visit">View site ↗</Link>
+          </div>
+        </div>
+        <main className="cms-main" id="admin-content">{children}</main>
+      </div>
     </div>
   );
 }
