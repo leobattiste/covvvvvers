@@ -25,6 +25,10 @@ export default async function AdminHome() {
     { href: "/admin/covers", label: "Covers", note: `${published} live${drafts ? `, ${drafts} drafts` : ""}` },
     { href: "/admin/submissions", label: "Submissions", note: pending ? `${pending} waiting for review` : "Nothing waiting" },
     { href: "/admin/feedback", label: "Feedback", note: feedback ? `${feedback} new` : "Nothing new" },
+    { href: "/admin/creators", label: "Creators", note: "Credit directory" },
+    { href: "/admin/types", label: "Cover types", note: "Archive taxonomy" },
+    { href: "/admin/members", label: "Members", note: "Protected member directory" },
+    { href: "/admin/newsletter", label: "Newsletter", note: `${subscribers} active subscribers` },
   ];
 
   return (
