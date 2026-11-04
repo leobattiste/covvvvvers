@@ -255,7 +255,7 @@ export async function addMusicBrainzCover(groupId: string): Promise<{id:string;e
  };
  type ArtistPart={name?:string;joinphrase?:string}|string;
  type Edition={id:string;title:string;date?:string;country?:string;status?:string;"label-info"?:{label?:{name?:string}}[];"cover-art-archive"?:{front?:boolean}};
- const group=await read("/release-group/"+groupId+"?inc=artists+genres+url-rels&fmt=json");
+ const group=await read("/release-group/"+groupId+"?inc=genres+url-rels&fmt=json");
  const title=String(group.title??"").trim().slice(0,250);
  const artist=((group["artist-credit"] as ArtistPart[] | undefined) ?? []).map(x=>typeof x==="string"?x:(x.name??"")+(x.joinphrase??"")).join("").trim().slice(0,250);
  const year=Number(String(group["first-release-date"]??"").slice(0,4));
@@ -265,7 +265,7 @@ export async function addMusicBrainzCover(groupId: string): Promise<{id:string;e
  const norm=(x:string)=>x.normalize("NFKC").trim().toLocaleLowerCase();
  const duplicate=matching?.find(c=>norm(c.artist)===norm(artist)&&norm(c.title)===norm(title));
  if(duplicate)return {id:duplicate.id,existing:true};
- const releaseData=await read("/release/?release-group="+groupId+"&limit=100&fmt=json");
+ const releaseData=await read("/release/?release-group="+groupId+"&limit=100&inc=labels&fmt=json");
  const editions:Edition[]=releaseData.releases??[];
  // Prefer original, official releases with artwork over reissues and compilations.
  const ranked=editions.map(r=>({r,score:
