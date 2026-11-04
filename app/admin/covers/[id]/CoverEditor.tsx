@@ -121,6 +121,14 @@ export default function CoverEditor({ initial, types, creatorNames }: Props) {
   };
 
 
+  const checks = [
+    {label:"Artwork",done:Boolean(f.image_url)},
+    {label:"Album details",done:Boolean(f.title.trim()&&f.artist.trim()&&f.release_year)},
+    {label:"Cover type",done:Boolean(f.cover_type_id)},
+    {label:"Creator credits",done:f.creators.some(person=>person.name.trim())||Boolean(f.credits_text.trim())},
+    {label:"Cover story",done:Boolean(f.essay.trim())},
+  ];
+  const completed=checks.filter(check=>check.done).length;
   const people = f.creators;
   const setPerson = (i: number, k: "name" | "role", v: string) =>
     set(
@@ -129,9 +137,15 @@ export default function CoverEditor({ initial, types, creatorNames }: Props) {
     );
 
   return (
-    <form className="editor" onSubmit={(e) => e.preventDefault()}>
+    <form className="editor cms-cover-editor" onSubmit={(e) => e.preventDefault()}>
+      <div className="cms-editor-intro">
+        <div><span className="cms-editor-kicker">COVER EDITOR</span><h2>Cover details</h2><p>Complete the artwork, album information, story, and creative credits as they will appear on the public cover page.</p></div>
+        <div className="cms-editor-progress"><strong>{completed} of {checks.length}</strong><span>Editorial details completed</span><div className="cms-editor-meter" role="progressbar" aria-label="Cover completion" aria-valuenow={completed} aria-valuemin={0} aria-valuemax={checks.length}><span style={{width:(completed/checks.length*100)+"%"}}/></div></div>
+      </div>
+      <div className="cms-editor-checks" aria-label="Editorial checklist">{checks.map(check=><span key={check.label} className={check.done?"is-done":""}><span aria-hidden="true">{check.done?"✓":"○"}</span> {check.label}</span>)}</div>
       <div className="editor-grid">
         <div className="editor-art">
+          <div className="cms-editor-section-heading"><span>01 / ARTWORK</span><h3>Album cover</h3><p>The image and color palette used throughout the public page.</p></div>
           <div className="editor-preview" style={{ backgroundColor: f.color || "#eee" }}>
             {f.image_url ? <img src={fullImage(f.image_url, 800)} alt="" /> : <span>No cover art yet</span>}
           </div>
@@ -185,6 +199,7 @@ export default function CoverEditor({ initial, types, creatorNames }: Props) {
         </div>
 
         <div className="editor-fields stack">
+          <div className="cms-editor-section-heading"><span>02 / ALBUM</span><h3>Album information</h3><p>These details appear in the cover title and sleeve information.</p></div>
           <label>
             <span>Album title</span>
             <input {...field("title")} required />
@@ -195,7 +210,7 @@ export default function CoverEditor({ initial, types, creatorNames }: Props) {
           </label>
           <div className="editor-row">
             <label>
-              <span>Release year</span>
+              <span>Released (year)</span>
               <input
                 type="number"
                 min={1970}
@@ -205,7 +220,7 @@ export default function CoverEditor({ initial, types, creatorNames }: Props) {
               />
             </label>
             <label>
-              <span>Country</span>
+              <span>Country (archive metadata)</span>
               <input {...field("country")} placeholder="United States" />
             </label>
           </div>
@@ -227,12 +242,13 @@ export default function CoverEditor({ initial, types, creatorNames }: Props) {
             </label>
           </div>
           <label>
-            <span>Styles, separated by commas</span>
+            <span>Genres / styles (archive metadata)</span>
             <input {...field("subgenres")} placeholder="East Coast hip-hop, Boom bap" />
           </label>
 
+          <div className="cms-editor-section-heading"><span>03 / CREDITS</span><h3>Who made the cover</h3><p>Add verified people and their roles. Individual creator profiles appear on the public page.</p></div>
           <fieldset className="editor-people">
-            <legend>Who made the cover</legend>
+            <legend>Cover creators</legend>
             <datalist id="creator-names">
               {creatorNames.map((n) => (
                 <option key={n} value={n} />
@@ -275,17 +291,19 @@ export default function CoverEditor({ initial, types, creatorNames }: Props) {
           </fieldset>
 
           <label>
-            <span>Credit line, as shown under the title</span>
+            <span>Credit line (fallback when individual creators are not linked)</span>
             <input {...field("credits_text")} placeholder="Photography by Danny Clinch; design by Aimée Macauley" />
           </label>
+          <div className="cms-editor-section-heading"><span>04 / EDITORIAL</span><h3>The story behind the cover</h3><p>Document the design, photography, creative process and verified backstory. Separate paragraphs with a blank line.</p></div>
           <label>
-            <span>The story, in paragraphs separated by a blank line</span>
+            <span>Cover story</span>
             <textarea {...field("essay")} rows={16} />
           </label>
           <label>
-            <span>Pull quote (optional; otherwise the site picks a quoted line from the story)</span>
+            <span>Pull quote (not currently displayed on the public cover page)</span>
             <textarea {...field("pull_quote")} rows={2} />
           </label>
+          <div className="cms-editor-section-heading"><span>05 / LINKS</span><h3>Listen to the album</h3><p>Displayed in the public Listen row. Blank fields use search links.</p></div>
           <label>
             <span>Spotify album link</span>
             <input {...field("spotify_url")} placeholder="https://open.spotify.com/album/..." />
@@ -298,6 +316,7 @@ export default function CoverEditor({ initial, types, creatorNames }: Props) {
             <span>YouTube link</span>
             <input {...field("youtube_url")} />
           </label>
+          <div className="cms-editor-section-heading"><span>06 / PUBLISHING</span><h3>Publication settings</h3><p>Control the cover URL and featured status.</p></div>
           <label>
             <span>Web address</span>
             <span className="slug-input">
