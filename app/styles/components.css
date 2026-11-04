@@ -571,3 +571,8 @@ main img:not(.avatar-choices img):not(.card-saved img) { border-radius: var(--ra
 .cms-cover-editor .editor-fields .cms-editor-section-heading:not(:first-child){margin-top:22px;}
 .cms-cover-editor .editor-art .cms-editor-section-heading{margin-bottom:12px;}
 @media(max-width:760px){.cms-editor-intro{flex-direction:column;gap:16px}.cms-editor-progress{width:100%}.cms-cover-editor{gap:18px}.cms-editor-section-heading{margin-top:14px;}}
+
+.cms-editor-optional-links{border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:grid;gap:14px;}
+.cms-editor-optional-links>summary{cursor:pointer;font-size:.84rem;font-weight:600;}
+.cms-editor-optional-links[open]>summary{margin-bottom:16px;}
+.cms-editor-optional-links>label{display:grid;gap:7px;margin-top:12px;}
