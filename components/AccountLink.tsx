@@ -41,7 +41,7 @@ export default function AccountLink() {
   const next = path && !path.startsWith("/login") && !path.startsWith("/me") ? `?next=${encodeURIComponent(path)}` : "";
   return (
     <Link href={`/login${next}`} aria-busy={state === "loading"}>
-      Sign in / Sign up
+      Sign in
     </Link>
   );
 }
