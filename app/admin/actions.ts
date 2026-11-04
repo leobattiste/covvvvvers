@@ -230,3 +230,22 @@ export async function bulkCoverAction(ids: string[], action: "draft" | "delete")
   revalidatePath("/admin/covers");
   return { ok: true, message: `${unique.length} cover${unique.length === 1 ? "" : "s"} ${action === "draft" ? "moved to drafts" : "deleted"}.` };
 }
+
+/** Create a prefilled draft from a selected MusicBrainz edition. */
+export async function addMusicBrainzCover(input: {title:string;artist:string;year:number;country:string;label:string;imageUrl:string;genres:string[]}) {
+ const db=await adminClient();
+ const title=input.title.trim().slice(0,250);
+ const artist=input.artist.trim().slice(0,250);
+ if(!title||!artist)throw new Error("Missing album or artist.");
+ const year=Number(input.year);
+ if(!Number.isInteger(year)||year<1970||year>2100)throw new Error("Invalid release year.");
+ const id=await createDraft(db,{title,artist,year});
+ const {error}=await db.from("covers").update({
+  country:input.country.slice(0,100)||null,
+  label:input.label.slice(0,250)||null,
+  image_url:/^https:\/\//.test(input.imageUrl)?input.imageUrl:"",
+  subgenres:input.genres.slice(0,12).map(x=>x.slice(0,80))
+ }).eq("id",id);
+ if(error)throw new Error(error.message);
+ return id;
+}
