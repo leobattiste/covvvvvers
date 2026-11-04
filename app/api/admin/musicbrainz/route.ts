@@ -23,9 +23,9 @@ export async function GET(request:NextRequest) {
    const q=(params.get("q")??"").trim().slice(0,120);
    if(q.length<2)return NextResponse.json({error:"Enter at least two characters."},{status:400});
    const escaped=q.replace(/[+\\():"]/g," ").trim();
-   const data=await mb("/release-group/?query="+encodeURIComponent(escaped)+"&limit=12&fmt=json");
-   const results=(data["release-groups"]??[]).filter((r:{id:string;primaryType?:string})=>UUID.test(r.id)).map((r:{id:string;title:string;"first-release-date"?:string;"artist-credit"?: (MBArtist|string)[];"primary-type"?:string})=>({
-    id:r.id,title:r.title,artist:artistName(r["artist-credit"]),year:r["first-release-date"]?.slice(0,4)??"",type:r["primary-type"]??""
+   const data=await mb("/release-group/?query="+encodeURIComponent(escaped)+"&limit=25&fmt=json");
+   const results=(data["release-groups"]??[]).filter((r:{id:string;primaryType?:string})=>UUID.test(r.id)).map((r:{id:string;title:string;"first-release-date"?:string;"artist-credit"?: (MBArtist|string)[];"primary-type"?:string;genres?:{name:string}[]})=>({
+    id:r.id,title:r.title,artist:artistName(r["artist-credit"]),year:r["first-release-date"]?.slice(0,4)??"",type:r["primary-type"]??"",genres:(r.genres??[]).map(g=>g.name)
    }));
    return NextResponse.json({results});
   }
