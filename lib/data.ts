@@ -35,36 +35,14 @@ const loadCollection = cache(async (): Promise<Raw> => {
   ]);
   const err = types.error || creators.error || covers.error || links.error;
   if (err) throw new Error("Could not load the collection from Supabase: " + err.message);
-  // Editorial additions committed to the collection should appear on the live site
-  // even when Supabase is enabled. Supabase remains authoritative for existing rows.
-  // Match by slug as well as ID to avoid duplicates when an editor imports a cover later.
-  const localCollection = local as unknown as Raw;
-  const databaseCovers = (covers.data as RawCover[]).filter(
-    (c) => (c.status ?? "published") === "published" && (c.image_url || recordImage(c.title, c.artist)),
-  );
-  const databaseSlugs = new Set(databaseCovers.map((c) => c.slug));
-  const databaseIds = new Set(databaseCovers.map((c) => c.id));
-  const editorialSlugs = new Set([
-    "by-all-means-necessary",
-    "bizarre-ride-ii-the-pharcyde",
-    "miss-e-so-addictive",
-    "savage-mode-ii",
-    "alligator-bites-never-heal",
-  ]);
-  const additions = localCollection.covers.filter(
-    (c) => editorialSlugs.has(c.slug) && !databaseSlugs.has(c.slug) && !databaseIds.has(c.id),
-  );
-  const linkedCreatorIds = new Set(localCollection.cover_creators
-    .filter((link) => additions.some((c) => c.id === link.cover_id))
-    .map((link) => link.creator_id));
-  const databaseCreatorIds = new Set((creators.data as Creator[]).map((c) => c.id));
-  const databaseTypeIds = new Set((types.data as Raw["types"]).map((t) => t.id));
-
   return {
-    types: [...types.data, ...localCollection.types.filter((t) => !databaseTypeIds.has(t.id))],
-    creators: [...creators.data, ...localCollection.creators.filter((c) => linkedCreatorIds.has(c.id) && !databaseCreatorIds.has(c.id))],
-    covers: [...databaseCovers, ...additions],
-    cover_creators: [...links.data, ...localCollection.cover_creators.filter((link) => additions.some((c) => c.id === link.cover_id))],
+    types: types.data,
+    creators: creators.data,
+    // Drafts stay off the public site, and so do covers with no art anywhere.
+    covers: (covers.data as RawCover[]).filter(
+      (c) => (c.status ?? "published") === "published" && (c.image_url || recordImage(c.title, c.artist)),
+    ),
+    cover_creators: links.data,
   } as Raw;
 });
 
