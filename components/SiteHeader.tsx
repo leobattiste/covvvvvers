@@ -11,7 +11,6 @@ import ThemeToggle from "./ThemeToggle";
 // Big links at the top of the menu.
 const MAIN = [
   { href: "/covers", label: "Covers" },
-  { href: "/articles", label: "Articles" },
   { href: "/types", label: "Types" },
   { href: "/timeline", label: "Through the Years" },
 ];
