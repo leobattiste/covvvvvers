@@ -21,7 +21,7 @@ export default function AdminNavigation(){
  },[open]);
  return <aside className="cms-sidebar" aria-label="Admin navigation">
   <div className="cms-sidebar-top">
-   <Link href="/admin" className="cms-brand" onClick={()=>setOpen(false)}>Covvvers <span>STUDIO</span></Link>
+   <Link href="/admin" className="cms-brand" onClick={()=>setOpen(false)}>Workspace <span>ADMIN</span></Link>
    <button type="button" className="cms-mobile-toggle" aria-expanded={open} aria-controls={menuId} aria-label={open?"Close admin menu":"Open admin menu"} onClick={()=>setOpen(!open)}>{open?"Close":"Menu"}</button>
   </div>
   <div id={menuId} className={open?"cms-nav-wrap is-open":"cms-nav-wrap"}>
