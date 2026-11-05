@@ -13,6 +13,7 @@ export default async function TypesPage() {
   const types = await getTypesWithCovers();
   return (
     <>
+      <header className="collection-hero"><h1>Types</h1><p>Discover how photography, illustration, typography, and other visual approaches have shaped rap album artwork.</p></header>
       <ul className="collection-list">
         {types.map((t) => (
           <li key={t.slug}>
