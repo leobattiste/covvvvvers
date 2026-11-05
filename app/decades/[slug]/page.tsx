@@ -45,7 +45,7 @@ export default async function DecadePage({ params }: Params) {
           <h2 id="decade-covers-heading">Album covers</h2>
           <span>{count} {count === 1 ? "cover" : "covers"}</span>
         </div>
-        <CoverGrid covers={decade.covers.map(toCard)} emptyText="No album covers from this decade have been added yet." />
+        <CoverGrid covers={decade.covers.map((cover) => toCard(cover))} emptyText="No album covers from this decade have been added yet." />
       </section>
       <nav className="decade-detail-nav" aria-label="Browse other decades">
         {older ? <Link href={`/decades/${older}`}><span>Previous decade</span><strong>← {older}</strong></Link> : <span />}
