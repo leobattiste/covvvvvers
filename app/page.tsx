@@ -32,8 +32,8 @@ export default async function Home() {
   return (
     <HeroRing
       covers={ring}
-      title={siteText.home_title || "Every rap album cover has a story."}
-      sub={siteText.home_description || `${covers.length} covers from ${since} to now, and the people, places and ideas behind each one.`}
+      title="Learn more about your favorite rap album covers."
+      sub="Discover the stories, ideas, and creative minds behind the artwork."
     />
   );
 }
