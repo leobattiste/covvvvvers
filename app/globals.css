@@ -465,7 +465,6 @@ select {
   top: var(--header);
   z-index: 20;
   background: var(--paper);
-  border-bottom: 1px solid var(--line);
 }
 
 .filter-row {
@@ -4543,7 +4542,6 @@ button[aria-busy="true"]::after {
   gap: 4px;
   overflow-x: auto;
   padding: 10px var(--gutter);
-  border-bottom: 1px solid var(--line);
   background: var(--page-bg, var(--paper));
   scrollbar-width: none;
 }

@@ -33,19 +33,14 @@ export default async function DecadePage({ params }: Params) {
   const position = filled.indexOf(decade.slug);
   const newer = position > 0 ? filled[position - 1] : null;
   const older = position >= 0 && position < filled.length - 1 ? filled[position + 1] : null;
-  const count = decade.covers.length;
   return (
     <div className="decade-detail">
       <header className="page-head decade-detail-head">
-        <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Decades", href: "/decades" }, { label: decade.title }]} />
+        <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Covers", href: "/covers" }, { label: "Decades", href: "/decades" }, { label: decade.title }]} />
         <h1>{decade.title}</h1>
         <DecadeEssay decade={decade.title} paragraphs={decadeEssays[decade.slug] ?? []} />
       </header>
-      <section className="decade-detail-collection" aria-labelledby="decade-covers-heading">
-        <div className="decade-detail-collection-heading">
-          <h2 id="decade-covers-heading">Album covers</h2>
-          <span>{count} {count === 1 ? "cover" : "covers"}</span>
-        </div>
+      <section className="decade-detail-collection" aria-label={`Album covers from the ${decade.title}`}>
         <CoverGrid covers={decade.covers.map((cover) => toCard(cover))} emptyText="No album covers from this decade have been added yet." />
       </section>
       <nav className="decade-detail-nav" aria-label="Browse other decades">

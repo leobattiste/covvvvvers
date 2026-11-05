@@ -78,27 +78,7 @@
 /* Covers */
 
 .decade-detail-collection {
-  padding-top: 32px;
-  border-top: 1px solid var(--line);
-}
-
-.decade-detail-collection-heading {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 16px;
-  padding: 0 var(--gutter);
-  margin-bottom: 24px;
-}
-
-.decade-detail-collection-heading h2 {
-  margin: 0;
-  font-size: var(--text-h2);
-}
-
-.decade-detail-collection-heading span {
-  color: var(--muted);
-  font-size: var(--text-meta);
+  padding-top: 8px;
 }
 
 /* Previous and next decade */

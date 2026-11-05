@@ -10,8 +10,8 @@ export default function DecadeEssay({ decade, paragraphs }: { decade: string; pa
       <p>{paragraphs[0]}</p>
       {paragraphs.length > 1 && (
         <>
-          <button type="button" className="button decade-read-more" onClick={() => dialog.current?.showModal()}>
-            Read more <span aria-hidden="true">↗</span>
+          <button type="button" className="button solid decade-read-more" onClick={() => dialog.current?.showModal()}>
+            Read more
           </button>
           <dialog ref={dialog} className="decade-essay-dialog" aria-labelledby="decade-essay-title" onClick={(event) => {
             if (event.target === dialog.current) dialog.current?.close();
