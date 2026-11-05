@@ -12,6 +12,7 @@ export default async function CoversPage() {
   const [covers, types] = await Promise.all([getCovers(), getTypes()]);
   return (
     <>
+      <header className="collection-hero"><h1>Covers</h1><p>A curated collection of rap album covers, featuring the stories, ideas, and people behind their creation.</p></header>
       <CoverGrid
         covers={covers.map((c) => toCard(c, { withText: true }))}
         filters
