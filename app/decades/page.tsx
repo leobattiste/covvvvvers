@@ -10,7 +10,8 @@ export const metadata: Metadata = {
 };
 
 export default async function DecadesPage() {
-  const decades = await getDecadesWithCovers();
+  // Decades with no covers yet stay off the list.
+  const decades = (await getDecadesWithCovers()).filter((d) => d.count > 0);
   return (
     <>
       <header className="collection-hero"><h1>Decades</h1><p>Explore the evolution of rap and its visual identity, from its beginnings to the present day.</p></header>
