@@ -12,7 +12,9 @@ export const metadata: Metadata = {
 export default async function DecadesPage() {
   const decades = await getDecadesWithCovers();
   return (
-    <ul className="collection-list">
+    <>
+      <header className="collection-hero"><h1>Decades</h1><p>Explore the evolution of rap and its visual identity, from its beginnings to the present day.</p></header>
+      <ul className="collection-list">
       {decades.map((decade) => (
         <li key={decade.slug}>
           <Link href={`/decades/${decade.slug}`} className="collection-card">
@@ -32,6 +34,7 @@ export default async function DecadesPage() {
           </Link>
         </li>
       ))}
-    </ul>
+      </ul>
+    </>
   );
 }
